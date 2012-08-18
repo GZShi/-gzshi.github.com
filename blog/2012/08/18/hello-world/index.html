@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>给Octopress添加新浪微博侧边栏 - GZShi的个人博客</title>
+  <meta name="author" content="GuozhongShi">
+
+  
+  <meta name="description" content="Step 1 - 获取微博秀代码 进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码 代码大致如下： &lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://gzshi.github.com/blog/2012/08/18/hello-world/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="GZShi的个人博客" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34017421-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">GZShi的个人博客</a></h1>
+  
+    <h2>书犹药也，善读之可以医愚</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:gzshi.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">给Octopress添加新浪微博侧边栏</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-18T15:35:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>Step 1 - 获取微博秀代码</h3>
+
+<p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
+
+<p>代码大致如下：</p>
+
+<div><script src='https://gist.github.com/3385130.js?file='></script>
+<noscript><pre><code>&lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot;  frameborder=&quot;0&quot; scrolling=&quot;no&quot; 
+src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=OOOOOOOOOO&amp;verifier=XXXXXXX&amp;dpc=1&quot;&gt;&lt;/iframe&gt;</code></pre></noscript></div>
+
+
+<p>只需要记住这部分代码中的uid和verifier即可</p>
+
+<h3>Step 2 - 创建侧边栏网页</h3>
+
+<p>随便新建一个html文件，将下面的html拷进去，然后保存</p>
+
+<div><script src='https://gist.github.com/3385105.js?file='></script>
+<noscript><pre><code>{% if site.weibo_uid %}
+&lt;section&gt;
+    &lt;h1&gt;Sina Weibo&lt;/h1&gt;
+    &lt;ul id=&quot;weibo&quot;
+    &lt;li&gt;
+        &lt;iframe
+        width=&quot;100%&quot;
+        height=&quot;550&quot;
+        class=&quot;share_self&quot;
+        frameborder=&quot;0&quot;
+        scrolling=&quot;no&quot;
+        src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
+        &lt;/iframe&gt;
+    &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/section&gt;
+{% endif %}</code></pre></noscript></div>
+
+
+<p>侧边栏的宽度是自适应的，高度为550px，这些可以直接修改上面的参数</p>
+
+<h3>Step 3 - 修改‘_config.yml’文件</h3>
+
+<p>修改示例如下：</p>
+
+<div><script src='https://gist.github.com/3385132.js?file='></script>
+<noscript><pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
+# To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
+
+# Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
+# and add an array with the asides you want to use.
+# blog_index_asides:
+# post_asides:
+# page_asides:
+
+# ----------------------- #
+#   3rd Party Settings    #
+# ----------------------- #
+
+#Sina Weibo
+weibo_uid: 21444XXXXX
+weibo_verifier: d13OOOOO
+weibo_fansline: 1
+weibo_show: true
+weibo_pic: false
+weibo_skin: 2</code></pre></noscript></div>
+
+
+<p>weibo_uid和weibo_verifier都是第一步获取的</p>
+
+<p>接下来就编译你的Octopress看看效果吧</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">GuozhongShi</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-18T15:35:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://gzshi.github.com/blog/2012/08/18/hello-world/" data-via="GZShi" data-counturl="http://gzshi.github.com/blog/2012/08/18/hello-world/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/18/hello-world/">给Octopress添加新浪微博侧边栏</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+	<h1>Sina Weibo</h1>
+	<ul id="weibo"
+	<li>
+		<iframe
+		width="100%"
+		height="550"
+		class="share_self"
+		frameborder="0"
+		scrolling="no"
+		src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=0&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=2144461272&verifier=d1392a15">
+		</iframe>
+	</li>
+	</ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/GZShi">@GZShi</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'GZShi',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("GZShi", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/GZShi" class="twitter-follow-button" data-show-count="false">Follow @GZShi</a>
+  
+</section>
+
+
+<section class="googleplus">
+  <h1>Google Plus</h1>
+  <ul>
+    <a href="https://plus.google.com/112029343353412989100?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+</ul>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - GuozhongShi -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'gzshi';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://gzshi.github.com/blog/2012/08/18/hello-world/';
+        var disqus_url = 'http://gzshi.github.com/blog/2012/08/18/hello-world/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
