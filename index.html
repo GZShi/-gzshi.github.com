@@ -69,6 +69,7 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/gift/index.html">Gift</a></li>
 </ul>
 
 </nav>
@@ -118,65 +119,12 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 
 <p>只需要记住这部分代码中的uid和verifier即可</p>
 
-<h3>Step 2 - 创建侧边栏网页</h3>
-
-<p>随便新建一个html文件，将下面的html拷进去，然后保存</p>
-
-<div><script src='https://gist.github.com/3385105.js?file='></script>
-<noscript><pre><code>{% if site.weibo_uid %}
-&lt;section&gt;
-    &lt;h1&gt;Sina Weibo&lt;/h1&gt;
-    &lt;ul id=&quot;weibo&quot;
-    &lt;li&gt;
-        &lt;iframe
-        width=&quot;100%&quot;
-        height=&quot;550&quot;
-        class=&quot;share_self&quot;
-        frameborder=&quot;0&quot;
-        scrolling=&quot;no&quot;
-        src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/section&gt;
-{% endif %}</code></pre></noscript></div>
-
-
-<p>侧边栏的宽度是自适应的，高度为550px，这些可以直接修改上面的参数</p>
-
-<h3>Step 3 - 修改‘_config.yml’文件</h3>
-
-<p>修改示例如下：</p>
-
-<div><script src='https://gist.github.com/3385132.js?file='></script>
-<noscript><pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
-# To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
-
-# Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
-# and add an array with the asides you want to use.
-# blog_index_asides:
-# post_asides:
-# page_asides:
-
-# ----------------------- #
-#   3rd Party Settings    #
-# ----------------------- #
-
-#Sina Weibo
-weibo_uid: 21444XXXXX
-weibo_verifier: d13OOOOO
-weibo_fansline: 1
-weibo_show: true
-weibo_pic: false
-weibo_skin: 2</code></pre></noscript></div>
-
-
-<p>weibo_uid和weibo_verifier都是第一步获取的</p>
-
-<p>接下来就编译你的Octopress看看效果吧</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/08/18/hello-world/">阅读全文 &rarr;</a>
+    </footer>
   
 
 

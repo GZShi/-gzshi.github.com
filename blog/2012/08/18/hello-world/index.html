@@ -69,6 +69,7 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/gift/index.html">Gift</a></li>
 </ul>
 
 </nav>
@@ -115,9 +116,12 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 
 <p>只需要记住这部分代码中的uid和verifier即可</p>
 
+<!--more-->
+
+
 <h3>Step 2 - 创建侧边栏网页</h3>
 
-<p>随便新建一个html文件，将下面的html拷进去，然后保存</p>
+<p>随便新建一个html文件，将下面的html代码拷进去，然后保存</p>
 
 <div><script src='https://gist.github.com/3385105.js?file='></script>
 <noscript><pre><code>{% if site.weibo_uid %}
@@ -138,6 +142,8 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 &lt;/section&gt;
 {% endif %}</code></pre></noscript></div>
 
+
+<p>保存的路径为source/_include/asides/</p>
 
 <p>侧边栏的宽度是自适应的，高度为550px，这些可以直接修改上面的参数</p>
 

@@ -1,0 +1,36 @@
+::selection{
+background:#a8141b;
+color:white;
+}
+
+a:link{
+color:red;
+}
+a:hover{
+color:#31324e;
+}
+a:active{
+color:#31324e;
+}
+a:visited{
+color:#31324e;
+}
+a{
+text-shadow:1px 1px 1px gray;
+text-decoration:none;
+}
+
+#mainstyle{
+color:#4d484a;
+text-shadow:0 0 10px white, 0 0 15px white, 0 0 25px #868282, 0 0 40px #855;
+text-align:center;
+margin-top:5em;
+font-size: 30px;
+}
+
+#jumpmesg{
+color:green;
+text-align:center;
+font-size:13px;
+font-style:italic;
+}
