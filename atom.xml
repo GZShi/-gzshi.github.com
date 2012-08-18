@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[#{GZShi}的个人博客]]></title>
-  <link href="http://gzshi.github.com/atom.xml" rel="self"/>
-  <link href="http://gzshi.github.com/"/>
-  <updated>2012-08-19T01:41:41+08:00</updated>
-  <id>http://gzshi.github.com/</id>
+  <link href="http://lovep.me/atom.xml" rel="self"/>
+  <link href="http://lovep.me/"/>
+  <updated>2012-08-19T01:49:20+08:00</updated>
+  <id>http://lovep.me/</id>
   <author>
     <name><![CDATA[GuozhongShi]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[给Octopress添加新浪微博侧边栏]]></title>
-    <link href="http://gzshi.github.com/blog/2012/08/18/hello-world/"/>
+    <link href="http://lovep.me/blog/2012/08/18/hello-world/"/>
     <updated>2012-08-18T15:35:00+08:00</updated>
-    <id>http://gzshi.github.com/blog/2012/08/18/hello-world</id>
+    <id>http://lovep.me/blog/2012/08/18/hello-world</id>
     <content type="html"><![CDATA[<h3>Step 1 - 获取微博秀代码</h3>
 
 <p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
