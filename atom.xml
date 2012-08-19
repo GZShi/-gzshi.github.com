@@ -4,7 +4,7 @@
   <title><![CDATA[#{GZShi}的个人博客]]></title>
   <link href="http://lovep.me/atom.xml" rel="self"/>
   <link href="http://lovep.me/"/>
-  <updated>2012-08-19T11:48:40+08:00</updated>
+  <updated>2012-08-19T12:02:00+08:00</updated>
   <id>http://lovep.me/</id>
   <author>
     <name><![CDATA[GuozhongShi]]></name>
@@ -18,7 +18,7 @@
     <link href="http://lovep.me/blog/2012/08/19/build-blog/"/>
     <updated>2012-08-19T09:35:00+08:00</updated>
     <id>http://lovep.me/blog/2012/08/19/build-blog</id>
-    <content type="html"><![CDATA[<p>正如官网上所说的那样——“A blogging frameword for hackers”，Octopress绝对是折腾控、装逼控搭建博客的不二选择。<br/>
+    <content type="html"><![CDATA[<p>正如官网上所说的那样——“A blogging frameword for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br/>
 Octopress的可定制性非常高，所有的显示效果都可以自己设定，也有很多主题可以下载。默认主题非常简洁，这是我选择的原因之一。</p>
 
 <h3>step 1 - 准备工作</h3>
@@ -38,20 +38,23 @@ Octopress的可定制性非常高，所有的显示效果都可以自己设定�
 <h3>step 2 - 生成博客模版</h3>
 
 <p>现在GitHub上创建一个项目(Repository)，命名为<code>username.github.com</code><br/>
-打开Shell，用下面命令把GitHub上的Octopress项目克隆到本地</p>
+* 打开Shell，用下面命令把GitHub上的Octopress项目克隆到本地</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/imathis/octopress.git username.github.com</span></code></pre></td></tr></table></div></figure>
 
 
 <p>此时你的计算机上应该有一个名为<code>username.github.com</code>的文件夹，接下来要修改这个文件夹里面的内容<br/>
-把<code>.rvmrc</code>里面的文件内容修改为：</p>
+* 把<code>.rvmrc</code>里面的文件内容修改为：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rvm use 1.9.2</span></code></pre></td></tr></table></div></figure>
 
 
-<p>修改<code>Gemfile</code>里的Source地址如下：</p>
+<ul>
+<li>修改<code>Gemfile</code>里的Source地址如下：</li>
+</ul>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>source "http://ruby.taobao.org"</span></code></pre></td></tr></table></div></figure>
@@ -59,13 +62,19 @@ Octopress的可定制性非常高，所有的显示效果都可以自己设定�
 
 <p>原来的链接据说因为<a href="http://zh.wikipedia.org/wiki/GFW">GFW</a>的原因不能用了，你懂的</p>
 
-<p>然后运行如下命令，安装相应的Gem：</p>
+<ul>
+<li>然后运行如下命令，安装相应的Gem：</li>
+</ul>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bundle update</span></code></pre></td></tr></table></div></figure>
 
 
-<p>接下来生成博客模版：</p>
+<ul>
+<li>接下来生成博客模版：</li>
+</ul>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
@@ -144,7 +153,10 @@ default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html
 
 <h3>step 5 - 写你的第一篇博客</h3>
 
-<p>创建文章的命令：</p>
+<ul>
+<li>创建文章的命令：</li>
+</ul>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post['my-first-article']</span></code></pre></td></tr></table></div></figure>
@@ -152,13 +164,16 @@ default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html
 
 <p>然后进入<code>source/_posts</code>目录下，你会发先多了一个<code>.markdown</code>文件。随便用一个文本编辑器打开它，写下你的第一篇博客。<br/>
 这个.markdown文件要遵循Markdown的语法，如果出现语法错误的话，很可能导致你的博客不能成功生成。<br/>
-保存后用下面的命令编译你的博客：</p>
+* 保存后用下面的命令编译你的博客：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
 
 
-<p>接下来预览：</p>
+<ul>
+<li>接下来预览：</li>
+</ul>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
@@ -166,7 +181,7 @@ default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html
 
 <p>此时在你的浏览器里面输入<code>localhost:4000</code>即可查看你的博客。<br/>
 在预览状态下你可一对.markdown文件进行实时修改，修改完毕保存后直接刷新网页就能看到新的效果。<code>_config.yml</code>的某些修改也是可以直接刷新呈现的。<br/>
-预览效果不错的话就可以同步到GitHub上：</p>
+预览效果满意的话接下来就可以同步到GitHub上：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
@@ -176,7 +191,7 @@ default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html
 
 <h3>step 6 - 备份你的博客数据</h3>
 
-<p>source/_post里面保存了你所有的博客内容，这是你最重要的数据。现在要新建一个Repository分支备份保存你的文章，具体操作如下：</p>
+<p><code>source/_post</code>里面保存了你所有的博客内容，这是你最重要的数据。现在要新建一个Repository分支备份保存你的文章，具体操作如下：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -219,7 +234,7 @@ default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html
 </ol>
 
 
-<h3>如果你的文章里面因为插入了代码而无法生成博客，请参考</h3>
+<h3>如果因为你的文章里面插入了代码而无法生成博客，请参考</h3>
 
 <ol>
 <li><a href="http://netwjx.github.com/blog/2012/04/21/using-code-in-octopress/">在Octopress中使用代码高亮</a>;</li>
