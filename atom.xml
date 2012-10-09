@@ -4,7 +4,7 @@
   <title><![CDATA[#{GZShi}的个人博客]]></title>
   <link href="http://lovep.me/atom.xml" rel="self"/>
   <link href="http://lovep.me/"/>
-  <updated>2012-09-29T21:41:58+08:00</updated>
+  <updated>2012-10-09T15:37:54+08:00</updated>
   <id>http://lovep.me/</id>
   <author>
     <name><![CDATA[GuozhongShi]]></name>
@@ -12,6 +12,106 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[判断闰年]]></title>
+    <link href="http://lovep.me/blog/2012/10/09/huawei-code-test/"/>
+    <updated>2012-10-09T14:47:00+08:00</updated>
+    <id>http://lovep.me/blog/2012/10/09/huawei-code-test</id>
+    <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/zh/%E9%97%B0%E5%B9%B4">闰年</a>这个概念大概是小学刚学除法的时候接触的吧，记得比较清楚的是“闰年都能被4整除”。大一的时候学C语言的时候又接触到闰年，判断方法说的很清楚</p>
+
+<blockquote><p>“四年一闰，百年不闰，四百年再闰”</p></blockquote>
+
+<p>没有想到的是，在今天早上的华为机试中又遇到了这个闰年！</p>
+
+<p>题目很简单，就是要你判断输入的数是否是闰年，是就输出&#8221;YES&#8221;，不是就输出&#8221;NO&#8221;。</p>
+
+<!--more -->
+
+
+<p>为了这次上机测试，我特意查了下华为前几年的上机测试题，虽然不是很难，但也不会简单到这个样子，而且以前都不止一道题，码代码的时间也不止30分钟（当然，这个题30分钟的时间显得太充裕了），昨晚还没睡好，看了好多面试题目……看到这个题目我第一想法就是——大坑！</p>
+
+<p>本来想用一个条件语句判断的，但是头脑一热就懒得想这么多了，直接上if-else</p>
+
+<div><script src='https://gist.github.com/3857116.js?file='></script>
+<noscript><pre><code>#include &lt;stdio.h&gt;
+
+#define TRUE 1
+#define FALSE 0
+
+int judge(int year)
+{
+    if(year % 4 != 0)
+        return FALSE;
+    else if(year % 100 == 0)
+    {
+        if(year % 400 == 0)
+            return TRUE;
+        else
+            return FALSE;
+    }
+    else 
+        return TRUE;
+}
+
+int main(void)
+{
+    int year = 0;
+    char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
+
+    scanf(&quot;%d&quot;, &amp;year);
+
+    printf(&quot;%s\n&quot;, s[judge(year)]);
+
+    return 0;
+}
+</code></pre></noscript></div>
+
+
+<p>测试了几个例子，测试正确后便很满足地提交了。但是提交后发现检查结果有5%的测试样例没通过，刚刚还信心满满的我一下子就被打击到了，再三检查了程序的逻辑，实在找不出有什么逻辑方面的错误。</p>
+
+<p>走出软件园，实在是很郁闷，路上一直想着刚刚的程序，一直在想那5%的错误是怎么出现的。突然想到他给的样例是用字符串保存输入的而非整型，莫非测试的时候用了一个非常大的数导致整型溢出出现错误，想到这里我发现我的程序里面却是没有想到这点。回来后我又重新写了一个</p>
+
+<div><script src='https://gist.github.com/3857174.js?file='></script>
+<noscript><pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_LEN 255
+#define TRUE 1
+#define FALSE 0
+
+int judge(char *str)
+{
+    int year = 0;
+    if(strlen(str) &gt; 9)  // 超出一个32bit能表示的最大位数
+    {
+        strcpy(str, str + strlen(str) - 4);
+        year = (str[0] - '0')*1000 + (str[1] - '0')*100 + (str[2] - '0')*10 + str[3] - '0';
+    }
+    else
+        year = atoi(str);
+
+    return (((year % 4 == 0) &amp;&amp; (year % 100 != 0)) || (year % 400 == 0));
+}
+
+int main(void)
+{
+    char str[MAX_LEN];
+    char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
+
+    fscanf(str, MAX_LEN - 1, stdin);
+
+    printf(&quot;%s\n&quot;, s[judge(str)]);
+
+    return 0;
+}
+</code></pre></noscript></div>
+
+
+<p>真是再简单的事情也有意想不到的情况。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2009级华中科技大学计算机保研C语言上机题目]]></title>

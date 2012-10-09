@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>#{GZShi}的个人博客</title>
+  <title>判断闰年 - #{GZShi}的个人博客</title>
   <meta name="author" content="GuozhongShi">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lovep.me/">
+  <link rel="canonical" href="http://lovep.me/blog/2012/10/09/huawei-code-test/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,15 +75,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/09/huawei-code-test/">判断闰年</a></h1>
+      <h1 class="entry-title">判断闰年</h1>
     
     
       <p class="meta">
@@ -106,7 +103,7 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://zh.wikipedia.org/zh/%E9%97%B0%E5%B9%B4">闰年</a>这个概念大概是小学刚学除法的时候接触的吧，记得比较清楚的是“闰年都能被4整除”。大一的时候学C语言的时候又接触到闰年，判断方法说的很清楚</p>
+<div class="entry-content"><p><a href="http://zh.wikipedia.org/zh/%E9%97%B0%E5%B9%B4">闰年</a>这个概念大概是小学刚学除法的时候接触的吧，记得比较清楚的是“闰年都能被4整除”。大一的时候学C语言的时候又接触到闰年，判断方法说的很清楚</p>
 
 <blockquote><p>“四年一闰，百年不闰，四百年再闰”</p></blockquote>
 
@@ -114,79 +111,101 @@
 
 <p>题目很简单，就是要你判断输入的数是否是闰年，是就输出&#8221;YES&#8221;，不是就输出&#8221;NO&#8221;。</p>
 
+<!--more -->
+
+
+<p>为了这次上机测试，我特意查了下华为前几年的上机测试题，虽然不是很难，但也不会简单到这个样子，而且以前都不止一道题，码代码的时间也不止30分钟（当然，这个题30分钟的时间显得太充裕了），昨晚还没睡好，看了好多面试题目……看到这个题目我第一想法就是——大坑！</p>
+
+<p>本来想用一个条件语句判断的，但是头脑一热就懒得想这么多了，直接上if-else</p>
+
+<div><script src='https://gist.github.com/3857116.js?file='></script>
+<noscript><pre><code>#include &lt;stdio.h&gt;
+
+#define TRUE 1
+#define FALSE 0
+
+int judge(int year)
+{
+    if(year % 4 != 0)
+        return FALSE;
+    else if(year % 100 == 0)
+    {
+        if(year % 400 == 0)
+            return TRUE;
+        else
+            return FALSE;
+    }
+    else 
+        return TRUE;
+}
+
+int main(void)
+{
+    int year = 0;
+    char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
+
+    scanf(&quot;%d&quot;, &amp;year);
+
+    printf(&quot;%s\n&quot;, s[judge(year)]);
+
+    return 0;
+}
+</code></pre></noscript></div>
+
+
+<p>测试了几个例子，测试正确后便很满足地提交了。但是提交后发现检查结果有5%的测试样例没通过，刚刚还信心满满的我一下子就被打击到了，再三检查了程序的逻辑，实在找不出有什么逻辑方面的错误。</p>
+
+<p>走出软件园，实在是很郁闷，路上一直想着刚刚的程序，一直在想那5%的错误是怎么出现的。突然想到他给的样例是用字符串保存输入的而非整型，莫非测试的时候用了一个非常大的数导致整型溢出出现错误，想到这里我发现我的程序里面却是没有想到这点。回来后我又重新写了一个</p>
+
+<div><script src='https://gist.github.com/3857174.js?file='></script>
+<noscript><pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_LEN 255
+#define TRUE 1
+#define FALSE 0
+
+int judge(char *str)
+{
+    int year = 0;
+    if(strlen(str) &gt; 9)  // 超出一个32bit能表示的最大位数
+    {
+        strcpy(str, str + strlen(str) - 4);
+        year = (str[0] - '0')*1000 + (str[1] - '0')*100 + (str[2] - '0')*10 + str[3] - '0';
+    }
+    else
+        year = atoi(str);
+
+    return (((year % 4 == 0) &amp;&amp; (year % 100 != 0)) || (year % 400 == 0));
+}
+
+int main(void)
+{
+    char str[MAX_LEN];
+    char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
+
+    fscanf(str, MAX_LEN - 1, stdin);
+
+    printf(&quot;%s\n&quot;, s[judge(str)]);
+
+    return 0;
+}
+</code></pre></noscript></div>
+
+
+<p>真是再简单的事情也有意想不到的情况。</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/09/huawei-code-test/">阅读全文 &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/29/hust-graduate-retest/">2009级华中科技大学计算机保研C语言上机题目</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">GuozhongShi</span></span>
 
-<time datetime="2012-09-29T13:45:00+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在某种基友光环的作用下，我这个找工作的苦逼也有机会看到今年的华科保研的c语言上机题目。完全是无聊时间多了没事干闲的不行才写了几行代码。</p>
-
-<h3>第一题</h3>
-
-<ul>
-<li>某加密算法对数据字节进行加密，具体算法为：<br/>
-1.对字节的8位二进制位从右向左0~7编号，先将0、2、4位分别于1、3、5位两两对应交换<br/>
-2.然后对0~5位进行循环左移（左边移出的位接到右边），循环左移的位数由6、7两位所组成的二进制数的值决定
-编写程序，输入一行明文字符串，按上述算法进行加密后输出密文。<br/>
-例如，输入：<code>abcd↙</code>，则输出：<code>dbfp↙</code></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/09/29/hust-graduate-retest/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/19/build-blog/">Octopress个人博客搭建笔记</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -198,96 +217,38 @@
   
 
 
-<time datetime="2012-08-19T09:35:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>正如官网上所说的那样——“A blogging framework for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br/>
-Octopress的可定制性非常高，所有的显示效果都可以自己设定，也有很多主题可以下载。默认主题非常简洁，这是我选择的原因之一。</p>
-
-<h3>step 1 - 准备工作</h3>
-
-<ul>
-<li>首先注册一个<a href="http://www.github.com">GitHub</a>帐号。将要搭建的博客内容都是托管在GitHub上的。假设你注册了名为<code>username</code>的ID；</li>
-<li>然后本地配置Github。在Windows下最简单的方式就是安装一个“GitHub for Windows”，这是最不折腾的方式。这里有一个<a href="http://rogerdudler.github.com/git-guide/index.zh.html">GitHub入门</a>；</li>
-<li>接下来安装<a href="http://rubyinstaller.org/">Ruby</a>。注意下载的版本是1.92；</li>
-<li>安装<a href="http://115.156.191.66/download/372297/384990/4/exe/136/168/1344846989448_680/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">DevKit</a>。注意解压安装的路径不能有空格。</li>
-<li>添加UTF-8相关的环境变量。在环境变量中添加<code>LANG</code>和<code>LC_ALL</code>两个变量，参数都设置为<code>zh_cn.UTF-8</code>，<strong>注意大小写</strong>。</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/19/build-blog/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-10-09T14:47:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2012/08/18/hello-world/">给Octopress添加新浪微博侧边栏</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lovep.me/blog/2012/10/09/huawei-code-test/" data-via="GZShi" data-counturl="http://lovep.me/blog/2012/10/09/huawei-code-test/" >Tweet</a>
+  
+  
+  
+</div>
 
-
-<time datetime="2012-08-18T15:35:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
-        
-      </p>
     
-  </header>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/29/hust-graduate-retest/" title="Previous Post: 2009级华中科技大学计算机保研C语言上机题目">&laquo; 2009级华中科技大学计算机保研C语言上机题目</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-  <div class="entry-content"><h3>Step 1 - 获取微博秀代码</h3>
-
-<p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
-
-<p>代码大致如下：</p>
-
-<div><script src='https://gist.github.com/3385130.js?file='></script>
-<noscript><pre><code>&lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot;  frameborder=&quot;0&quot; scrolling=&quot;no&quot; 
-src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=OOOOOOOOOO&amp;verifier=XXXXXXX&amp;dpc=1&quot;&gt;&lt;/iframe&gt;</code></pre></noscript></div>
-
-
-<p>只需要记住这部分代码中的uid和verifier即可</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/18/hello-world/">阅读全文 &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -332,7 +293,7 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/GZShi">@GZShi</a> on GitHub
@@ -362,7 +323,7 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 <section>
   <h1>Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -394,6 +355,7 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -408,7 +370,10 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
       var disqus_shortname = 'lovep';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lovep.me/blog/2012/10/09/huawei-code-test/';
+        var disqus_url = 'http://lovep.me/blog/2012/10/09/huawei-code-test/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
