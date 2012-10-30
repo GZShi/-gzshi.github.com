@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>给Octopress添加新浪微博侧边栏 - 石头的博客</title>
+  <title>琐碎的事 - 石头的博客</title>
   <meta name="author" content="GZShi(s@lovep.me)">
 
   
-  <meta name="description" content="Step 1 - 获取微博秀代码 进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码 代码大致如下： &lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot &hellip;">
+  <meta name="description" content="东三吃吐了，加上要去百味附近取钱，所以晚饭选择在百味。 去百味吃饭，到了食堂才发现饭卡没带。 回寝室拿了饭卡，再次来到百味，刷烧鹅饭的时候发现卡上只有8块钱。 吃晚饭去取钱，到了ATM机前发现银行卡不在钱包里。 回宿舍把所有地方都翻了个遍都没发现银行卡，这已经是近半年来第二次弄丢银行卡啦！ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lovep.me/blog/2012/08/18/hello-world/">
+  <link rel="canonical" href="http://lovep.me/blog/2012/10/30/broken-pieces/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">给Octopress添加新浪微博侧边栏</h1>
+      <h1 class="entry-title">琐碎的事</h1>
     
     
       <p class="meta">
@@ -97,88 +97,28 @@
   
 
 
-<time datetime="2012-08-18T15:35:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
+<time datetime="2012-10-30T19:36:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3>Step 1 - 获取微博秀代码</h3>
+<div class="entry-content"><p>东三吃吐了，加上要去百味附近取钱，所以晚饭选择在百味。</p>
 
-<p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
+<p>去百味吃饭，到了食堂才发现饭卡没带。</p>
 
-<p>代码大致如下：</p>
+<p>回寝室拿了饭卡，再次来到百味，刷烧鹅饭的时候发现卡上只有8块钱。</p>
 
-<div><script src='https://gist.github.com/3385130.js?file='></script>
-<noscript><pre><code>&lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot;  frameborder=&quot;0&quot; scrolling=&quot;no&quot; 
-src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=OOOOOOOOOO&amp;verifier=XXXXXXX&amp;dpc=1&quot;&gt;&lt;/iframe&gt;</code></pre></noscript></div>
+<p>吃晚饭去取钱，到了ATM机前发现银行卡不在钱包里。</p>
 
+<p>回宿舍把所有地方都翻了个遍都没发现银行卡，这已经是近半年来第二次弄丢银行卡啦！</p>
 
-<p>只需要记住这部分代码中的uid和verifier即可</p>
+<p>真是二到家了。明天还得去挂失银行卡，好像上次的时候也是星期三来着。</p>
 
-<!--more-->
+<p>最近做什么事情都静不下心来，没头没尾的，心烦意乱。</p>
 
-
-<h3>Step 2 - 创建侧边栏网页</h3>
-
-<p>随便新建一个html文件，将下面的html代码拷进去，然后保存</p>
-
-<div><script src='https://gist.github.com/3385105.js?file='></script>
-<noscript><pre><code>{% if site.weibo_uid %}
-&lt;section&gt;
-    &lt;h1&gt;Sina Weibo&lt;/h1&gt;
-    &lt;ul id=&quot;weibo&quot;
-    &lt;li&gt;
-        &lt;iframe
-        width=&quot;100%&quot;
-        height=&quot;550&quot;
-        class=&quot;share_self&quot;
-        frameborder=&quot;0&quot;
-        scrolling=&quot;no&quot;
-        src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/section&gt;
-{% endif %}</code></pre></noscript></div>
-
-
-<p>保存的路径为source/_include/asides/</p>
-
-<p>侧边栏的宽度是自适应的，高度为550px，这些可以直接修改上面的参数</p>
-
-<h3>Step 3 - 修改‘_config.yml’文件</h3>
-
-<p>修改示例如下：</p>
-
-<div><script src='https://gist.github.com/3385132.js?file='></script>
-<noscript><pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
-# To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
-
-# Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
-# and add an array with the asides you want to use.
-# blog_index_asides:
-# post_asides:
-# page_asides:
-
-# ----------------------- #
-#   3rd Party Settings    #
-# ----------------------- #
-
-#Sina Weibo
-weibo_uid: 21444XXXXX
-weibo_verifier: d13OOOOO
-weibo_fansline: 1
-weibo_show: true
-weibo_pic: false
-weibo_skin: 2</code></pre></noscript></div>
-
-
-<p>weibo_uid和weibo_verifier都是第一步获取的</p>
-
-<p>接下来就编译你的Octopress看看效果吧</p>
+<p>昨天发现AVAST突然异常地占资源，怒删之，改用MSE。晚上的时候发现ipv6网站上不去了，希望不是MSE的原因</p>
 </div>
 
 
@@ -201,7 +141,7 @@ weibo_skin: 2</code></pre></noscript></div>
   
 
 
-<time datetime="2012-08-18T15:35:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
+<time datetime="2012-10-30T19:36:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2012</time>
       
 
 
@@ -209,7 +149,7 @@ weibo_skin: 2</code></pre></noscript></div>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lovep.me/blog/2012/08/18/hello-world/" data-via="GZShi" data-counturl="http://lovep.me/blog/2012/08/18/hello-world/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lovep.me/blog/2012/10/30/broken-pieces/" data-via="GZShi" data-counturl="http://lovep.me/blog/2012/10/30/broken-pieces/" >Tweet</a>
   
   
   
@@ -218,8 +158,8 @@ weibo_skin: 2</code></pre></noscript></div>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/10/20/detail-of-c-int-float/" title="Previous Post: 0不等于0">&laquo; 0不等于0</a>
       
-        <a class="basic-alignment right" href="/blog/2012/08/19/build-blog/" title="Next Post: Octopress个人博客搭建笔记">Octopress个人博客搭建笔记 &raquo;</a>
       
     </p>
   </footer>
@@ -359,8 +299,8 @@ weibo_skin: 2</code></pre></noscript></div>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://lovep.me/blog/2012/08/18/hello-world/';
-        var disqus_url = 'http://lovep.me/blog/2012/08/18/hello-world/';
+        var disqus_identifier = 'http://lovep.me/blog/2012/10/30/broken-pieces/';
+        var disqus_url = 'http://lovep.me/blog/2012/10/30/broken-pieces/';
         var disqus_script = 'embed.js';
       
     (function () {
