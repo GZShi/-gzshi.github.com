@@ -1,0 +1,96 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+::selection{
+	background: #A8141B;
+	color: white;
+}	// 选择文本背景色
+
+// Background image
+html {
+	body > header {
+		background: rgba(250, 250, 250, 0.78);
+		box-shadow: 0 0 40px gray;
+		h2 {
+			color: #6b6666;
+			text-shadow: 0 1px 0 white;
+		}
+	}
+	background: url("/images/background.png");
+}
+
+body > header h1 a, body > header h1 a:visited{
+	color: white;
+	text-shadow: 0 0 6px #2c2c2c;
+	-webkit-transition: all 0.8s ease-out;
+}
+body > header h1 a:hover{
+	color: white;
+	text-shadow: 0 0 6px #461212;
+	-webkit-transition: all 0.8s ease-out;
+}
+
+// 导航栏
+body > nav {
+	border-top: 1px solid #777;
+	border-bottom: 1px solid #777;
+	box-shadow: 0 0 40px gray;
+}
+
+// 底部
+body > footer {
+	box-shadow: 0 0 10px gray;
+	text-align: center;
+	color: 3D3D3D;
+	text-shadow: #f7f7f7 0 1px;
+}
+
+// 正文背景色
+body #content > article,
+body #content > div > article,
+body #content > div > section,
+body div.pagination,
+aside.sidebar,
+#main,
+#content,
+.sidebar {
+	background: rgba(255, 255, 255, 0.34);
+}
+
+// 正文部分
+body #content > div > article {
+	//border-left: dotted 1px blue;
+	//border-right: dotted 1px blue;
+	border-bottom: dotted 1px rgba(0, 0, 255, 0.2);
+}
+
+// 非正文
+body #content > div > section ,	// 评论
+{
+	//border-left: dotted 1px red;
+	//border-right: dotted 1px red;
+}
+
+#content > div, #content >article {
+	padding-top: 0;
+	padding-bottom: 0;
+	box-shadow: 0 0 40px gray;
+}
+
+// 阅读全文样式
+#content .blog-index a[rel="full-article"]{
+	//position: relative;
+	color: white;
+	background: #358a61;
+}
+#content .blog-index a[rel="full-article"]:hover{
+	//box-shadow: 0 0 10px blue;
+}
+
+.serif, body, #content .blog-index {
+font-family: "PT Serif","宋体",Times,"Times New Roman",serif;
+}
+a[rel="full-article"] {
+	font-family: "华文中宋", serif;
+	font-weight: bold;
+}

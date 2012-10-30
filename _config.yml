@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://lovep.me
+title: "#{GZShi}的个人博客"
+subtitle: 书犹药也，善读之可以医愚
+author: GuozhongShi
 simple_search: http://google.com/search
 description:
 
@@ -39,13 +39,13 @@ pygments: false # default python pygments have been replaced by pygments.rb
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
-excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_link: "阅读全文 &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html, asides/about.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -57,14 +57,22 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.ht
 #   3rd Party Settings    #
 # ----------------------- #
 
+#Sina Weibo
+weibo_uid: 2144461272
+weibo_verifier: d1392a15
+weibo_fansline: 1
+weibo_show: false
+weibo_pic: false
+weibo_skin: 2
+
 # Github repositories
-github_user:
+github_user: GZShi
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: GZShi
 twitter_tweet_count: 4
 twitter_show_replies: false
 twitter_follow_button: true
@@ -73,11 +81,11 @@ twitter_tweet_button: true
 
 # Google +1
 google_plus_one: false
-google_plus_one_size: medium
+google_plus_one_size: small
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
-googleplus_user:
+googleplus_user: 112029343353412989100
 googleplus_hidden: false
 
 # Pinboard
@@ -89,11 +97,11 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: lovep
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-34017421-1
 
 # Facebook Like
 facebook_like: false

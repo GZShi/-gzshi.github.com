@@ -1,0 +1,111 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Love Peipei</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="style/default.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="style/garden.js"></script>
+    <script type="text/javascript" src="style/functions.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-34017421-1']);
+      _gaq.push(['_setDomainName', 'lovep.me']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+</script>
+</head>
+
+<body>
+    <audio preload="auto" id="music">
+        <source src="music/dadada.ogg" type="audio/ogg" />
+        <source src="music/dadada.mp3" type="audio/mpeg" />
+    </audio>
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                <span class="title">给你的小情书</span><br /><br /><br />
+                时间过得还真是快呢<br />
+                我们已经走过了<span class="keyword">三年</span><br /><br />
+                六月七月好<span class="keyword">匆忙</span><br />
+                虽然同在一个城市<br />
+                但却有两个月的时间没有见面了<br />
+                不短的分离让我发现<br />
+                和你牵手看你微笑已经变成一种<span class="keyword">习惯</span><br />
+                和你分开真是一种煎熬<br /><br />
+                在你选择坐在我身旁的那刻<br />
+                我从未想过你会变成我的<span class="keyword">唯一</span><br />
+                <span class="keyword">感谢</span>缘分选择了你我<br /><br />
+                有时候笨拙的我会惹你生气<br />
+                或者我的幼稚让你烦恼<br />
+                其实我只不过想表达：<span class="space"/><span class="iloveyou">我爱你</span><br />
+                我发现我是多么缺乏表达能力<br />
+                也许是因为我是工科男<br />
+                连表达对恋人的爱意都找不到方法<br /><br />
+                没给你写过<span class="keyword">情书</span><br />
+                没和你做过什么<span class="keyword">浪漫的事</span><br />
+                没陪你过过<span class="keyword">生日</span><br />
+                我真是<span class="keyword">不称职的男友</span><br /><br />
+                继续和我这个<br />
+                不懂浪漫不够体贴的工科男一起好吗<br />
+                三年、三十年……<br />
+                <span class="keyword">一辈子</span><br />
+            </div>
+            <div id="loveHeart">
+                <canvas id="garden"></canvas>
+                <div id="words">
+                    <div id="messages">
+                        佩，感谢一路有你陪伴，我们的爱情将会继续下去！<br/>
+                        <div id="elapseClock" style="display:none"></div>
+                        <a href='#' id="accept">点击记录你我</a>
+                    </div>
+                    <div id="loveu">
+                        Love u forever and ever.<br/>
+                        <div class="signature">- 石头  </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="links">
+            特别感谢：<a href="http://www.dingstyle.me/" target="_blank">丁式呆</a>♂<a href="http://mutong37.com/" target="_blank">木橦</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var offsetX = $("#loveHeart").width() / 2;
+        var offsetY = $("#loveHeart").height() / 2 - 55;
+        
+        if (!document.createElement('canvas').getContext) {
+            var msg = document.createElement("div");
+            msg.id = "errorMsg";
+            msg.innerHTML = "你的浏览器不支持HTML5!<br/>要获得完美体验请使用最新的Chrome/IE/Firefox/Safari浏览器"; 
+            document.body.appendChild(msg);
+            $("#code").css("display", "none")
+            $("#copyright").css("position", "absolute");
+            $("#copyright").css("bottom", "10px");
+            document.execCommand("stop");
+        } else {
+            setTimeout(function () {
+                adjustWordsPosition();
+                startHeartAnimation();
+            }, 10000);
+            
+            $("#accept").click(function(){
+                $(this).hide();
+                $("#elapseClock").show();
+                var together = new Date("2009/06/29 22:06:29");
+                timeElapse(together);
+                setInterval(function () {
+                    timeElapse(together);
+                }, 500);
+            })
+            adjustCodePosition();
+            $("#code").typewriter();
+        }
+    </script>
+</body>
+</html>
