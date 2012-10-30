@@ -1,17 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[#{GZShi}的个人博客]]></title>
+  <title><![CDATA[石头的博客]]></title>
   <link href="http://lovep.me/atom.xml" rel="self"/>
   <link href="http://lovep.me/"/>
-  <updated>2012-10-10T12:57:59+08:00</updated>
+  <updated>2012-10-30T13:01:32+08:00</updated>
   <id>http://lovep.me/</id>
   <author>
-    <name><![CDATA[GuozhongShi]]></name>
-    
+    <name><![CDATA[GZShi(s@lovep.me)]]></name>
+    <email><![CDATA[s@lovep.me]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[0不等于0]]></title>
+    <link href="http://lovep.me/blog/2012/10/20/detail-of-c-int-float/"/>
+    <updated>2012-10-20T00:43:00+08:00</updated>
+    <id>http://lovep.me/blog/2012/10/20/detail-of-c-int-float</id>
+    <content type="html"><![CDATA[<p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">float</span> <span class="n">f1</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">float</span> <span class="n">f2</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">puts</span><span class="p">(</span><span class="s">&quot;equal!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>毫无疑问，这个程序的显示结果必然是<code>equal!</code>。</p>
+
+<!-- more -->
+
+
+<p>那么尝试一下运行下面的程序</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x8000ffff</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">f1</span> <span class="o">!=</span> <span class="o">*</span><span class="n">f2</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f != %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">f1</span><span class="p">,</span> <span class="o">*</span><span class="n">f2</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后你会发现显示的结果是<code>-0.000000 != -0.000000</code>，这个结果有点违反直觉，为什么呢？这还得从计算机如何表示浮点数说起。<br/>
+c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</code></a>的标准表示浮点数的。所有能表示的浮点数可以分为三类：<code>规格化的值</code>、<code>非规格化的值</code>和<code>特殊值</code>。</p>
+
+<p>规格化的值表示阶码不全为1或全为0的数。非规格化的值表示阶码全为0的数，这种数的其中一个用途是提供了0的表示方式，因为在规格化的数中尾数总是包含一个1的，这样不可能表示0，当阶码全为0时无论尾数如何，表示的都是0.0或-0.0。特殊值是阶码全为1的数，表示一个无穷大，根据符号位决定是正无穷或负无穷，这不是一个数。</p>
+
+<p>回到刚才的程序，f1和f2指向的都是一个非规格化的数，因此字面上的值都是0.0，但为什么比较起来会不一样呢？</p>
+
+<p>其实IEEE 754的设计是非常妙的，阶码的值是采用特殊移码表示而且偏置值是-127而不是-128，这样提供了一个从非规格化的值向规格花的值平滑过渡的表示方法。如果把浮点数在内存中的表达方式用整型解释的话，得到的数和浮点表示的时候的大小顺序是一致的，如此的话在比较两个浮点数大小的时候就能直接采用处理整型数的方法去处理浮点数，这样能降低浮点数处理的复杂度。</p>
+
+<p>这样就不难解释为什么上面的程序的结果为什么会如此了。</p>
+
+<h3>参考引用</h3>
+
+<ol>
+<li>《深入理解计算机系统》，Randal E. Bryant  David R. O&#8217;Hallaron 著，龚奕利 雷迎春 译。</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[判断闰年]]></title>

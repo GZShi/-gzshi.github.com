@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>石头的博客</title>
+  <title>0不等于0 - 石头的博客</title>
   <meta name="author" content="GZShi(s@lovep.me)">
 
   
@@ -27,7 +27,7 @@ int main(void)
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lovep.me/">
+  <link rel="canonical" href="http://lovep.me/blog/2012/10/20/detail-of-c-int-float/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -85,15 +85,12 @@ int main(void)
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/20/detail-of-c-int-float/">0不等于0</a></h1>
+      <h1 class="entry-title">0不等于0</h1>
     
     
       <p class="meta">
@@ -116,7 +113,7 @@ int main(void)
   </header>
 
 
-  <div class="entry-content"><p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法</p>
+<div class="entry-content"><p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -139,74 +136,70 @@ int main(void)
 
 <p>毫无疑问，这个程序的显示结果必然是<code>equal!</code>。</p>
 
+<!-- more -->
+
+
+<p>那么尝试一下运行下面的程序</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x8000ffff</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">f1</span> <span class="o">!=</span> <span class="o">*</span><span class="n">f2</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f != %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">f1</span><span class="p">,</span> <span class="o">*</span><span class="n">f2</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后你会发现显示的结果是<code>-0.000000 != -0.000000</code>，这个结果有点违反直觉，为什么呢？这还得从计算机如何表示浮点数说起。<br/>
+c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</code></a>的标准表示浮点数的。所有能表示的浮点数可以分为三类：<code>规格化的值</code>、<code>非规格化的值</code>和<code>特殊值</code>。</p>
+
+<p>规格化的值表示阶码不全为1或全为0的数。非规格化的值表示阶码全为0的数，这种数的其中一个用途是提供了0的表示方式，因为在规格化的数中尾数总是包含一个1的，这样不可能表示0，当阶码全为0时无论尾数如何，表示的都是0.0或-0.0。特殊值是阶码全为1的数，表示一个无穷大，根据符号位决定是正无穷或负无穷，这不是一个数。</p>
+
+<p>回到刚才的程序，f1和f2指向的都是一个非规格化的数，因此字面上的值都是0.0，但为什么比较起来会不一样呢？</p>
+
+<p>其实IEEE 754的设计是非常妙的，阶码的值是采用特殊移码表示而且偏置值是-127而不是-128，这样提供了一个从非规格化的值向规格花的值平滑过渡的表示方法。如果把浮点数在内存中的表达方式用整型解释的话，得到的数和浮点表示的时候的大小顺序是一致的，如此的话在比较两个浮点数大小的时候就能直接采用处理整型数的方法去处理浮点数，这样能降低浮点数处理的复杂度。</p>
+
+<p>这样就不难解释为什么上面的程序的结果为什么会如此了。</p>
+
+<h3>参考引用</h3>
+
+<ol>
+<li>《深入理解计算机系统》，Randal E. Bryant  David R. O&#8217;Hallaron 著，龚奕利 雷迎春 译。</li>
+</ol>
+
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/20/detail-of-c-int-float/">阅读全文 &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/09/huawei-code-test/">判断闰年</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">GZShi(s@lovep.me)</span></span>
 
-<time datetime="2012-10-09T14:47:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://zh.wikipedia.org/zh/%E9%97%B0%E5%B9%B4">闰年</a>这个概念大概是小学刚学除法的时候接触的吧，记得比较清楚的是“闰年都能被4整除”。大一的时候学C语言的时候又接触到闰年，判断方法说的很清楚</p>
-
-<blockquote><p>“四年一闰，百年不闰，四百年再闰”</p></blockquote>
-
-<p>没有想到的是，在今天早上的华为机试中又遇到了这个闰年！</p>
-
-<p>题目很简单，就是要你判断输入的数是否是闰年，是就输出&#8221;YES&#8221;，不是就输出&#8221;NO&#8221;。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/09/huawei-code-test/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/29/hust-graduate-retest/">2009级华中科技大学计算机保研C语言上机题目</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -218,148 +211,38 @@ int main(void)
   
 
 
-<time datetime="2012-09-29T13:45:00+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在某种基友光环的作用下，我这个找工作的苦逼也有机会看到今年的华科保研的c语言上机题目。完全是无聊时间多了没事干闲的不行才写了几行代码。</p>
-
-<h3>第一题</h3>
-
-<ul>
-<li>某加密算法对数据字节进行加密，具体算法为：<br/>
-1.对字节的8位二进制位从右向左0~7编号，先将0、2、4位分别于1、3、5位两两对应交换<br/>
-2.然后对0~5位进行循环左移（左边移出的位接到右边），循环左移的位数由6、7两位所组成的二进制数的值决定
-编写程序，输入一行明文字符串，按上述算法进行加密后输出密文。<br/>
-例如，输入：<code>abcd↙</code>，则输出：<code>dbfp↙</code></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/09/29/hust-graduate-retest/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-10-20T00:43:00+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2012/08/19/build-blog/">Octopress个人博客搭建笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2012-08-19T09:35:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>正如官网上所说的那样——“A blogging framework for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br/>
-Octopress的可定制性非常高，所有的显示效果都可以自己设定，也有很多主题可以下载。默认主题非常简洁，这是我选择的原因之一。</p>
-
-<h3>step 1 - 准备工作</h3>
-
-<ul>
-<li>首先注册一个<a href="http://www.github.com">GitHub</a>帐号。将要搭建的博客内容都是托管在GitHub上的。假设你注册了名为<code>username</code>的ID；</li>
-<li>然后本地配置Github。在Windows下最简单的方式就是安装一个“GitHub for Windows”，这是最不折腾的方式。这里有一个<a href="http://rogerdudler.github.com/git-guide/index.zh.html">GitHub入门</a>；</li>
-<li>接下来安装<a href="http://rubyinstaller.org/">Ruby</a>。注意下载的版本是1.92；</li>
-<li>安装<a href="http://115.156.191.66/download/372297/384990/4/exe/136/168/1344846989448_680/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">DevKit</a>。注意解压安装的路径不能有空格。</li>
-<li>添加UTF-8相关的环境变量。在环境变量中添加<code>LANG</code>和<code>LC_ALL</code>两个变量，参数都设置为<code>zh_cn.UTF-8</code>，<strong>注意大小写</strong>。</li>
-</ul>
-
-
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lovep.me/blog/2012/10/20/detail-of-c-int-float/" data-via="GZShi" data-counturl="http://lovep.me/blog/2012/10/20/detail-of-c-int-float/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/19/build-blog/">阅读全文 &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/18/hello-world/">给Octopress添加新浪微博侧边栏</a></h1>
-    
-    
-      <p class="meta">
-        
+        <a class="basic-alignment left" href="/blog/2012/10/09/huawei-code-test/" title="Previous Post: 判断闰年">&laquo; 判断闰年</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-18T15:35:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Step 1 - 获取微博秀代码</h3>
-
-<p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
-
-<p>代码大致如下：</p>
-
-<div><script src='https://gist.github.com/3385130.js?file='></script>
-<noscript><pre><code>&lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot;  frameborder=&quot;0&quot; scrolling=&quot;no&quot; 
-src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=OOOOOOOOOO&amp;verifier=XXXXXXX&amp;dpc=1&quot;&gt;&lt;/iframe&gt;</code></pre></noscript></div>
-
-
-<p>只需要记住这部分代码中的uid和verifier即可</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/18/hello-world/">阅读全文 &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -420,7 +303,7 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/GZShi">@GZShi</a> on GitHub
@@ -450,7 +333,7 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
 <section>
   <h1>Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -470,6 +353,7 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -484,7 +368,10 @@ src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;
       var disqus_shortname = 'lovep';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lovep.me/blog/2012/10/20/detail-of-c-int-float/';
+        var disqus_url = 'http://lovep.me/blog/2012/10/20/detail-of-c-int-float/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
