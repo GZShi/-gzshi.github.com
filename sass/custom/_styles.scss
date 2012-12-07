@@ -1,6 +1,32 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
 
+// 自定义滚动条
+::-webkit-scrollbar-track-piece{ 	/*滚动条背景色*/
+	background-color:#d7d7d7; 
+} 
+::-webkit-scrollbar{ 				/*滚动条尺寸*/
+	width:12px; 
+	height:12px; 
+} 
+::-webkit-scrollbar-thumb{ 			/*bar*/
+	height:50px; 
+	background-color:#8A8B89; 
+	outline:0px solid #fff; 
+} 
+/*::-webkit-scrollbar-thumb:hover{ 
+	height:50px; 
+	background-color:#5a5a5a; 
+}*/
+
+::-webkit-scrollbar-thumb:active{
+	height:50px;
+	background-color: #2a2a2a;
+	-webkit-transition:all 0.8s ease-out;
+}
+// 自定义滚动条end
+
+
 ::selection{
 	background: #A8141B;
 	color: white;
@@ -12,8 +38,8 @@ html {
 		background: rgba(250, 250, 250, 0.78);
 		box-shadow: 0 0 40px gray;
 		h2 {
-			color: #6b6666;
-			text-shadow: 0 1px 0 white;
+			color: #020203;
+			text-shadow: 0 0 5px #535151, 0 0 2px white;
 		}
 	}
 	background: url("/images/background.png");
@@ -87,10 +113,10 @@ body #content > div > section ,	// 评论
 	//box-shadow: 0 0 10px blue;
 }
 
-.serif, body, #content .blog-index {
-font-family: "PT Serif","宋体",Times,"Times New Roman",serif;
+body, #content .blog-index {
+font-family: "PT Serif","华文细黑", "微软雅黑", Times,"Times New Roman",serif;
 }
 a[rel="full-article"] {
-	font-family: "华文中宋", serif;
+	font-family: "华文细黑", "微软雅黑", serif;
 	font-weight: bold;
 }
