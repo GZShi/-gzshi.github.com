@@ -1,6 +1,14 @@
 canvas
 {
-	height: 600px;
-	width: 1000px;
-	border: 2px solid black;
+	-moz-box-shadow: 3px 3px 4px #06C;
+	-webkit-box-shadow: 3px 3px 4px #06C;
+	box-shadow: 3px 3px 4px #06C;
+	border: 1px solid #06C;
+}
+img
+{
+	-moz-box-shadow: 3px 3px 4px #06C;
+	-webkit-box-shadow: 3px 3px 4px #06C;
+	box-shadow: 3px 3px 4px #06C;
+	border: 1px solid #06C;
 }

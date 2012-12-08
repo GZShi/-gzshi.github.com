@@ -7,13 +7,17 @@
 </head>
 <body onload="draw();">
 	<div>
-		<td><a href="#" onclick="draw(1);">漩涡一</a></td><td>   </td>
-		<td><a href="#" onclick="draw(2);">漩涡二</a></td><td>   </td>
-		<td><a href="#" onclick="draw(3);">彩色漩涡</a></td><td>   </td>
-		<td><a href="#" onclick="draw(4);">圆环</a></td><td>   </td>
+		<button onclick="draw(1);">漩涡一</button><td>   </td>
+		<button href="#" onclick="draw(2);">漩涡二</button><td>   </td>
+		<button href="#" onclick="draw(3);">彩色漩涡</button><td>   </td>
+		<button href="#" onclick="draw(4);">圆环</button><td>   </td>
+		<button href="#" onclick="antimate();">动画</button><td>       </td>
+		<button href="#" onclick="save();">生成PNG</button><td>   </td>
 	</div>
 	<div>
-		<canvas id="mycanvas" height="600" width="1000"></canvas>
+		<canvas id="mycanvas" height="600" width="1000"><br>请使用支持HTML5的浏览器查看，推荐Chrome浏览器。<br>Sougou、360神马的，请开启“高速模式”</canvas>
+		<br><br><span id="tipstext"></span><br>
+		<img id="myimage" src="">
 	</div>
 </body>
 </html>
