@@ -12,7 +12,7 @@ var your_enter = 1;
 var food_x = 3;
 var food_y = 3;
 
-var game_status = 'running';
+var game_status = 'pause';
 var flag_hit_wall = false;
 var flag_hit_self = false;
 
@@ -225,12 +225,14 @@ document.onkeydown = function(e)
 			break;
 		case 40:
 			your_enter = 1;
+			if(game_status == 'pause')
+				game_status = 'running';
 			break;
 		default: 
-			if(game_running == 'pause')
-				game_running == 'running';
+			if(game_status == 'pause')
+				game_status == 'running';
 			else
-				game_running == 'pause';
+				game_status == 'pause';
 			break;
 	}
 }
