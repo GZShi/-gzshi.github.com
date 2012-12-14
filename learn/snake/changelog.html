@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/LoveP/appdata/local/temp/74.html -->
+<!-- saved from url=(0049)file:///C:/Users/LoveP/appdata/local/temp/43.html -->
 <html><head><title>贪吃蛇 - 更新日志</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
 body{
@@ -124,11 +124,9 @@ body{font-size:16px;}
   h2, h3 { page-break-after: avoid; }
 }</style></head><body><h1>贪吃蛇版本更新日志</h1>
 
-<hr>
-
-<h2 id="date-2012-12-13">date: 2012-12-13</h2>
-
 <h2 id="v30">版本号：V3.0</h2>
+
+<p>date: 2012-12-13</p>
 
 <h4 id="-2">更新细节：</h4>
 
@@ -156,6 +154,8 @@ body{font-size:16px;}
 
 <h2 id="v31">版本号：V3.1</h2>
 
+<p>date: 2012-12-13</p>
+
 <h4 id="-5">更新细节：</h4>
 
 <pre><code>    1. 将方向数据更新函数提前，消除了操作的延迟感；
@@ -174,6 +174,8 @@ body{font-size:16px;}
 </code></pre>
 
 <h2 id="v32">版本号： V3.2</h2>
+
+<p>date: 2012-12-13</p>
 
 <h4 id="-8">更新细节：</h4>
 
@@ -197,5 +199,32 @@ body{font-size:16px;}
 <h4 id="-10">待改进处：</h4>
 
 <pre><code>    控制好像又变得不流畅了……( ⊙ o ⊙ )
+</code></pre>
+
+<h2 id="v33">版本号： V3.3</h2>
+
+<p>date: 2012-12-14</p>
+
+<h4 id="-11">更新细节：</h4>
+
+<pre><code>    1. 使用一个队列而不是一个变量储存用户输入；
+    2. 修改了方向更新函数；
+    3. 增加了restart函数，重玩不再是粗暴地刷新页面；
+    4. 修改了暂停时调用的代码，游戏结束后p键将不再调用setInterval函数。
+</code></pre>
+
+<h4 id="-12">功能改变：</h4>
+
+<pre><code>    1. 解释一下之前版本出现的控制短暂失灵现象：
+        - 如果玩家两次按键时间间隔很短，导致第一次的按键信息在还没有被方向更新函数调用时就被第二次按键代替了；
+        - 一般而言这两次按的是不同的键，由于第一次按键信息没有被使用，所以第二次按键的方向对于贪吃蛇来说是无效的方向，所以方向不会变；
+        - 现在使用一个队列存储玩家输入，并且会自动忽略连续相同的按键，所以能有效解决按键失灵现象；
+    2. 现在在任何时候只要按r键就能重玩游戏。考虑到r键距离方向控制键都比较远，误操作的可能性较小，所以并没有设置确定的选择~；
+    3. 增加了暂停提示信息和重玩提示信息。
+</code></pre>
+
+<h4 id="-13">待改进处：</h4>
+
+<pre><code>    丰富功能（大家周末愉快~）
 </code></pre>
 </body></html>
