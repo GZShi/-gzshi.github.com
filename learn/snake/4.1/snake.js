@@ -120,8 +120,8 @@ function wall()
 function food()
 {
 	// hello! I'm Mr. Food :-)
-	this.x = [0, 29, 14];
-	this.y = [0, 29, 14];
+	this.x = [5, 24, 14];
+	this.y = [5, 24, 14];
 	this.style = [1, -1, 0];		// 黑 红 绿
 	this.n = 3;
 	this.grid_size = 10;
@@ -148,12 +148,12 @@ function food()
 		{
 			if(this.x[i] == -1)
 			{
-				var new_x = Math.floor(Math.random() * 30);
-				var new_y = Math.floor(Math.random() * 30);
+				var new_x = 5 + Math.floor(Math.random() * 20);
+				var new_y = 5 + Math.floor(Math.random() * 20);
 				while(hit_black(new_x, new_y))
 				{
-					new_x = Math.floor(Math.random() * 30);
-					new_y = Math.floor(Math.random() * 30);
+					new_x = 5 + Math.floor(Math.random() * 20);
+					new_y = 5 + Math.floor(Math.random() * 20);
 				}
 				this.x[i] = new_x;
 				this.y[i] = new_y;
