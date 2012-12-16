@@ -1,0 +1,7 @@
+canvas
+{
+	-moz-box-shadow: 1px 1px 8px #62cc00;
+	-webkit-box-shadow: 1px 1px 8px #62cc00;
+	box-shadow: 1px 1px 8px #62cc00;
+	/*border: 1px solid #06C;*/
+}
