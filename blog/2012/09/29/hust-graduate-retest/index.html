@@ -33,6 +33,8 @@
 <script type="text/javascript" src="javascript/custom/OnMouseOver.js"></script>
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/gif" href="/animated_favicon1.gif">
+
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -109,148 +111,134 @@
 
 <div class="entry-content"><p>在某种基友光环的作用下，我这个找工作的苦逼也有机会看到今年的华科保研的c语言上机题目。完全是无聊时间多了没事干闲的不行才写了几行代码。</p>
 
-<h3>第一题</h3>
+<h3 id="section">第一题</h3>
 
 <ul>
-<li>某加密算法对数据字节进行加密，具体算法为：<br/>
-1.对字节的8位二进制位从右向左0~7编号，先将0、2、4位分别于1、3、5位两两对应交换<br/>
+  <li>某加密算法对数据字节进行加密，具体算法为：<br />
+1.对字节的8位二进制位从右向左0~7编号，先将0、2、4位分别于1、3、5位两两对应交换<br />
 2.然后对0~5位进行循环左移（左边移出的位接到右边），循环左移的位数由6、7两位所组成的二进制数的值决定
-编写程序，输入一行明文字符串，按上述算法进行加密后输出密文。<br/>
-例如，输入：<code>abcd↙</code>，则输出：<code>dbfp↙</code></li>
-</ul>
-
-
+编写程序，输入一行明文字符串，按上述算法进行加密后输出密文。<br />
+例如，输入：<code>abcd↙</code>，则输出：<code>dbfp↙</code>
 <!-- more -->
-
-
-<p>看到题目后一眼就看出是要考<code>&gt;&gt;</code>、<code>&lt;&lt;</code>、<code>&amp;</code>、<code>|</code>什么的，不算是太难吧。我的代码如下：</p>
-
-<div><script src='https://gist.github.com/3803322.js?file='></script>
+看到题目后一眼就看出是要考<code>&gt;&gt;</code>、<code>&lt;&lt;</code>、<code>&amp;</code>、<code>|</code>什么的，不算是太难吧。我的代码如下：</li>
+</ul>
+<div><script src="https://gist.github.com/3803322.js?file="></script>
 <noscript><pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
-#define c1(c) ((((c) &lt;&lt; 1) &amp; 0x2a) | (((c) &gt;&gt; 1) &amp; 0x15))   // 交换
-#define c2(c) ((c) &gt;&gt; 6)  // 循环左移位数
-#define c3(c) ((c1((c)) &gt;&gt; 6 - c2((c))) | ((c1((c)) &lt;&lt; c2((c))) &amp; 0x3f) | ((c) &amp; 0xc0)) //循环
+#define c1(c) ((((c) &lt;&lt; 1) &amp; 0x2a) | (((c) &gt;&gt; 1) &amp; 0x15))	// 交换
+#define c2(c) ((c) &gt;&gt; 6)	// 循环左移位数
+#define c3(c) ((c1((c)) &gt;&gt; 6 - c2((c))) | ((c1((c)) &lt;&lt; c2((c))) &amp; 0x3f) | ((c) &amp; 0xc0))	//循环
 
 void encode(char *s);
 
 int main(void)
 {
-    char instr[200];
-    puts(&quot;input a string:&quot;);
-    gets(instr);
-    encode(instr);
-    puts(instr);
-    return 0;
+	char instr[200];
+	puts(&quot;input a string:&quot;);
+	gets(instr);
+	encode(instr);
+	puts(instr);
+	return 0;
 }
 
 void encode(char *s)
 {
-    int i = 0;
-    while(s[i] != '\0')
-        s[i++] = (c3(s[i]));
+	int i = 0;
+	while(s[i] != '\0')
+		s[i++] = (c3(s[i]));
 }</code></pre></noscript></div>
 
-
-<h3>第二题</h3>
+<h3 id="section-1">第二题</h3>
 
 <ul>
-<li>八张扑克牌叠放在桌面上，从上到下牌面一次为2、3、4、5、6、7、8、9。输入三个整数，每读入一个整数n，先按n进行切牌，然后洗牌，接着读入下一个整数n，如此进行3轮切牌和洗牌。每轮切牌和洗牌后，按从上到下次序输出八张扑克牌的牌面。<br/>
-<strong>切牌规则</strong>：<br/>
-1.若整数<code>n&gt;0</code>且<code>n&lt;8</code>，则将排从上向下数第n张牌下面的所有牌移到整堆排的最上面；<br/>
-2.否则，不移动任何牌。<br/>
-<strong>切牌规则</strong>：<br/>
-1.从上向下数，将第5~8四张牌按顺序插入到1~4张排下面。</li>
+  <li>八张扑克牌叠放在桌面上，从上到下牌面一次为2、3、4、5、6、7、8、9。输入三个整数，每读入一个整数n，先按n进行切牌，然后洗牌，接着读入下一个整数n，如此进行3轮切牌和洗牌。每轮切牌和洗牌后，按从上到下次序输出八张扑克牌的牌面。<br />
+<strong>切牌规则</strong>：<br />
+1.若整数<code>n&gt;0</code>且<code>n&lt;8</code>，则将排从上向下数第n张牌下面的所有牌移到整堆排的最上面；<br />
+2.否则，不移动任何牌。<br />
+<strong>切牌规则</strong>：<br />
+1.从上向下数，将第5~8四张牌按顺序插入到1~4张排下面。  </li>
 </ul>
 
-
-<p>例如，输入：<code>2 3 4↙</code>，则输出：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>round 1: 48596273
-</span><span class='line'>round 2: 93642875
-</span><span class='line'>round 3: 29837654</span></code></pre></td></tr></table></div></figure>
-
+<p>例如，输入：<code>2 3 4↙</code>，则输出：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">round 1: 48596273
+</span><span class="line">round 2: 93642875
+</span><span class="line">round 3: 29837654</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <p>题目好长，叙述也好乱，看了好几分钟才理清楚切牌洗牌什么的。如果硬要找一下这个题的考点，我猜是数组吧……用字符数组可以很方便地“切牌”，我的代码如下：</p>
-
-<div><script src='https://gist.github.com/3803759.js?file='></script>
+<div><script src="https://gist.github.com/3803759.js?file="></script>
 <noscript><pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 
-void cut(char *poker, int n);   // 切牌
-void shuffle(char *poker);      // 洗牌
+void cut(char *poker, int n);	// 切牌
+void shuffle(char *poker);		// 洗牌
 
 int main(void)
 {
-    char poker[9] = &quot;23456789&quot;;
-    int n[3] = {0, 0, 0};
-    int i = 0;
+	char poker[9] = &quot;23456789&quot;;
+	int n[3] = {0, 0, 0};
+	int i = 0;
 
-    scanf(&quot;%d %d %d&quot;, n, n+1, n+2);
+	scanf(&quot;%d %d %d&quot;, n, n+1, n+2);
 
-    while(i &lt; 3)
-    {
-        cut(poker, *(n+i));
-        shuffle(poker);
-        printf(&quot;round 1: %s\n&quot;, poker);
-        ++i;
-    }
+	while(i &lt; 3)
+	{
+		cut(poker, *(n+i));
+		shuffle(poker);
+		printf(&quot;round 1: %s\n&quot;, poker);
+		++i;
+	}
 
-    return 0;
+	return 0;
 }
 
 void cut(char *poker, int n)
 {
-    char temp[9];
-    if(n&lt;1 || n&gt;7)
-        return;
-    strcpy(temp, poker);
-    temp[n] = 0;
-    strcpy(poker, poker + n);
-    strcat(poker, temp);
+	char temp[9];
+	if(n&lt;1 || n&gt;7)
+		return;
+	strcpy(temp, poker);
+	temp[n] = 0;
+	strcpy(poker, poker + n);
+	strcat(poker, temp);
 }
 
 void shuffle(char *poker)
 {
-    char temp[9] = &quot;xxxxxxxx&quot;;
-    int i = 0;
-    while(i &lt; 4)
-    {
-        temp[2*i] = poker[i];
-        temp[2*i + 1] = poker[i+4];
-        ++i;
-    }
-    strcpy(poker, temp);
+	char temp[9] = &quot;xxxxxxxx&quot;;
+	int i = 0;
+	while(i &lt; 4)
+	{
+		temp[2*i] = poker[i];
+		temp[2*i + 1] = poker[i+4];
+		++i;
+	}
+	strcpy(poker, temp);
 }
 </code></pre></noscript></div>
 
-
-<h3>第三题</h3>
-
+<h3 id="section-2">第三题</h3>
 <ul>
-<li>编写一个程序，按给定的条件，对所输入的每行表达式进行求值，然后输出结果。假设有如下声明语句：
+  <li>编写一个程序，按给定的条件，对所输入的每行表达式进行求值，然后输出结果。假设有如下声明语句：
 <code>int a = 1, b = 2, c = 3, d = 4, e = 5;</code>
-待求值的表达式通过键盘输入，每行输入一个表达式，长度小于20个字符，输入一个空行来结束处理。<br/>
-所输入的表达式应满足c语言语法规定，其中包括：变量名a~e，十进制整型常量，圆括号，及双目运算符<br/>
-1.算数运算符：<code>*</code>、<code>/</code>、<code>%</code>、<code>+</code>、<code>-</code><br/>
-2.位运算符：<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&amp;</code>、<code>^</code>、<code>|</code><br/>
-3.简单赋值运算符：<code>=</code><br/>
+待求值的表达式通过键盘输入，每行输入一个表达式，长度小于20个字符，输入一个空行来结束处理。<br />
+所输入的表达式应满足c语言语法规定，其中包括：变量名a~e，十进制整型常量，圆括号，及双目运算符<br />
+1.算数运算符：<code>*</code>、<code>/</code>、<code>%</code>、<code>+</code>、<code>-</code><br />
+2.位运算符：<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&amp;</code>、<code>^</code>、<code>|</code><br />
+3.简单赋值运算符：<code>=</code><br />
 除上述成分外，表达式中不含其他字符。运算符的功能以及<strong>优先级</strong>和<strong>结合性</strong>遵循<strong>c标准</strong>。</li>
 </ul>
 
-
-<p>看到这个题第一反应时编译原理，但细细一想，上机时间也就2个小时，要实现一个简单解释器时间还是挺紧的。仔细看了题目，发现题目给出的条件都很严格。例如，输入的式子是正确的，因此不必检查式子的正确性，只需按优先级结合性把结果算出来就行了。<br/>
-我最先的想法是先不考虑括号，用一个数组A来存放a、b、c、d、e这几个变量的值，用一个字符串s存放整个算式。先找出整个算式中优先级最高的运算符，然后把这个运算符左右两边的变量或整数取出，记作子串sub，把sub的结果计算出来，转成字符串，再替换sub串之前在s中的位置。如果该运算符是<code>=</code>，则更新数组的值，将新的值转成字符串。这样一直循环处理字符串，直到式子中没有运算符或变量为止。<br/>
-如果考虑括号，则遇到括号时，对括号中的子串进行上述处理，得到一个不能再被计算的结果字符串，然后用这个结果字符串替换之前子串的位置，再进行一下上面的分析。<br/>
-计算过程可以用递归的方式实现，代码在200行左右。<br/>
-我的代码如下，支持赋值运算的版本还有点bug，我就不贴出来了。拍砖的轻点……</p>
-
-<div><script src='https://gist.github.com/3803883.js?file='></script>
+<p>看到这个题第一反应时编译原理，但细细一想，上机时间也就2个小时，要实现一个简单解释器时间还是挺紧的。仔细看了题目，发现题目给出的条件都很严格。例如，输入的式子是正确的，因此不必检查式子的正确性，只需按优先级结合性把结果算出来就行了。<br />
+我最先的想法是先不考虑括号，用一个数组A来存放a、b、c、d、e这几个变量的值，用一个字符串s存放整个算式。先找出整个算式中优先级最高的运算符，然后把这个运算符左右两边的变量或整数取出，记作子串sub，把sub的结果计算出来，转成字符串，再替换sub串之前在s中的位置。如果该运算符是<code>=</code>，则更新数组的值，将新的值转成字符串。这样一直循环处理字符串，直到式子中没有运算符或变量为止。<br />
+如果考虑括号，则遇到括号时，对括号中的子串进行上述处理，得到一个不能再被计算的结果字符串，然后用这个结果字符串替换之前子串的位置，再进行一下上面的分析。<br />
+计算过程可以用递归的方式实现，代码在200行左右。<br />
+我的代码如下，支持赋值运算的版本还有点bug，我就不贴出来了。拍砖的轻点……     </p>
+<div><script src="https://gist.github.com/3803883.js?file="></script>
 <noscript><pre><code>// 这个版本不支持赋值运算
 
 #include &lt;stdlib.h&gt;
@@ -266,195 +254,194 @@ int  calculate(char *buf, int n);
 
 void preproccess(char *buf, int a, int b, int c, int d, int e)
 {
-    int i = 0;
-    while(buf[i] != 0)
-    {
-        if(buf[i] == ' ')
-            strcpy(buf+i, buf+i+1);
-        else if(buf[i] == '&gt;' &amp;&amp; buf[i+1] == '&gt;')
-            strcpy(buf+i, buf+i+1);
-        else if(buf[i] == '&lt;' &amp;&amp; buf[i+1] == '&lt;')
-            strcpy(buf+i, buf+i+1);
-        else
-            i++;
-    }
+	int i = 0;
+	while(buf[i] != 0)
+	{
+		if(buf[i] == ' ')
+			strcpy(buf+i, buf+i+1);
+		else if(buf[i] == '&gt;' &amp;&amp; buf[i+1] == '&gt;')
+			strcpy(buf+i, buf+i+1);
+		else if(buf[i] == '&lt;' &amp;&amp; buf[i+1] == '&lt;')
+			strcpy(buf+i, buf+i+1);
+		else
+		    i++;
+	}
 }
 
 void replace(char *buf, int start, int end, int number)
 {
-    char t_buf_1[20];
-    char t_buf_2[20];
-    int i = 0;
+	char t_buf_1[20];
+	char t_buf_2[20];
+	int i = 0;
 
-    itoa(number, t_buf_1, 10);
-    strcpy(t_buf_2, buf+end+1);
-    strcpy(buf+start, t_buf_1);
-    strcat(buf+start+strlen(t_buf_1), t_buf_2);
+	itoa(number, t_buf_1, 10);
+	strcpy(t_buf_2, buf+end+1);
+	strcpy(buf+start, t_buf_1);
+	strcat(buf+start+strlen(t_buf_1), t_buf_2);
 }
 
 void mult_analytic(char *buf)
 {
-    char op[6][3] = {
-        {'*', '/', '%'},
-        {'+', '-', '-'},
-        {'&lt;', '&gt;', '&gt;'},
-        {'&amp;', '&amp;', '&amp;'},
-        {'^', '^', '^'},
-        {'|', '|', '|'}
-    };
-    int i = 0;
+	char op[6][3] = {
+		{'*', '/', '%'},
+		{'+', '-', '-'},
+		{'&lt;', '&gt;', '&gt;'},
+		{'&amp;', '&amp;', '&amp;'},
+		{'^', '^', '^'},
+		{'|', '|', '|'}
+	};
+	int i = 0;
 
-    remove_bracket(buf);
-    while(i &lt; 6)
-    {
-        analytic(buf, op[i++]);
-    }
+	remove_bracket(buf);
+	while(i &lt; 6)
+	{
+		analytic(buf, op[i++]);
+	}
 }
 
 void remove_bracket(char *buf)
 {
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    char t_buf[20];
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	char t_buf[20];
 
-    while(buf[i] != 0)
-    {
-        if(buf[i] == '(')
-            ++j;
-        else if(buf[i] == ')')
-            ++k;
-        i++;
-    }
+	while(buf[i] != 0)
+	{
+		if(buf[i] == '(')
+			++j;
+		else if(buf[i] == ')')
+			++k;
+		i++;
+	}
 
-    if(j != k)  // 判断括号配对
-        return;
-    else if(j == 0)     // 判断有无括号
-        return;
+	if(j != k)	// 判断括号配对
+		return;
+	else if(j == 0)		// 判断有无括号
+		return;
 
-    j = k = -1;
-    i = 0;
-    while(buf[i] != 0)  // 寻找最内层括号
-    {
-        if(buf[i] == '(')
-            j = i;
-        else if(buf[i] == ')')
-        {
-            k = i;
-            break;
-        }
-        i++;
-    }
+	j = k = -1;
+	i = 0;
+	while(buf[i] != 0)	// 寻找最内层括号
+	{
+		if(buf[i] == '(')
+			j = i;
+		else if(buf[i] == ')')
+		{
+			k = i;
+			break;
+		}
+		i++;
+	}
 
-    if(k != -1 &amp;&amp; j == -1)
-        return;
+	if(k != -1 &amp;&amp; j == -1)
+		return;
 
-    // 分析括号里面的式子，存入t_buf
-    strcpy(t_buf, buf + j + 1);
-    t_buf[k-j-1] = '\0';
+	// 分析括号里面的式子，存入t_buf
+	strcpy(t_buf, buf + j + 1);
+	t_buf[k-j-1] = '\0';
 
-    mult_analytic(t_buf);   // 分析并计算式子
+	mult_analytic(t_buf);	// 分析并计算式子
 
-    replace(buf, j, k, atoi(t_buf));
+	replace(buf, j, k, atoi(t_buf));
 
-    remove_bracket(buf);
+	remove_bracket(buf);
 }
 
 void analytic(char *buf, char* op)
 {
-    int i = 0;
-    int j = 0;
-    int k = 0;
+	int i = 0;
+	int j = 0;
+	int k = 0;
 
-    if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
-        i++;
-    while(buf[i] != 0)
-    {
-        if(buf[i] == op[0] || buf[i] == op[1] || buf[i] == op[2])
-        {
-            break;
-        }
-        i++;
-    }
-    if(i &gt;= strlen(buf))
-        return;
+	if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
+		i++;
+	while(buf[i] != 0)
+	{
+		if(buf[i] == op[0] || buf[i] == op[1] || buf[i] == op[2])
+		{
+			break;
+		}
+		i++;
+	}
+	if(i &gt;= strlen(buf))
+		return;
 
-    j = k = i;
-    while(isdigit(buf[j-1]))
-        --j;
-    if(j == 1 &amp;&amp; buf[0] == '-' &amp;&amp; isdigit(buf[1]))
-        --j;
-    if(buf[k+1] == '-' &amp;&amp; isdigit(buf[k+2]))
-        ++k;
-    while(isdigit(buf[k+1]))
-        ++k;
-    replace(buf, j, k, calculate(buf + j, k-j+1));
-    analytic(buf, op);
+	j = k = i;
+	while(isdigit(buf[j-1]))
+		--j;
+	if(j == 1 &amp;&amp; buf[0] == '-' &amp;&amp; isdigit(buf[1]))
+		--j;
+	if(buf[k+1] == '-' &amp;&amp; isdigit(buf[k+2]))
+		++k;
+	while(isdigit(buf[k+1]))
+		++k;
+	replace(buf, j, k, calculate(buf + j, k-j+1));
+	analytic(buf, op);
 }
 
 int calculate(char *buf, int n)
 {
-    char t_buf_1[20];
-    char t_buf_2[20];
-    char op;
-    int a = 0;
-    int b = 0;
-    int i = 0;
+	char t_buf_1[20];
+	char t_buf_2[20];
+	char op;
+	int a = 0;
+	int b = 0;
+	int i = 0;
 
-    if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
-        i++;
-    while(isdigit(buf[i]))
-        i++;
-    if(i &gt;= strlen(buf))
-        return atoi(buf);
-    strncpy(t_buf_1, buf, i);
-    t_buf_1[i] = 0;
-    op = buf[i];
-    strncpy(t_buf_2, buf + i + 1, n-i-1);
-    t_buf_2[n-i-1] = '\0';
-    a = atoi(t_buf_1);
-    b = atoi(t_buf_2);
-    switch(op)
-    {
-        case '*':   return (a*b);
-        case '/':   return (a/b);
-        case '%':   return (a%b);
-        case '+':   return (a+b);
-        case '-':   return (a-b);
-        case '&lt;':    return (a&lt;&lt;b);
-        case '&gt;':    return (a&gt;&gt;b);
-        case '^':   return (a^b);
-        case '&amp;':   return (a&amp;b);
-        case '|':   return (a|b);
-        default: return 0;
-    }
-    return 0;
+	if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
+		i++;
+	while(isdigit(buf[i]))
+		i++;
+	if(i &gt;= strlen(buf))
+		return atoi(buf);
+	strncpy(t_buf_1, buf, i);
+	t_buf_1[i] = 0;
+	op = buf[i];
+	strncpy(t_buf_2, buf + i + 1, n-i-1);
+	t_buf_2[n-i-1] = '\0';
+	a = atoi(t_buf_1);
+	b = atoi(t_buf_2);
+	switch(op)
+	{
+		case '*':	return (a*b);
+		case '/':	return (a/b);
+		case '%':	return (a%b);
+		case '+':	return (a+b);
+		case '-':	return (a-b);
+		case '&lt;':	return (a&lt;&lt;b);
+		case '&gt;':	return (a&gt;&gt;b);
+		case '^':	return (a^b);
+		case '&amp;':	return (a&amp;b);
+		case '|':	return (a|b);
+		default: return 0;
+	}
+	return 0;
 }
 
 int main(void)
 {
-    int a, b, c, d, e;
-    char buf[60];
+	int a, b, c, d, e;
+	char buf[60];
 
-    puts(&quot;input a b c d e&quot;);
-    scanf(&quot;%d %d %d %d %d&quot;, &amp;a, &amp;b, &amp;c, &amp;d, &amp;e);
-    fflush(stdin);
-    puts(&quot;input a expression&quot;);
-    gets(buf);
+	puts(&quot;input a b c d e&quot;);
+	scanf(&quot;%d %d %d %d %d&quot;, &amp;a, &amp;b, &amp;c, &amp;d, &amp;e);
+	fflush(stdin);
+	puts(&quot;input a expression&quot;);
+	gets(buf);
 
-    preproccess(buf, a, b, c, d, e);
-    mult_analytic(buf);
+	preproccess(buf, a, b, c, d, e);
+	mult_analytic(buf);
 
-    printf(&quot;= %d\n&quot;, atoi(buf));
+	printf(&quot;= %d\n&quot;, atoi(buf));
 
-    system(&quot;pause&quot;);
-    return 0;
+	system(&quot;pause&quot;);
+	return 0;
 }
 </code></pre></noscript></div>
 
-
-<p>上面的方法比较好理解，但是效率不高。后来在<a href="http://dingstyle.me">天下无双、史上最牛逼的丁大神</a>的提醒下又想到了其他的一些方法。<br/>
-构造一个栈，然后将输入的中缀表达式转换成<strong>逆波兰表达式</strong>，逆波兰式就很容易编程求解了。<br/>
+<p>上面的方法比较好理解，但是效率不高。后来在<a href="http://dingstyle.me">天下无双、史上最牛逼的丁大神</a>的提醒下又想到了其他的一些方法。<br />
+构造一个栈，然后将输入的中缀表达式转换成<strong>逆波兰表达式</strong>，逆波兰式就很容易编程求解了。<br />
 或者用这个表达式构造一棵<strong>二叉树</strong>。对这棵树进行化简即可的倒结果。</p>
 </div>
 

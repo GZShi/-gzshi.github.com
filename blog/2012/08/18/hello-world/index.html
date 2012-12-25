@@ -31,6 +31,8 @@
 <script type="text/javascript" src="javascript/custom/OnMouseOver.js"></script>
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/gif" href="/animated_favicon1.gif">
+
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -105,55 +107,50 @@
   </header>
 
 
-<div class="entry-content"><h3>Step 1 - 获取微博秀代码</h3>
+<div class="entry-content"><h3 id="step-1---">Step 1 - 获取微博秀代码</h3>
 
 <p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
 
 <p>代码大致如下：</p>
 
-<div><script src='https://gist.github.com/3385130.js?file='></script>
+<div><script src="https://gist.github.com/3385130.js?file="></script>
 <noscript><pre><code>&lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot;  frameborder=&quot;0&quot; scrolling=&quot;no&quot; 
 src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=OOOOOOOOOO&amp;verifier=XXXXXXX&amp;dpc=1&quot;&gt;&lt;/iframe&gt;</code></pre></noscript></div>
 
-
-<p>只需要记住这部分代码中的uid和verifier即可</p>
-
+<p>只需要记住这部分代码中的uid和verifier即可
 <!--more-->
-
-
-<h3>Step 2 - 创建侧边栏网页</h3>
+### Step 2 - 创建侧边栏网页</p>
 
 <p>随便新建一个html文件，将下面的html代码拷进去，然后保存</p>
 
-<div><script src='https://gist.github.com/3385105.js?file='></script>
+<div><script src="https://gist.github.com/3385105.js?file="></script>
 <noscript><pre><code>{% if site.weibo_uid %}
 &lt;section&gt;
-    &lt;h1&gt;Sina Weibo&lt;/h1&gt;
-    &lt;ul id=&quot;weibo&quot;
-    &lt;li&gt;
-        &lt;iframe
-        width=&quot;100%&quot;
-        height=&quot;550&quot;
-        class=&quot;share_self&quot;
-        frameborder=&quot;0&quot;
-        scrolling=&quot;no&quot;
-        src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/li&gt;
-    &lt;/ul&gt;
+	&lt;h1&gt;Sina Weibo&lt;/h1&gt;
+	&lt;ul id=&quot;weibo&quot;
+	&lt;li&gt;
+		&lt;iframe
+		width=&quot;100%&quot;
+		height=&quot;550&quot;
+		class=&quot;share_self&quot;
+		frameborder=&quot;0&quot;
+		scrolling=&quot;no&quot;
+		src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
+		&lt;/iframe&gt;
+	&lt;/li&gt;
+	&lt;/ul&gt;
 &lt;/section&gt;
 {% endif %}</code></pre></noscript></div>
-
 
 <p>保存的路径为source/_include/asides/</p>
 
 <p>侧边栏的宽度是自适应的，高度为550px，这些可以直接修改上面的参数</p>
 
-<h3>Step 3 - 修改‘_config.yml’文件</h3>
+<h3 id="step-3---configyml">Step 3 - 修改‘_config.yml’文件</h3>
 
 <p>修改示例如下：</p>
 
-<div><script src='https://gist.github.com/3385132.js?file='></script>
+<div><script src="https://gist.github.com/3385132.js?file="></script>
 <noscript><pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
@@ -175,7 +172,6 @@ weibo_fansline: 1
 weibo_show: true
 weibo_pic: false
 weibo_skin: 2</code></pre></noscript></div>
-
 
 <p>weibo_uid和weibo_verifier都是第一步获取的</p>
 

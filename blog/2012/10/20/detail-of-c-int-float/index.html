@@ -9,16 +9,8 @@
   <meta name="author" content="GZShi(s@lovep.me)">
 
   
-  <meta name="description" content="如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法 1
-2
-3
-4
-5
-6
-7
-8
-int main(void)
-{ float f1 = 0.0; float f2 = 0.0; if(f1 == f2) puts(&quot;equal!& &hellip;">
+  <meta name="description" content="如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;div class=&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -40,6 +32,8 @@ int main(void)
 <script type="text/javascript" src="javascript/custom/OnMouseOver.js"></script>
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="icon" type="image/gif" href="/animated_favicon1.gif">
+
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -114,66 +108,57 @@ int main(void)
   </header>
 
 
-<div class="entry-content"><p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="n">f1</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="n">f2</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">puts</span><span class="p">(</span><span class="s">&quot;equal!&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>毫无疑问，这个程序的显示结果必然是<code>equal!</code>。</p>
-
+<div class="entry-content"><p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法<br />
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="c"><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">	<span class="kt">float</span> <span class="n">f1</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">float</span> <span class="n">f2</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span><span class="line">	<span class="k">if</span><span class="p">(</span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span><span class="p">)</span>
+</span><span class="line">		<span class="n">puts</span><span class="p">(</span><span class="s">&quot;equal!&quot;</span><span class="p">);</span>
+</span><span class="line">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+毫无疑问，这个程序的显示结果必然是<code>equal!</code>。<br />
 <!-- more -->
-
-
-<p>那么尝试一下运行下面的程序</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x8000ffff</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">f1</span> <span class="o">!=</span> <span class="o">*</span><span class="n">f2</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f != %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">f1</span><span class="p">,</span> <span class="o">*</span><span class="n">f2</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>运行后你会发现显示的结果是<code>-0.000000 != -0.000000</code>，这个结果有点违反直觉，为什么呢？这还得从计算机如何表示浮点数说起。<br/>
+那么尝试一下运行下面的程序
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="c"><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x8000ffff</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">float</span> <span class="o">*</span><span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">float</span> <span class="o">*</span><span class="n">f2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">f1</span> <span class="o">!=</span> <span class="o">*</span><span class="n">f2</span><span class="p">)</span>
+</span><span class="line">		<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f != %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">f1</span><span class="p">,</span> <span class="o">*</span><span class="n">f2</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+运行后你会发现显示的结果是<code>-0.000000 != -0.000000</code>，这个结果有点违反直觉，为什么呢？这还得从计算机如何表示浮点数说起。<br />
 c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</code></a>的标准表示浮点数的。所有能表示的浮点数可以分为三类：<code>规格化的值</code>、<code>非规格化的值</code>和<code>特殊值</code>。</p>
 
 <p>规格化的值表示阶码不全为1或全为0的数。非规格化的值表示阶码全为0的数，这种数的其中一个用途是提供了0的表示方式，因为在规格化的数中尾数总是包含一个1的，这样不可能表示0，当阶码全为0时无论尾数如何，表示的都是0.0或-0.0。特殊值是阶码全为1的数，表示一个无穷大，根据符号位决定是正无穷或负无穷，这不是一个数。</p>
@@ -184,12 +169,10 @@ c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</
 
 <p>这样就不难解释为什么上面的程序的结果为什么会如此了。</p>
 
-<h3>参考引用</h3>
-
+<h3 id="section">参考引用</h3>
 <ol>
-<li>《深入理解计算机系统》，Randal E. Bryant  David R. O&#8217;Hallaron 著，龚奕利 雷迎春 译。</li>
+  <li>《深入理解计算机系统》，Randal E. Bryant  David R. O’Hallaron 著，龚奕利 雷迎春 译。</li>
 </ol>
-
 </div>
 
 

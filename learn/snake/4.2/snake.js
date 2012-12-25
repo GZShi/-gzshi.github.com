@@ -328,12 +328,13 @@ function game_running()
 
 	
 
-	function getMousePos(canvas, evt)
+	function getTouchPos(canvas, evt)
 	{
 		var rect = canvas.getBoundingClientRect();
-		return {x: evt.clientX - rect.left, y: evt.clientY - rect.top};
+		var touch = evt.touches[0];
+		return {x: touch.pageX - rect.left, y: touch.pageY - rect.top};
 	}
-
+/*
 	window.addEventListener('keydown', function(evt) {
 		if(pause_flag == true)
 			return ;
@@ -355,9 +356,9 @@ function game_running()
 				break;
 		}
 	}, false);
-
-	canvas.addEventListener('click', function(evt) {
-		var mousePos = getMousePos(canvas, evt);
+*/
+	canvas.addEventListener('touchstart', function(evt) {
+		var mousePos = getTouchPos(canvas, evt);
 		var mouse_x = Math.floor(mousePos.x / 10);
 		var mouse_y = Math.floor(mousePos.y / 10);
 		var snake_x = snake_black.head_x();

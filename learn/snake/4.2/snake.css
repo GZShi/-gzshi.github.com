@@ -1,7 +1,21 @@
+body
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 canvas
 {
-	-moz-box-shadow: 1px 1px 8px #62cc00;
-	-webkit-box-shadow: 1px 1px 8px #62cc00;
-	box-shadow: 1px 1px 8px #62cc00;
+	-moz-box-shadow: 0 0 8px #62cc00;
+	-webkit-box-shadow: 0 0 8px #62cc00;
+	box-shadow: 0 0 8px #62cc00;
 	/*border: 1px solid #06C;*/
+	position: relative;
+}
+h1,p
+{
+	font-size: 10px;
+	font-family: 'Sans-Serif';
+	font-style: blue;
 }

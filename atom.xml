@@ -4,7 +4,7 @@
   <title><![CDATA[石头的博客]]></title>
   <link href="http://lovep.me/atom.xml" rel="self"/>
   <link href="http://lovep.me/"/>
-  <updated>2012-12-18T22:40:38+08:00</updated>
+  <updated>2012-12-25T22:15:17+08:00</updated>
   <id>http://lovep.me/</id>
   <author>
     <name><![CDATA[GZShi(s@lovep.me)]]></name>
@@ -41,66 +41,57 @@
     <link href="http://lovep.me/blog/2012/10/20/detail-of-c-int-float/"/>
     <updated>2012-10-20T00:43:00+08:00</updated>
     <id>http://lovep.me/blog/2012/10/20/detail-of-c-int-float</id>
-    <content type="html"><![CDATA[<p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="n">f1</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="n">f2</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">puts</span><span class="p">(</span><span class="s">&quot;equal!&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>毫无疑问，这个程序的显示结果必然是<code>equal!</code>。</p>
-
+    <content type="html"><![CDATA[<p>如果两个浮点数表示0，那么这两个浮点数的大小是否一样呢？也许你会马上想到用下面这个程序来验证你的想法<br />
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="c"><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">	<span class="kt">float</span> <span class="n">f1</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">float</span> <span class="n">f2</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span><span class="line">	<span class="k">if</span><span class="p">(</span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span><span class="p">)</span>
+</span><span class="line">		<span class="n">puts</span><span class="p">(</span><span class="s">&quot;equal!&quot;</span><span class="p">);</span>
+</span><span class="line">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+毫无疑问，这个程序的显示结果必然是<code>equal!</code>。<br />
 <!-- more -->
-
-
-<p>那么尝试一下运行下面的程序</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x8000ffff</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
-</span><span class='line'>  <span class="kt">float</span> <span class="o">*</span><span class="n">f2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">f1</span> <span class="o">!=</span> <span class="o">*</span><span class="n">f2</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f != %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">f1</span><span class="p">,</span> <span class="o">*</span><span class="n">f2</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>运行后你会发现显示的结果是<code>-0.000000 != -0.000000</code>，这个结果有点违反直觉，为什么呢？这还得从计算机如何表示浮点数说起。<br/>
+那么尝试一下运行下面的程序
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="c"><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x8000ffff</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">float</span> <span class="o">*</span><span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span><span class="line">	<span class="kt">float</span> <span class="o">*</span><span class="n">f2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">f1</span> <span class="o">!=</span> <span class="o">*</span><span class="n">f2</span><span class="p">)</span>
+</span><span class="line">		<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f != %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">f1</span><span class="p">,</span> <span class="o">*</span><span class="n">f2</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+运行后你会发现显示的结果是<code>-0.000000 != -0.000000</code>，这个结果有点违反直觉，为什么呢？这还得从计算机如何表示浮点数说起。<br />
 c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</code></a>的标准表示浮点数的。所有能表示的浮点数可以分为三类：<code>规格化的值</code>、<code>非规格化的值</code>和<code>特殊值</code>。</p>
 
 <p>规格化的值表示阶码不全为1或全为0的数。非规格化的值表示阶码全为0的数，这种数的其中一个用途是提供了0的表示方式，因为在规格化的数中尾数总是包含一个1的，这样不可能表示0，当阶码全为0时无论尾数如何，表示的都是0.0或-0.0。特殊值是阶码全为1的数，表示一个无穷大，根据符号位决定是正无穷或负无穷，这不是一个数。</p>
@@ -111,12 +102,10 @@ c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</
 
 <p>这样就不难解释为什么上面的程序的结果为什么会如此了。</p>
 
-<h3>参考引用</h3>
-
+<h3 id="section">参考引用</h3>
 <ol>
-<li>《深入理解计算机系统》，Randal E. Bryant  David R. O&#8217;Hallaron 著，龚奕利 雷迎春 译。</li>
+  <li>《深入理解计算机系统》，Randal E. Bryant  David R. O’Hallaron 著，龚奕利 雷迎春 译。</li>
 </ol>
-
 ]]></content>
   </entry>
   
@@ -125,22 +114,17 @@ c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</
     <link href="http://lovep.me/blog/2012/10/09/huawei-code-test/"/>
     <updated>2012-10-09T14:47:00+08:00</updated>
     <id>http://lovep.me/blog/2012/10/09/huawei-code-test</id>
-    <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/zh/%E9%97%B0%E5%B9%B4">闰年</a>这个概念大概是小学刚学除法的时候接触的吧，记得比较清楚的是“闰年都能被4整除”。大一的时候学C语言的时候又接触到闰年，判断方法说的很清楚</p>
-
-<blockquote><p>“四年一闰，百年不闰，四百年再闰”</p></blockquote>
+    <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/zh/%E9%97%B0%E5%B9%B4">闰年</a>这个概念大概是小学刚学除法的时候接触的吧，记得比较清楚的是“闰年都能被4整除”。大一的时候学C语言的时候又接触到闰年，判断方法说的很清楚
+&gt;“四年一闰，百年不闰，四百年再闰”</p>
 
 <p>没有想到的是，在今天早上的华为机试中又遇到了这个闰年！</p>
 
-<p>题目很简单，就是要你判断输入的数是否是闰年，是就输出&#8221;YES&#8221;，不是就输出&#8221;NO&#8221;。</p>
-
+<p>题目很简单，就是要你判断输入的数是否是闰年，是就输出”YES”，不是就输出”NO”。
 <!--more -->
-
-
-<p>为了这次上机测试，我特意查了下华为前几年的上机测试题，虽然不是很难，但也不会简单到这个样子，而且以前都不止一道题，码代码的时间也不止30分钟（当然，这个题30分钟的时间显得太充裕了），昨晚还没睡好，看了好多面试题目……看到这个题目我第一想法就是——大坑！</p>
+为了这次上机测试，我特意查了下华为前几年的上机测试题，虽然不是很难，但也不会简单到这个样子，而且以前都不止一道题，码代码的时间也不止30分钟（当然，这个题30分钟的时间显得太充裕了），昨晚还没睡好，看了好多面试题目……看到这个题目我第一想法就是——大坑！</p>
 
 <p>本来想用一个条件语句判断的，但是头脑一热就懒得想这么多了，直接上if-else</p>
-
-<div><script src='https://gist.github.com/3857116.js?file='></script>
+<div><script src="https://gist.github.com/3857116.js?file="></script>
 <noscript><pre><code>#include &lt;stdio.h&gt;
 
 #define TRUE 1
@@ -148,38 +132,36 @@ c语言是按照<a href="http://zh.wikipedia.org/wiki/IEEE_754"><code>IEEE 754</
 
 int judge(int year)
 {
-    if(year % 4 != 0)
-        return FALSE;
-    else if(year % 100 == 0)
-    {
-        if(year % 400 == 0)
-            return TRUE;
-        else
-            return FALSE;
-    }
-    else 
-        return TRUE;
+	if(year % 4 != 0)
+		return FALSE;
+	else if(year % 100 == 0)
+	{
+		if(year % 400 == 0)
+			return TRUE;
+		else
+			return FALSE;
+	}
+	else 
+		return TRUE;
 }
 
 int main(void)
 {
-    int year = 0;
-    char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
+	int year = 0;
+	char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
 
-    scanf(&quot;%d&quot;, &amp;year);
+	scanf(&quot;%d&quot;, &amp;year);
 
-    printf(&quot;%s\n&quot;, s[judge(year)]);
+	printf(&quot;%s\n&quot;, s[judge(year)]);
 
-    return 0;
+	return 0;
 }
 </code></pre></noscript></div>
-
 
 <p>测试了几个例子，测试正确后便很满足地提交了。但是提交后发现检查结果有5%的测试样例没通过，刚刚还信心满满的我一下子就被打击到了，再三检查了程序的逻辑，实在找不出有什么逻辑方面的错误。</p>
 
 <p>走出软件园，实在是很郁闷，路上一直想着刚刚的程序，一直在想那5%的错误是怎么出现的。突然想到他给的样例是用字符串保存输入的而非整型，莫非测试的时候用了一个非常大的数导致整型溢出出现错误，想到这里我发现我的程序里面却是没有想到这点。回来后我又重新写了一个</p>
-
-<div><script src='https://gist.github.com/3857174.js?file='></script>
+<div><script src="https://gist.github.com/3857174.js?file="></script>
 <noscript><pre><code>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 #include &lt;stdlib.h&gt;
@@ -190,40 +172,35 @@ int main(void)
 
 int judge(char *str)
 {
-    int year = 0;
-    if(strlen(str) &gt; 9)  // 超出一个32bit能表示的最大位数
-    {
-        strcpy(str, str + strlen(str) - 4);
-        year = (str[0] - '0')*1000 + (str[1] - '0')*100 + (str[2] - '0')*10 + str[3] - '0';
-    }
-    else
-        year = atoi(str);
+	int year = 0;
+	if(strlen(str) &gt; 9)	// 超出一个32bit能表示的最大位数
+	{
+		strcpy(str, str + strlen(str) - 4);
+		year = (str[0] - '0')*1000 + (str[1] - '0')*100 + (str[2] - '0')*10 + str[3] - '0';
+	}
+	else
+		year = atoi(str);
 
-    return (((year % 4 == 0) &amp;&amp; (year % 100 != 0)) || (year % 400 == 0));
+	return (((year % 4 == 0) &amp;&amp; (year % 100 != 0)) || (year % 400 == 0));
 }
 
 int main(void)
 {
-    char str[MAX_LEN];
-    char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
+	char str[MAX_LEN];
+	char *s[2] = {&quot;NO&quot;, &quot;YES&quot;};
 
-    fscanf(str, MAX_LEN - 1, stdin);
+	fscanf(str, MAX_LEN - 1, stdin);
 
-    printf(&quot;%s\n&quot;, s[judge(str)]);
+	printf(&quot;%s\n&quot;, s[judge(str)]);
 
-    return 0;
+	return 0;
 }
 </code></pre></noscript></div>
 
-
 <p>真是再简单的事情也有意想不到的情况。</p>
 
-<p>PS. 机试的地点真是太难找了，标个记！</p>
-
-<p><iframe src="http://www.dr2ooo.com/tools/maps/maps.php?zoom=12&width=500&height=400&ll=30.475123,114.404669&ctrl=true&cp=true&" width="500" height="400"></iframe></p>
-
-
-<p></p>
+<p>PS. 机试的地点真是太难找了，标个记！  </p>
+<p><iframe src="http://www.dr2ooo.com/tools/maps/maps.php?zoom=12&amp;width=500&amp;height=400&amp;ll=30.475123,114.404669&amp;ctrl=true&amp;cp=true&amp;" width="500" height="400"></iframe></p>
 ]]></content>
   </entry>
   
@@ -234,148 +211,134 @@ int main(void)
     <id>http://lovep.me/blog/2012/09/29/hust-graduate-retest</id>
     <content type="html"><![CDATA[<p>在某种基友光环的作用下，我这个找工作的苦逼也有机会看到今年的华科保研的c语言上机题目。完全是无聊时间多了没事干闲的不行才写了几行代码。</p>
 
-<h3>第一题</h3>
+<h3 id="section">第一题</h3>
 
 <ul>
-<li>某加密算法对数据字节进行加密，具体算法为：<br/>
-1.对字节的8位二进制位从右向左0~7编号，先将0、2、4位分别于1、3、5位两两对应交换<br/>
+  <li>某加密算法对数据字节进行加密，具体算法为：<br />
+1.对字节的8位二进制位从右向左0~7编号，先将0、2、4位分别于1、3、5位两两对应交换<br />
 2.然后对0~5位进行循环左移（左边移出的位接到右边），循环左移的位数由6、7两位所组成的二进制数的值决定
-编写程序，输入一行明文字符串，按上述算法进行加密后输出密文。<br/>
-例如，输入：<code>abcd↙</code>，则输出：<code>dbfp↙</code></li>
-</ul>
-
-
+编写程序，输入一行明文字符串，按上述算法进行加密后输出密文。<br />
+例如，输入：<code>abcd↙</code>，则输出：<code>dbfp↙</code>
 <!-- more -->
-
-
-<p>看到题目后一眼就看出是要考<code>&gt;&gt;</code>、<code>&lt;&lt;</code>、<code>&amp;</code>、<code>|</code>什么的，不算是太难吧。我的代码如下：</p>
-
-<div><script src='https://gist.github.com/3803322.js?file='></script>
+看到题目后一眼就看出是要考<code>&gt;&gt;</code>、<code>&lt;&lt;</code>、<code>&amp;</code>、<code>|</code>什么的，不算是太难吧。我的代码如下：</li>
+</ul>
+<div><script src="https://gist.github.com/3803322.js?file="></script>
 <noscript><pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
-#define c1(c) ((((c) &lt;&lt; 1) &amp; 0x2a) | (((c) &gt;&gt; 1) &amp; 0x15))   // 交换
-#define c2(c) ((c) &gt;&gt; 6)  // 循环左移位数
-#define c3(c) ((c1((c)) &gt;&gt; 6 - c2((c))) | ((c1((c)) &lt;&lt; c2((c))) &amp; 0x3f) | ((c) &amp; 0xc0)) //循环
+#define c1(c) ((((c) &lt;&lt; 1) &amp; 0x2a) | (((c) &gt;&gt; 1) &amp; 0x15))	// 交换
+#define c2(c) ((c) &gt;&gt; 6)	// 循环左移位数
+#define c3(c) ((c1((c)) &gt;&gt; 6 - c2((c))) | ((c1((c)) &lt;&lt; c2((c))) &amp; 0x3f) | ((c) &amp; 0xc0))	//循环
 
 void encode(char *s);
 
 int main(void)
 {
-    char instr[200];
-    puts(&quot;input a string:&quot;);
-    gets(instr);
-    encode(instr);
-    puts(instr);
-    return 0;
+	char instr[200];
+	puts(&quot;input a string:&quot;);
+	gets(instr);
+	encode(instr);
+	puts(instr);
+	return 0;
 }
 
 void encode(char *s)
 {
-    int i = 0;
-    while(s[i] != '\0')
-        s[i++] = (c3(s[i]));
+	int i = 0;
+	while(s[i] != '\0')
+		s[i++] = (c3(s[i]));
 }</code></pre></noscript></div>
 
-
-<h3>第二题</h3>
+<h3 id="section-1">第二题</h3>
 
 <ul>
-<li>八张扑克牌叠放在桌面上，从上到下牌面一次为2、3、4、5、6、7、8、9。输入三个整数，每读入一个整数n，先按n进行切牌，然后洗牌，接着读入下一个整数n，如此进行3轮切牌和洗牌。每轮切牌和洗牌后，按从上到下次序输出八张扑克牌的牌面。<br/>
-<strong>切牌规则</strong>：<br/>
-1.若整数<code>n&gt;0</code>且<code>n&lt;8</code>，则将排从上向下数第n张牌下面的所有牌移到整堆排的最上面；<br/>
-2.否则，不移动任何牌。<br/>
-<strong>切牌规则</strong>：<br/>
-1.从上向下数，将第5~8四张牌按顺序插入到1~4张排下面。</li>
+  <li>八张扑克牌叠放在桌面上，从上到下牌面一次为2、3、4、5、6、7、8、9。输入三个整数，每读入一个整数n，先按n进行切牌，然后洗牌，接着读入下一个整数n，如此进行3轮切牌和洗牌。每轮切牌和洗牌后，按从上到下次序输出八张扑克牌的牌面。<br />
+<strong>切牌规则</strong>：<br />
+1.若整数<code>n&gt;0</code>且<code>n&lt;8</code>，则将排从上向下数第n张牌下面的所有牌移到整堆排的最上面；<br />
+2.否则，不移动任何牌。<br />
+<strong>切牌规则</strong>：<br />
+1.从上向下数，将第5~8四张牌按顺序插入到1~4张排下面。  </li>
 </ul>
 
-
-<p>例如，输入：<code>2 3 4↙</code>，则输出：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>round 1: 48596273
-</span><span class='line'>round 2: 93642875
-</span><span class='line'>round 3: 29837654</span></code></pre></td></tr></table></div></figure>
-
+<p>例如，输入：<code>2 3 4↙</code>，则输出：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">round 1: 48596273
+</span><span class="line">round 2: 93642875
+</span><span class="line">round 3: 29837654</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <p>题目好长，叙述也好乱，看了好几分钟才理清楚切牌洗牌什么的。如果硬要找一下这个题的考点，我猜是数组吧……用字符数组可以很方便地“切牌”，我的代码如下：</p>
-
-<div><script src='https://gist.github.com/3803759.js?file='></script>
+<div><script src="https://gist.github.com/3803759.js?file="></script>
 <noscript><pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 
-void cut(char *poker, int n);   // 切牌
-void shuffle(char *poker);      // 洗牌
+void cut(char *poker, int n);	// 切牌
+void shuffle(char *poker);		// 洗牌
 
 int main(void)
 {
-    char poker[9] = &quot;23456789&quot;;
-    int n[3] = {0, 0, 0};
-    int i = 0;
+	char poker[9] = &quot;23456789&quot;;
+	int n[3] = {0, 0, 0};
+	int i = 0;
 
-    scanf(&quot;%d %d %d&quot;, n, n+1, n+2);
+	scanf(&quot;%d %d %d&quot;, n, n+1, n+2);
 
-    while(i &lt; 3)
-    {
-        cut(poker, *(n+i));
-        shuffle(poker);
-        printf(&quot;round 1: %s\n&quot;, poker);
-        ++i;
-    }
+	while(i &lt; 3)
+	{
+		cut(poker, *(n+i));
+		shuffle(poker);
+		printf(&quot;round 1: %s\n&quot;, poker);
+		++i;
+	}
 
-    return 0;
+	return 0;
 }
 
 void cut(char *poker, int n)
 {
-    char temp[9];
-    if(n&lt;1 || n&gt;7)
-        return;
-    strcpy(temp, poker);
-    temp[n] = 0;
-    strcpy(poker, poker + n);
-    strcat(poker, temp);
+	char temp[9];
+	if(n&lt;1 || n&gt;7)
+		return;
+	strcpy(temp, poker);
+	temp[n] = 0;
+	strcpy(poker, poker + n);
+	strcat(poker, temp);
 }
 
 void shuffle(char *poker)
 {
-    char temp[9] = &quot;xxxxxxxx&quot;;
-    int i = 0;
-    while(i &lt; 4)
-    {
-        temp[2*i] = poker[i];
-        temp[2*i + 1] = poker[i+4];
-        ++i;
-    }
-    strcpy(poker, temp);
+	char temp[9] = &quot;xxxxxxxx&quot;;
+	int i = 0;
+	while(i &lt; 4)
+	{
+		temp[2*i] = poker[i];
+		temp[2*i + 1] = poker[i+4];
+		++i;
+	}
+	strcpy(poker, temp);
 }
 </code></pre></noscript></div>
 
-
-<h3>第三题</h3>
-
+<h3 id="section-2">第三题</h3>
 <ul>
-<li>编写一个程序，按给定的条件，对所输入的每行表达式进行求值，然后输出结果。假设有如下声明语句：
+  <li>编写一个程序，按给定的条件，对所输入的每行表达式进行求值，然后输出结果。假设有如下声明语句：
 <code>int a = 1, b = 2, c = 3, d = 4, e = 5;</code>
-待求值的表达式通过键盘输入，每行输入一个表达式，长度小于20个字符，输入一个空行来结束处理。<br/>
-所输入的表达式应满足c语言语法规定，其中包括：变量名a~e，十进制整型常量，圆括号，及双目运算符<br/>
-1.算数运算符：<code>*</code>、<code>/</code>、<code>%</code>、<code>+</code>、<code>-</code><br/>
-2.位运算符：<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&amp;</code>、<code>^</code>、<code>|</code><br/>
-3.简单赋值运算符：<code>=</code><br/>
+待求值的表达式通过键盘输入，每行输入一个表达式，长度小于20个字符，输入一个空行来结束处理。<br />
+所输入的表达式应满足c语言语法规定，其中包括：变量名a~e，十进制整型常量，圆括号，及双目运算符<br />
+1.算数运算符：<code>*</code>、<code>/</code>、<code>%</code>、<code>+</code>、<code>-</code><br />
+2.位运算符：<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&amp;</code>、<code>^</code>、<code>|</code><br />
+3.简单赋值运算符：<code>=</code><br />
 除上述成分外，表达式中不含其他字符。运算符的功能以及<strong>优先级</strong>和<strong>结合性</strong>遵循<strong>c标准</strong>。</li>
 </ul>
 
-
-<p>看到这个题第一反应时编译原理，但细细一想，上机时间也就2个小时，要实现一个简单解释器时间还是挺紧的。仔细看了题目，发现题目给出的条件都很严格。例如，输入的式子是正确的，因此不必检查式子的正确性，只需按优先级结合性把结果算出来就行了。<br/>
-我最先的想法是先不考虑括号，用一个数组A来存放a、b、c、d、e这几个变量的值，用一个字符串s存放整个算式。先找出整个算式中优先级最高的运算符，然后把这个运算符左右两边的变量或整数取出，记作子串sub，把sub的结果计算出来，转成字符串，再替换sub串之前在s中的位置。如果该运算符是<code>=</code>，则更新数组的值，将新的值转成字符串。这样一直循环处理字符串，直到式子中没有运算符或变量为止。<br/>
-如果考虑括号，则遇到括号时，对括号中的子串进行上述处理，得到一个不能再被计算的结果字符串，然后用这个结果字符串替换之前子串的位置，再进行一下上面的分析。<br/>
-计算过程可以用递归的方式实现，代码在200行左右。<br/>
-我的代码如下，支持赋值运算的版本还有点bug，我就不贴出来了。拍砖的轻点……</p>
-
-<div><script src='https://gist.github.com/3803883.js?file='></script>
+<p>看到这个题第一反应时编译原理，但细细一想，上机时间也就2个小时，要实现一个简单解释器时间还是挺紧的。仔细看了题目，发现题目给出的条件都很严格。例如，输入的式子是正确的，因此不必检查式子的正确性，只需按优先级结合性把结果算出来就行了。<br />
+我最先的想法是先不考虑括号，用一个数组A来存放a、b、c、d、e这几个变量的值，用一个字符串s存放整个算式。先找出整个算式中优先级最高的运算符，然后把这个运算符左右两边的变量或整数取出，记作子串sub，把sub的结果计算出来，转成字符串，再替换sub串之前在s中的位置。如果该运算符是<code>=</code>，则更新数组的值，将新的值转成字符串。这样一直循环处理字符串，直到式子中没有运算符或变量为止。<br />
+如果考虑括号，则遇到括号时，对括号中的子串进行上述处理，得到一个不能再被计算的结果字符串，然后用这个结果字符串替换之前子串的位置，再进行一下上面的分析。<br />
+计算过程可以用递归的方式实现，代码在200行左右。<br />
+我的代码如下，支持赋值运算的版本还有点bug，我就不贴出来了。拍砖的轻点……     </p>
+<div><script src="https://gist.github.com/3803883.js?file="></script>
 <noscript><pre><code>// 这个版本不支持赋值运算
 
 #include &lt;stdlib.h&gt;
@@ -391,195 +354,194 @@ int  calculate(char *buf, int n);
 
 void preproccess(char *buf, int a, int b, int c, int d, int e)
 {
-    int i = 0;
-    while(buf[i] != 0)
-    {
-        if(buf[i] == ' ')
-            strcpy(buf+i, buf+i+1);
-        else if(buf[i] == '&gt;' &amp;&amp; buf[i+1] == '&gt;')
-            strcpy(buf+i, buf+i+1);
-        else if(buf[i] == '&lt;' &amp;&amp; buf[i+1] == '&lt;')
-            strcpy(buf+i, buf+i+1);
-        else
-            i++;
-    }
+	int i = 0;
+	while(buf[i] != 0)
+	{
+		if(buf[i] == ' ')
+			strcpy(buf+i, buf+i+1);
+		else if(buf[i] == '&gt;' &amp;&amp; buf[i+1] == '&gt;')
+			strcpy(buf+i, buf+i+1);
+		else if(buf[i] == '&lt;' &amp;&amp; buf[i+1] == '&lt;')
+			strcpy(buf+i, buf+i+1);
+		else
+		    i++;
+	}
 }
 
 void replace(char *buf, int start, int end, int number)
 {
-    char t_buf_1[20];
-    char t_buf_2[20];
-    int i = 0;
+	char t_buf_1[20];
+	char t_buf_2[20];
+	int i = 0;
 
-    itoa(number, t_buf_1, 10);
-    strcpy(t_buf_2, buf+end+1);
-    strcpy(buf+start, t_buf_1);
-    strcat(buf+start+strlen(t_buf_1), t_buf_2);
+	itoa(number, t_buf_1, 10);
+	strcpy(t_buf_2, buf+end+1);
+	strcpy(buf+start, t_buf_1);
+	strcat(buf+start+strlen(t_buf_1), t_buf_2);
 }
 
 void mult_analytic(char *buf)
 {
-    char op[6][3] = {
-        {'*', '/', '%'},
-        {'+', '-', '-'},
-        {'&lt;', '&gt;', '&gt;'},
-        {'&amp;', '&amp;', '&amp;'},
-        {'^', '^', '^'},
-        {'|', '|', '|'}
-    };
-    int i = 0;
+	char op[6][3] = {
+		{'*', '/', '%'},
+		{'+', '-', '-'},
+		{'&lt;', '&gt;', '&gt;'},
+		{'&amp;', '&amp;', '&amp;'},
+		{'^', '^', '^'},
+		{'|', '|', '|'}
+	};
+	int i = 0;
 
-    remove_bracket(buf);
-    while(i &lt; 6)
-    {
-        analytic(buf, op[i++]);
-    }
+	remove_bracket(buf);
+	while(i &lt; 6)
+	{
+		analytic(buf, op[i++]);
+	}
 }
 
 void remove_bracket(char *buf)
 {
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    char t_buf[20];
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	char t_buf[20];
 
-    while(buf[i] != 0)
-    {
-        if(buf[i] == '(')
-            ++j;
-        else if(buf[i] == ')')
-            ++k;
-        i++;
-    }
+	while(buf[i] != 0)
+	{
+		if(buf[i] == '(')
+			++j;
+		else if(buf[i] == ')')
+			++k;
+		i++;
+	}
 
-    if(j != k)  // 判断括号配对
-        return;
-    else if(j == 0)     // 判断有无括号
-        return;
+	if(j != k)	// 判断括号配对
+		return;
+	else if(j == 0)		// 判断有无括号
+		return;
 
-    j = k = -1;
-    i = 0;
-    while(buf[i] != 0)  // 寻找最内层括号
-    {
-        if(buf[i] == '(')
-            j = i;
-        else if(buf[i] == ')')
-        {
-            k = i;
-            break;
-        }
-        i++;
-    }
+	j = k = -1;
+	i = 0;
+	while(buf[i] != 0)	// 寻找最内层括号
+	{
+		if(buf[i] == '(')
+			j = i;
+		else if(buf[i] == ')')
+		{
+			k = i;
+			break;
+		}
+		i++;
+	}
 
-    if(k != -1 &amp;&amp; j == -1)
-        return;
+	if(k != -1 &amp;&amp; j == -1)
+		return;
 
-    // 分析括号里面的式子，存入t_buf
-    strcpy(t_buf, buf + j + 1);
-    t_buf[k-j-1] = '\0';
+	// 分析括号里面的式子，存入t_buf
+	strcpy(t_buf, buf + j + 1);
+	t_buf[k-j-1] = '\0';
 
-    mult_analytic(t_buf);   // 分析并计算式子
+	mult_analytic(t_buf);	// 分析并计算式子
 
-    replace(buf, j, k, atoi(t_buf));
+	replace(buf, j, k, atoi(t_buf));
 
-    remove_bracket(buf);
+	remove_bracket(buf);
 }
 
 void analytic(char *buf, char* op)
 {
-    int i = 0;
-    int j = 0;
-    int k = 0;
+	int i = 0;
+	int j = 0;
+	int k = 0;
 
-    if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
-        i++;
-    while(buf[i] != 0)
-    {
-        if(buf[i] == op[0] || buf[i] == op[1] || buf[i] == op[2])
-        {
-            break;
-        }
-        i++;
-    }
-    if(i &gt;= strlen(buf))
-        return;
+	if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
+		i++;
+	while(buf[i] != 0)
+	{
+		if(buf[i] == op[0] || buf[i] == op[1] || buf[i] == op[2])
+		{
+			break;
+		}
+		i++;
+	}
+	if(i &gt;= strlen(buf))
+		return;
 
-    j = k = i;
-    while(isdigit(buf[j-1]))
-        --j;
-    if(j == 1 &amp;&amp; buf[0] == '-' &amp;&amp; isdigit(buf[1]))
-        --j;
-    if(buf[k+1] == '-' &amp;&amp; isdigit(buf[k+2]))
-        ++k;
-    while(isdigit(buf[k+1]))
-        ++k;
-    replace(buf, j, k, calculate(buf + j, k-j+1));
-    analytic(buf, op);
+	j = k = i;
+	while(isdigit(buf[j-1]))
+		--j;
+	if(j == 1 &amp;&amp; buf[0] == '-' &amp;&amp; isdigit(buf[1]))
+		--j;
+	if(buf[k+1] == '-' &amp;&amp; isdigit(buf[k+2]))
+		++k;
+	while(isdigit(buf[k+1]))
+		++k;
+	replace(buf, j, k, calculate(buf + j, k-j+1));
+	analytic(buf, op);
 }
 
 int calculate(char *buf, int n)
 {
-    char t_buf_1[20];
-    char t_buf_2[20];
-    char op;
-    int a = 0;
-    int b = 0;
-    int i = 0;
+	char t_buf_1[20];
+	char t_buf_2[20];
+	char op;
+	int a = 0;
+	int b = 0;
+	int i = 0;
 
-    if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
-        i++;
-    while(isdigit(buf[i]))
-        i++;
-    if(i &gt;= strlen(buf))
-        return atoi(buf);
-    strncpy(t_buf_1, buf, i);
-    t_buf_1[i] = 0;
-    op = buf[i];
-    strncpy(t_buf_2, buf + i + 1, n-i-1);
-    t_buf_2[n-i-1] = '\0';
-    a = atoi(t_buf_1);
-    b = atoi(t_buf_2);
-    switch(op)
-    {
-        case '*':   return (a*b);
-        case '/':   return (a/b);
-        case '%':   return (a%b);
-        case '+':   return (a+b);
-        case '-':   return (a-b);
-        case '&lt;':    return (a&lt;&lt;b);
-        case '&gt;':    return (a&gt;&gt;b);
-        case '^':   return (a^b);
-        case '&amp;':   return (a&amp;b);
-        case '|':   return (a|b);
-        default: return 0;
-    }
-    return 0;
+	if(buf[i] == '-' &amp;&amp; isdigit(buf[i+1]))
+		i++;
+	while(isdigit(buf[i]))
+		i++;
+	if(i &gt;= strlen(buf))
+		return atoi(buf);
+	strncpy(t_buf_1, buf, i);
+	t_buf_1[i] = 0;
+	op = buf[i];
+	strncpy(t_buf_2, buf + i + 1, n-i-1);
+	t_buf_2[n-i-1] = '\0';
+	a = atoi(t_buf_1);
+	b = atoi(t_buf_2);
+	switch(op)
+	{
+		case '*':	return (a*b);
+		case '/':	return (a/b);
+		case '%':	return (a%b);
+		case '+':	return (a+b);
+		case '-':	return (a-b);
+		case '&lt;':	return (a&lt;&lt;b);
+		case '&gt;':	return (a&gt;&gt;b);
+		case '^':	return (a^b);
+		case '&amp;':	return (a&amp;b);
+		case '|':	return (a|b);
+		default: return 0;
+	}
+	return 0;
 }
 
 int main(void)
 {
-    int a, b, c, d, e;
-    char buf[60];
+	int a, b, c, d, e;
+	char buf[60];
 
-    puts(&quot;input a b c d e&quot;);
-    scanf(&quot;%d %d %d %d %d&quot;, &amp;a, &amp;b, &amp;c, &amp;d, &amp;e);
-    fflush(stdin);
-    puts(&quot;input a expression&quot;);
-    gets(buf);
+	puts(&quot;input a b c d e&quot;);
+	scanf(&quot;%d %d %d %d %d&quot;, &amp;a, &amp;b, &amp;c, &amp;d, &amp;e);
+	fflush(stdin);
+	puts(&quot;input a expression&quot;);
+	gets(buf);
 
-    preproccess(buf, a, b, c, d, e);
-    mult_analytic(buf);
+	preproccess(buf, a, b, c, d, e);
+	mult_analytic(buf);
 
-    printf(&quot;= %d\n&quot;, atoi(buf));
+	printf(&quot;= %d\n&quot;, atoi(buf));
 
-    system(&quot;pause&quot;);
-    return 0;
+	system(&quot;pause&quot;);
+	return 0;
 }
 </code></pre></noscript></div>
 
-
-<p>上面的方法比较好理解，但是效率不高。后来在<a href="http://dingstyle.me">天下无双、史上最牛逼的丁大神</a>的提醒下又想到了其他的一些方法。<br/>
-构造一个栈，然后将输入的中缀表达式转换成<strong>逆波兰表达式</strong>，逆波兰式就很容易编程求解了。<br/>
+<p>上面的方法比较好理解，但是效率不高。后来在<a href="http://dingstyle.me">天下无双、史上最牛逼的丁大神</a>的提醒下又想到了其他的一些方法。<br />
+构造一个栈，然后将输入的中缀表达式转换成<strong>逆波兰表达式</strong>，逆波兰式就很容易编程求解了。<br />
 或者用这个表达式构造一棵<strong>二叉树</strong>。对这棵树进行化简即可的倒结果。</p>
 ]]></content>
   </entry>
@@ -589,85 +551,62 @@ int main(void)
     <link href="http://lovep.me/blog/2012/08/19/build-blog/"/>
     <updated>2012-08-19T09:35:00+08:00</updated>
     <id>http://lovep.me/blog/2012/08/19/build-blog</id>
-    <content type="html"><![CDATA[<p>正如官网上所说的那样——“A blogging framework for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br/>
+    <content type="html"><![CDATA[<p>正如官网上所说的那样——“A blogging framework for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br />
 Octopress的可定制性非常高，所有的显示效果都可以自己设定，也有很多主题可以下载。默认主题非常简洁，这是我选择的原因之一。</p>
 
-<h3>step 1 - 准备工作</h3>
+<h3 id="step-1---">step 1 - 准备工作</h3>
 
 <ul>
-<li>首先注册一个<a href="http://www.github.com">GitHub</a>帐号。将要搭建的博客内容都是托管在GitHub上的。假设你注册了名为<code>username</code>的ID；</li>
-<li>然后本地配置Github。在Windows下最简单的方式就是安装一个“GitHub for Windows”，这是最不折腾的方式。这里有一个<a href="http://rogerdudler.github.com/git-guide/index.zh.html">GitHub入门</a>；</li>
-<li>接下来安装<a href="http://rubyinstaller.org/">Ruby</a>。注意下载的版本是1.92；</li>
-<li>安装<a href="http://115.156.191.66/download/372297/384990/4/exe/136/168/1344846989448_680/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">DevKit</a>。注意解压安装的路径不能有空格。</li>
-<li>添加UTF-8相关的环境变量。在环境变量中添加<code>LANG</code>和<code>LC_ALL</code>两个变量，参数都设置为<code>zh_cn.UTF-8</code>，<strong>注意大小写</strong>。</li>
-</ul>
-
-
+  <li>首先注册一个<a href="http://www.github.com">GitHub</a>帐号。将要搭建的博客内容都是托管在GitHub上的。假设你注册了名为<code>username</code>的ID；  </li>
+  <li>然后本地配置Github。在Windows下最简单的方式就是安装一个“GitHub for Windows”，这是最不折腾的方式。这里有一个<a href="http://rogerdudler.github.com/git-guide/index.zh.html">GitHub入门</a>；  </li>
+  <li>接下来安装<a href="http://rubyinstaller.org/">Ruby</a>。注意下载的版本是1.92；  </li>
+  <li>安装<a href="http://115.156.191.66/download/372297/384990/4/exe/136/168/1344846989448_680/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">DevKit</a>。注意解压安装的路径不能有空格。</li>
+  <li>添加UTF-8相关的环境变量。在环境变量中添加<code>LANG</code>和<code>LC_ALL</code>两个变量，参数都设置为<code>zh_cn.UTF-8</code>，<strong>注意大小写</strong>。
 <!-- more -->
-
-
-<h3>step 2 - 生成博客模版</h3>
-
-<p>现在GitHub上创建一个项目(Repository)，命名为<code>username.github.com</code><br/>
-* 打开Shell，用下面命令把GitHub上的Octopress项目克隆到本地</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/imathis/octopress.git username.github.com</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此时你的计算机上应该有一个名为<code>username.github.com</code>的文件夹，接下来要修改这个文件夹里面的内容<br/>
-* 把<code>.rvmrc</code>里面的文件内容修改为：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm use 1.9.2</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>修改<code>Gemfile</code>里的Source地址如下：</li>
+###step 2 - 生成博客模版</li>
 </ul>
 
+<p>现在GitHub上创建一个项目(Repository)，命名为<code>username.github.com</code><br />
+* 打开Shell，用下面命令把GitHub上的Octopress项目克隆到本地
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">git clone git://github.com/imathis/octopress.git username.github.com</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>source "http://ruby.taobao.org"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>原来的链接据说因为<a href="http://zh.wikipedia.org/wiki/GFW">GFW</a>的原因不能用了，你懂的</p>
-
-<ul>
-<li>然后运行如下命令，安装相应的Gem：</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bundle update</span></code></pre></td></tr></table></div></figure>
-
+<p>此时你的计算机上应该有一个名为<code>username.github.com</code>的文件夹，接下来要修改这个文件夹里面的内容<br />
+* 把<code>.rvmrc</code>里面的文件内容修改为：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rvm use 1.9.2</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <ul>
-<li>接下来生成博客模版：</li>
+  <li>修改<code>Gemfile</code>里的Source地址如下：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
 </ul>
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">source "http://ruby.taobao.org"</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;
+原来的链接据说因为<a href="http://zh.wikipedia.org/wiki/GFW">GFW</a>的原因不能用了，你懂的  </p>
 
+<ul>
+  <li>然后运行如下命令，安装相应的Gem：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
+</ul>
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">bundle update</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
-
+<ul>
+  <li>接下来生成博客模版：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
+</ul>
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake install</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
 
 <p>这一步的搭建工作完成</p>
 
-<h3>step 3 - 分发到GitHub上</h3>
+<h3 id="step-3---github">step 3 - 分发到GitHub上</h3>
 
-<p>运行下面命令</p>
+<p>运行下面命令
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake setup_github_pages</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+接下来会提示你输入Repository URL，URL格式如：<code>git@github.com:username/username.github.com.git</code>，具体内容因你的username和GitHub上的Repository名字而定，GitHub上能找到地址。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接下来会提示你输入Repository URL，URL格式如：<code>git@github.com:username/username.github.com.git</code>，具体内容因你的username和GitHub上的Repository名字而定，GitHub上能找到地址。</p>
-
-<h3>step 4 - 配置你的个人博客</h3>
-
+<h3 id="step-4---">step 4 - 配置你的个人博客</h3>
 <p>打开默认目录下面的<code>_config.yml</code>文件，文件有很详细的注释。修改里面的内容，把数据改成你自己的，下面就是我自己的部分配置</p>
-
-<div><script src='https://gist.github.com/3391394.js?file='></script>
+<div><script src="https://gist.github.com/3391394.js?file="></script>
 <noscript><pre><code># ----------------------- #
 #      Main Configs       #
 # ----------------------- #
@@ -718,98 +657,76 @@ titlecase: true       # Converts page and post titles to titlecase
 default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
 </code></pre></noscript></div>
 
-
-<p>必须要强调的是，每个项目如果有值，<strong>冒号后面必须先跟一个空格</strong>，据说这是<code>YAML</code>的语法规定。<br/>
+<p>必须要强调的是，每个项目如果有值，<strong>冒号后面必须先跟一个空格</strong>，据说这是<code>YAML</code>的语法规定。<br />
 更多个性化的配置可以参考<a href="http://zonyitoo.github.com/blog/2012/04/14/octopresszhu-ti-ji.markdown/">这里</a>、<a href="http://chen.yanping.me/cn/blog/2012/01/07/theming-and-customization/">这里</a>以及<a href="http://octopress.org/docs/">这里</a>~</p>
 
-<h3>step 5 - 写你的第一篇博客</h3>
+<h3 id="step-5---">step 5 - 写你的第一篇博客</h3>
 
 <ul>
-<li>创建文章的命令：</li>
+  <li>创建文章的命令：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
 </ul>
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake new_post['my-first-article']</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post['my-first-article']</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后进入<code>source/_posts</code>目录下，你会发先多了一个<code>.markdown</code>文件。随便用一个文本编辑器打开它，写下你的第一篇博客。<br/>
-这个.markdown文件要遵循Markdown的语法，如果出现语法错误的话，很可能导致你的博客不能成功生成。<br/>
-* 保存后用下面的命令编译你的博客：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
-
+<p>然后进入<code>source/_posts</code>目录下，你会发先多了一个<code>.markdown</code>文件。随便用一个文本编辑器打开它，写下你的第一篇博客。<br />
+这个.markdown文件要遵循Markdown的语法，如果出现语法错误的话，很可能导致你的博客不能成功生成。<br />
+* 保存后用下面的命令编译你的博客：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake generate</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <ul>
-<li>接下来预览：</li>
+  <li>接下来预览：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
 </ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此时在你的浏览器里面输入<code>localhost:4000</code>即可查看你的博客。<br/>
-在预览状态下你可一对.markdown文件进行实时修改，修改完毕保存后直接刷新网页就能看到新的效果。<code>_config.yml</code>的某些修改也是可以直接刷新呈现的。<br/>
-预览效果满意的话接下来就可以同步到GitHub上：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake preview</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;
+此时在你的浏览器里面输入<code>localhost:4000</code>即可查看你的博客。<br />
+在预览状态下你可一对.markdown文件进行实时修改，修改完毕保存后直接刷新网页就能看到新的效果。<code>_config.yml</code>的某些修改也是可以直接刷新呈现的。<br />
+预览效果满意的话接下来就可以同步到GitHub上：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake deploy</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <p>如果没出什么问题的话就可以访问<code>username.github.com</code>访问你的博客了~</p>
 
-<h3>step 6 - 备份你的博客数据</h3>
+<h3 id="step-6---">step 6 - 备份你的博客数据</h3>
 
-<p><code>source/_post</code>里面保存了你所有的博客内容，这是你最重要的数据。现在要新建一个Repository分支备份保存你的文章，具体操作如下：</p>
+<p><code>source/_post</code>里面保存了你所有的博客内容，这是你最重要的数据。现在要新建一个Repository分支备份保存你的文章，具体操作如下：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">cd source/_post/
+</span><span class="line">git init
+</span><span class="line">git add *
+</span><span class="line">git commit -m '1st commit'
+</span><span class="line">git remote add origin git@github.com:username/username.github.com.git</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd source/_post/
-</span><span class='line'>git init
-</span><span class='line'>git add *
-</span><span class='line'>git commit -m '1st commit'
-</span><span class='line'>git remote add origin git@github.com:username/username.github.com.git</span></code></pre></td></tr></table></div></figure>
+<p>接下来创建并切换到名为<code>backup</code>的分支：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">git checkout -b backup</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
+<p>然后运行下面命令把文章备份到GitHub上
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">git add *
+</span><span class="line">git commit -m 'my backup'
+</span><span class="line">git push origin backup</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<p>接下来创建并切换到名为<code>backup</code>的分支：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git checkout -b backup</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后运行下面命令把文章备份到GitHub上</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add *
-</span><span class='line'>git commit -m 'my backup'
-</span><span class='line'>git push origin backup</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>结束</h3>
-
+<h3 id="section">结束</h3>
 <p>没用过Wordpress，没有比较的资格，不过Octopress确实很好用:-)</p>
 
-<h3>本文参考</h3>
-
+<h3 id="section-1">本文参考</h3>
 <ol>
-<li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a>;</li>
-<li><a href="http://www.yangzhiping.com/tech/octopress.html">Ruby开源项目介绍(1)：octopress——像黑客一样写博客</a>;</li>
-<li><a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a>.</li>
+  <li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a>;</li>
+  <li><a href="http://www.yangzhiping.com/tech/octopress.html">Ruby开源项目介绍(1)：octopress——像黑客一样写博客</a>;</li>
+  <li><a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a>.</li>
 </ol>
 
-
-<h3>如果因为你的文章里面插入了代码而无法生成博客，请参考</h3>
-
+<h3 id="section-2">如果因为你的文章里面插入了代码而无法生成博客，请参考</h3>
 <ol>
-<li><a href="http://netwjx.github.com/blog/2012/04/21/using-code-in-octopress/">在Octopress中使用代码高亮</a>;</li>
-<li><a href="http://linyi.herokuapp.com/blog/fix-syntax-highlighting.html">修复octopress中代码无法高亮</a>;</li>
+  <li><a href="http://netwjx.github.com/blog/2012/04/21/using-code-in-octopress/">在Octopress中使用代码高亮</a>;</li>
+  <li><a href="http://linyi.herokuapp.com/blog/fix-syntax-highlighting.html">修复octopress中代码无法高亮</a>;</li>
 </ol>
 
 ]]></content>
@@ -820,55 +737,50 @@ default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html
     <link href="http://lovep.me/blog/2012/08/18/hello-world/"/>
     <updated>2012-08-18T15:35:00+08:00</updated>
     <id>http://lovep.me/blog/2012/08/18/hello-world</id>
-    <content type="html"><![CDATA[<h3>Step 1 - 获取微博秀代码</h3>
+    <content type="html"><![CDATA[<h3 id="step-1---">Step 1 - 获取微博秀代码</h3>
 
 <p>进入新浪微博的帐号设置里选择微博小工具中的微博秀，设置完成后赋值下面的嵌入代码</p>
 
 <p>代码大致如下：</p>
 
-<div><script src='https://gist.github.com/3385130.js?file='></script>
+<div><script src="https://gist.github.com/3385130.js?file="></script>
 <noscript><pre><code>&lt;iframe width=&quot;100%&quot; height=&quot;550&quot; class=&quot;share_self&quot;  frameborder=&quot;0&quot; scrolling=&quot;no&quot; 
 src=&quot;http://widget.weibo.com/weiboshow/index.php?language=&amp;width=0&amp;height=550&amp;fansRow=2&amp;ptype=1&amp;speed=0&amp;skin=1&amp;isTitle=1&amp;noborder=1&amp;isWeibo=1&amp;isFans=1&amp;uid=OOOOOOOOOO&amp;verifier=XXXXXXX&amp;dpc=1&quot;&gt;&lt;/iframe&gt;</code></pre></noscript></div>
 
-
-<p>只需要记住这部分代码中的uid和verifier即可</p>
-
+<p>只需要记住这部分代码中的uid和verifier即可
 <!--more-->
-
-
-<h3>Step 2 - 创建侧边栏网页</h3>
+### Step 2 - 创建侧边栏网页</p>
 
 <p>随便新建一个html文件，将下面的html代码拷进去，然后保存</p>
 
-<div><script src='https://gist.github.com/3385105.js?file='></script>
+<div><script src="https://gist.github.com/3385105.js?file="></script>
 <noscript><pre><code>{% if site.weibo_uid %}
 &lt;section&gt;
-    &lt;h1&gt;Sina Weibo&lt;/h1&gt;
-    &lt;ul id=&quot;weibo&quot;
-    &lt;li&gt;
-        &lt;iframe
-        width=&quot;100%&quot;
-        height=&quot;550&quot;
-        class=&quot;share_self&quot;
-        frameborder=&quot;0&quot;
-        scrolling=&quot;no&quot;
-        src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/li&gt;
-    &lt;/ul&gt;
+	&lt;h1&gt;Sina Weibo&lt;/h1&gt;
+	&lt;ul id=&quot;weibo&quot;
+	&lt;li&gt;
+		&lt;iframe
+		width=&quot;100%&quot;
+		height=&quot;550&quot;
+		class=&quot;share_self&quot;
+		frameborder=&quot;0&quot;
+		scrolling=&quot;no&quot;
+		src=&quot;http://widget.weibo.com/weiboshow/index.php?width=0&amp;height=550&amp;ptype={% if site.weibo_pic %}1{% else %}0{% endif %}&amp;speed=0&amp;skin={{weibo_skin}}&amp;isTitle=0&amp;noborder=1&amp;isWeibo={% if site.weibo_show %}1{% else %}0{% endif %}&amp;isFans={{weibo_fansline}}&amp;uid={{site.weibo_uid}}&amp;verifier={{site.weibo_verifier}}&quot;&gt;
+		&lt;/iframe&gt;
+	&lt;/li&gt;
+	&lt;/ul&gt;
 &lt;/section&gt;
 {% endif %}</code></pre></noscript></div>
-
 
 <p>保存的路径为source/_include/asides/</p>
 
 <p>侧边栏的宽度是自适应的，高度为550px，这些可以直接修改上面的参数</p>
 
-<h3>Step 3 - 修改‘_config.yml’文件</h3>
+<h3 id="step-3---configyml">Step 3 - 修改‘_config.yml’文件</h3>
 
 <p>修改示例如下：</p>
 
-<div><script src='https://gist.github.com/3385132.js?file='></script>
+<div><script src="https://gist.github.com/3385132.js?file="></script>
 <noscript><pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
@@ -890,7 +802,6 @@ weibo_fansline: 1
 weibo_show: true
 weibo_pic: false
 weibo_skin: 2</code></pre></noscript></div>
-
 
 <p>weibo_uid和weibo_verifier都是第一步获取的</p>
 
