@@ -15,7 +15,39 @@ canvas
 }
 h1,p
 {
-	font-size: 10px;
-	font-family: 'Sans-Serif';
-	font-style: blue;
+	font-size: 12px;
+	font-family: 'Serif';
+	color: #9a20a5;
+}
+.c
+{
+	color: #e2ab1e;
+}
+.o1
+{
+	color: #9ead2b;
+}
+.l1
+{
+	color: #28d150;
+}
+.o2
+{
+	color: #5bdda9;
+}
+.r
+{
+	color: #37b3da;
+}
+.f
+{
+	color: #2044ff;
+}
+.u
+{
+	color: #9111e6;
+}
+.l2
+{
+	color: #e21791;
 }

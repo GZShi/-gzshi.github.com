@@ -179,11 +179,16 @@ function food()
 			{
 				var new_x = 5 + Math.floor(Math.random() * 20);
 				var new_y = 5 + Math.floor(Math.random() * 20);
-				while(hit_black(new_x, new_y) || -2 != this.been_eaten(new_x, new_y))
+				for(var j = 0; j < this.n; ++j)
 				{
-					new_x = 5 + Math.floor(Math.random() * 20);
-					new_y = 5 + Math.floor(Math.random() * 20);
+					if(new_x == this.x[i] && new_y == this.y[i])
+					{
+						new_x = 5 + Math.floor(Math.random() * 20);
+						new_y = 5 + Math.floor(Math.random() * 20);
+						j = 0;
+					}
 				}
+				
 				this.x[i] = new_x;
 				this.y[i] = new_y;
 				break ;
