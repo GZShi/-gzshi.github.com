@@ -4,14 +4,36 @@ var max_y = 30;
 
 function get_event_type() {
 	var ua = navigator.userAgent.toLowerCase();
-	if(ua.indexOf("iphone") != -1 || ua.indexOf("ipod") != -1|| ua.indexOf("ipad") != -1 || ua.indexOf("android") != -1) {
-		alert("移动设备");
-		return 'touchstart';
-	}
-	else 
-	{
-		alert("桌面设备");
-		return 'click';
+	var type;
+
+	if(ua.indexOf("iphone") != -1)
+		type = 'iPhone';
+	else if(ua.indexOf("ipod") != -1)
+		type = 'iPod';
+	else if(ua.indexOf("ipad") != -1)
+		type = 'iPad';
+	else if(ua.indexOf("android") != -1)
+		type = 'Android';
+	else if(ua.indexOf("windows") != -1)
+		type = 'Windows';
+	else if(ua.indexOf("mac") != -1)
+		type = 'Mac';
+	else
+		type = 'unknown';
+
+	switch(type) {
+		case 'iPhone':
+		case 'iPod':
+		case 'iPad':
+		case 'Android':
+			alert("检测到你正在使用"+type+"\n双指轻击屏幕即可开始或暂停游戏\nHave a good time!");
+			return 'touchstart';
+		case 'Windows':
+		case 'Mac':
+			alert("检测到你正在使用桌面设备\n单击鼠标中键可以开始或暂停游戏\nEnjoy yourself!")
+			return 'click';
+		default:
+			alert("非常抱歉未能识别您的设备类型\n假如您有鼠标，请使用鼠标中键开始或暂停游戏\n如果愿意，请将您的设备类型发给我：s@lovep.me\nThanks!")
 	}
 }
 function snake (arg_name, arg_color, arg_speed, arg_direction) {
@@ -206,6 +228,7 @@ function game() {
 	var relative_x = 0;
 	var relative_y = 0;
 
+// welcome display
 	var data_x = [0, 0, 0, 0, 0,0,0,0,0,0,0];
 	var data_y = [0, 0, 0, 0, 0,0,0,0,0,0,0];
 	var step = 0;
@@ -218,17 +241,47 @@ function game() {
 	var green = 99;
 	var blue = 50;
 
+	var draw_message_times = 50;
+	var message_text = "Snake v4.3 TOUCH";
+	var message_type = 2;
+	var message_y_pos = 0;
+
+	var status;
+
 	var event_type = get_event_type();
+	var text_style = ['12px serif', '20px sans-serif', '30px serif'];
 
 	function restart () {
 		Tom = undefined;
 		Tom = new snake('Tom', "#897544", 3, 'east');
 		play();
 	}
+
+	function play() {
+		clearInterval(interval_id_welcome);
+		interval_id_update   = setInterval(update_data, update_data_interval);
+	}
+
+	function pause() {
+		if(interval_id_update == -2)
+			play();
+		else if(interval_id_update != -1)
+		{
+			clearInterval(interval_id_update);
+			interval_id_update = -2;
+			draw_message("---PAUSE---", canvas_height/2, 1, 100);
+		}
+	}
+
+	function game_over () {
+		clearInterval(interval_id_update);
+		interval_id_update = -1;
+		draw_message("---GAME OVER---", canvas_height/2, 1, 100);
+	}
+
 	function rgba(r, g, b, a) {
 		return 'rgba(' + r + ',' + g +',' + b +',' + a + ')';
 	}
-	var status;
 	function draw_status() {
 		status = 'speed:'+Tom.get_speed()+'  length:'+Tom.get_length()+'  steps:'+Tom.get_steps();
 		canvas_context.fillStyle = rgba(55, 39, 24, 0.4);
@@ -237,16 +290,11 @@ function game() {
 			(canvas_width - canvas_context.measureText(status).width)/2, 20);
 	}
 
-	var text_style = ['12px serif', '20px sans-serif', '30px serif'];
 	function draw_message(message, y, type, times) {
 		canvas_context.fillStyle = rgba(22, 14, 77, Math.abs(0-times)/45 * 0.8);
 		canvas_context.font = text_style[type];
 		canvas_context.fillText(message, (canvas_width - canvas_context.measureText(message).width)/2, y);
 	}
-	var draw_message_times = 50;
-	var message_text = "Snake v4.3 TOUCH";
-	var message_type = 2;
-	var message_y_pos = 0;
 
 	function check_achievement(){
 		if(Tom.get_length() == 2) {
@@ -274,11 +322,6 @@ function game() {
 			game_over();
 		draw_message(message_text, message_y_pos, message_type, draw_message_times);
 		draw_message_times = draw_message_times > 0 ? draw_message_times - 2 : 0;
-	}
-
-	function play() {
-		clearInterval(interval_id_welcome);
-		interval_id_update   = setInterval(update_data, update_data_interval);
 	}
 
 //////////////////////////////////////////////////////
@@ -333,22 +376,6 @@ function game() {
 //////////////////////////////////////////////////
 
 
-	function pause() {
-		if(interval_id_update == -2)
-			play();
-		else if(interval_id_update != -1)
-		{
-			clearInterval(interval_id_update);
-			interval_id_update = -2;
-			draw_message("---PAUSE---", canvas_height/2, 1, 100);
-		}
-	}
-
-	function game_over () {
-		clearInterval(interval_id_update);
-		interval_id_update = -1;
-		draw_message("---GAME OVER---", canvas_height/2, 1, 100);
-	}
 
 	function get_touch_pos(event) {
 		return {
@@ -442,7 +469,7 @@ function game() {
 			}
 		}
 	}
-		canvas.addEventListener(event_type, 	function (event){ convert_event(event)}, false);
+	canvas.addEventListener(event_type, 	function (event){ convert_event(event)}, false);
 	// play();
 	interval_id_welcome = setInterval(draw_welcome, 40);
 	interval_id_update = -2;
