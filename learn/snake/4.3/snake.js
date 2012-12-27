@@ -354,7 +354,7 @@ function game() {
 		return {
 			x: event.touches[0].pageX - canvas_rect.left, 
 			y: event.touches[0].pageY - canvas_rect.top,
-			p: (event.touches[1].pageX > 0) 	// 两点识别
+			p: (event.touches[1] != undefined) 	// 两点识别
 		};
 	}
 
@@ -442,7 +442,7 @@ function game() {
 			}
 		}
 	}
-	canvas.addEventListener(event_type, 	function (event){ convert_event(event)}, false);
+		canvas.addEventListener(event_type, 	function (event){ convert_event(event)}, false);
 	// play();
 	interval_id_welcome = setInterval(draw_welcome, 40);
 	interval_id_update = -2;
