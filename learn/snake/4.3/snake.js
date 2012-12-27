@@ -4,10 +4,15 @@ var max_y = 30;
 
 function get_event_type() {
 	var ua = navigator.userAgent.toLowerCase();
-	if(ua.indexOf("iphone") != 0 || ua.indexOf("ipod") != 0|| ua.indexOf("ipad") != 0 || ua.indexOf("android") != 0)
+	if(ua.indexOf("iphone") != -1 || ua.indexOf("ipod") != -1|| ua.indexOf("ipad") != -1 || ua.indexOf("android") != -1) {
+		alert("移动设备");
 		return 'touchstart';
+	}
 	else 
+	{
+		alert("桌面设备");
 		return 'click';
+	}
 }
 function snake (arg_name, arg_color, arg_speed, arg_direction) {
 // 属性
