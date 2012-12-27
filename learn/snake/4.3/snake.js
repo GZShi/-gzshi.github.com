@@ -1,6 +1,14 @@
 var node_size = 10;
 var max_x = 30;
 var max_y = 30;
+
+function get_event_type() {
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.indexOf("iphone") != 0 || ua.indexOf("ipod") != 0|| ua.indexOf("ipad") != 0 || ua.indexOf("android") != 0)
+		return 'touchstart';
+	else 
+		return 'click';
+}
 function snake (arg_name, arg_color, arg_speed, arg_direction) {
 // 属性
 	var name 		= arg_name;
@@ -205,6 +213,8 @@ function game() {
 	var green = 99;
 	var blue = 50;
 
+	var event_type = get_event_type();
+
 	function restart () {
 		Tom = undefined;
 		Tom = new snake('Tom', "#897544", 3, 'east');
@@ -231,7 +241,7 @@ function game() {
 	var draw_message_times = 50;
 	var message_text = "Snake v4.3 TOUCH";
 	var message_type = 2;
-	var message_y_pos = 100;
+	var message_y_pos = 0;
 
 	function check_achievement(){
 		if(Tom.get_length() == 2) {
@@ -427,8 +437,7 @@ function game() {
 			}
 		}
 	}
-	canvas.addEventListener('touchstart', 	function (event){ convert_event(event)}, false);
-	canvas.addEventListener('click', 		function (event){ convert_event(event)}, false);
+	canvas.addEventListener(event_type, 	function (event){ convert_event(event)}, false);
 	// play();
 	interval_id_welcome = setInterval(draw_welcome, 40);
 	interval_id_update = -2;
