@@ -2,6 +2,10 @@ var node_size = 10;
 var max_x = 30;
 var max_y = 30;
 
+function rgba(r, g, b, a) {
+	return 'rgba(' + r + ',' + g +',' + b +',' + a + ')';
+}
+
 function get_event_type() {
 	var ua = navigator.userAgent.toLowerCase();
 	var type;
@@ -39,7 +43,7 @@ function get_event_type() {
 function snake (arg_name, arg_color, arg_speed, arg_direction) {
 // 属性
 	var name 		= arg_name;
-	var color  		= arg_color;
+	var color  		= {r: 50, g: 190, b:79};
 	var speed  		= arg_speed;
 	var direction  	= arg_direction;
 	var body_x		= [0];
@@ -126,8 +130,8 @@ function snake (arg_name, arg_color, arg_speed, arg_direction) {
 	}
 
 	this.draw_body = function (ctx) {
-		ctx.fillStyle = color;
 		for (var i = body_x.length; i >= 0; --i) {
+			ctx.fillStyle = rgba(color.r, color.g, color.b, (i/body_x.length)+0.35);
 			ctx.fillRect(body_x[i]*node_size, body_y[i]*node_size, node_size, node_size);
 		}
 	}
@@ -233,9 +237,9 @@ function game() {
 	var data_y = [0, 0, 0, 0, 0,0,0,0,0,0,0];
 	var step = 0;
 	var radian = 0;
-	var radius = 20;
+	var radius = 16;
 	var center_x = 150;
-	var center_y = 200;
+	var center_y = 220;
 	var PI = Math.PI;
 	var red = 22;
 	var green = 99;
@@ -279,9 +283,7 @@ function game() {
 		draw_message("---GAME OVER---", canvas_height/2, 1, 100);
 	}
 
-	function rgba(r, g, b, a) {
-		return 'rgba(' + r + ',' + g +',' + b +',' + a + ')';
-	}
+	
 	function draw_status() {
 		status = 'speed:'+Tom.get_speed()+'  length:'+Tom.get_length()+'  steps:'+Tom.get_steps();
 		canvas_context.fillStyle = rgba(55, 39, 24, 0.4);
@@ -291,23 +293,52 @@ function game() {
 	}
 
 	function draw_message(message, y, type, times) {
+		if(times == 0) return;
 		canvas_context.fillStyle = rgba(22, 14, 77, Math.abs(0-times)/45 * 0.8);
 		canvas_context.font = text_style[type];
 		canvas_context.fillText(message, (canvas_width - canvas_context.measureText(message).width)/2, y);
 	}
 
+	var achievement_list = [false, false, false, false, false]
 	function check_achievement(){
-		if(Tom.get_length() == 2) {
+		if(!achievement_list[0] && Tom.get_length() == 2) {
 			message_type = 1;
 			draw_message_times = 100;
-			message_text = "获得成就：first blood！";
+			message_text = "成就：first blood！";
 			message_y_pos = 290;
+			achievement_list[0] = true;
 		}
-		if(Tom.get_steps() == 50) {
+		if(!achievement_list[1] && Tom.get_steps() == 35) {
 			message_type = 1;
 			draw_message_times = 100;
-			message_text = "获得成就：初入江湖";
+			if(Tom.get_length() > 37)
+				message_text = "成就：例无虚发";
+			if(Tom.get_length() >= 30)
+				message_text = "成就：百步穿杨";
+			else if(Tom.get_length() > 20)
+				message_text = "成就：牛刀小试";
+			else
+				message_text = "成就：初入江湖";
 			message_y_pos = 290;
+			achievement_list[1] = Tom.get_length();
+		}
+		if(!achievement_list[2] && Tom.get_body().x.length == 30)
+		{
+			var flag = true;
+			var body_x = Tom.get_body().x;
+			for (var i = body_x.length - 1; i >= 1; i--) {
+				if(body_x[i] != body_x[i-1]){
+					flag = false;
+					break;
+				}
+			};
+			if(flag){
+				message_type = 1;
+				draw_message_times = 100;
+				message_text = "成就：刀锋嗜血";
+				message_y_pos = 290;
+				achievement_list[2] = true;
+			}
 		}
 	}
 	function update_data () {
@@ -353,7 +384,7 @@ function game() {
 		}
 
 		radian = radian + step;
-		data_x[0] = radius * Math.cos(radian) * 2;
+		data_x[0] = radius * Math.cos(radian) * 2.4;
 		data_y[0] = radius * Math.sin(radian);
 
 
@@ -362,6 +393,9 @@ function game() {
 			ctx.fillStyle = rgba(red, green, blue, 1-(i/data_x.length));
 			ctx.beginPath();
 			ctx.arc(center_x+data_x[i], center_y+data_y[i], 2, 0, 2*PI);
+			ctx.arc(center_x-data_x[i], center_y-data_y[i], 2, 0, 2*PI);
+			ctx.arc(center_x+data_y[i], center_y+data_x[i], 2, 0, 2*PI);
+			ctx.arc(center_x-data_y[i], center_y-data_x[i], 2, 0, 2*PI);
 			ctx.closePath();
 			ctx.fill();
 			data_x[i] = data_x[i>0 ? i - 1 : 0];
@@ -404,8 +438,11 @@ function game() {
 			else  pause();
 			return ;
 		}
-		if(interval_id_update == -2)	// 暂停状态，不处理事件
+		if(interval_id_update == -2){	// 暂停状态，不处理事件
+			center_x = temp_pos.x;
+			center_y = temp_pos.y;
 			return ;
+		}
 		snake_header_info = Tom.get_header_info();
 		relative_x = Math.floor(temp_pos.x/10) - snake_header_info.x;
 		relative_y = snake_header_info.y - Math.floor(temp_pos.y/10);
