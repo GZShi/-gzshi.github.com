@@ -108,62 +108,85 @@ Octopress的可定制性非常高，所有的显示效果都可以自己设定�
   </header>
 
 
-<div class="entry-content"><p>正如官网上所说的那样——“A blogging framework for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br />
+<div class="entry-content"><p>正如官网上所说的那样——“A blogging framework for hackers”，Octopress绝对是折腾控、装逼控搭建博客最<strike>不</strike>二的选择。<br/>
 Octopress的可定制性非常高，所有的显示效果都可以自己设定，也有很多主题可以下载。默认主题非常简洁，这是我选择的原因之一。</p>
 
-<h3 id="step-1---">step 1 - 准备工作</h3>
+<h3>step 1 - 准备工作</h3>
 
 <ul>
-  <li>首先注册一个<a href="http://www.github.com">GitHub</a>帐号。将要搭建的博客内容都是托管在GitHub上的。假设你注册了名为<code>username</code>的ID；  </li>
-  <li>然后本地配置Github。在Windows下最简单的方式就是安装一个“GitHub for Windows”，这是最不折腾的方式。这里有一个<a href="http://rogerdudler.github.com/git-guide/index.zh.html">GitHub入门</a>；  </li>
-  <li>接下来安装<a href="http://rubyinstaller.org/">Ruby</a>。注意下载的版本是1.92；  </li>
-  <li>安装<a href="http://115.156.191.66/download/372297/384990/4/exe/136/168/1344846989448_680/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">DevKit</a>。注意解压安装的路径不能有空格。</li>
-  <li>添加UTF-8相关的环境变量。在环境变量中添加<code>LANG</code>和<code>LC_ALL</code>两个变量，参数都设置为<code>zh_cn.UTF-8</code>，<strong>注意大小写</strong>。
+<li>首先注册一个<a href="http://www.github.com">GitHub</a>帐号。将要搭建的博客内容都是托管在GitHub上的。假设你注册了名为<code>username</code>的ID；</li>
+<li>然后本地配置Github。在Windows下最简单的方式就是安装一个“GitHub for Windows”，这是最不折腾的方式。这里有一个<a href="http://rogerdudler.github.com/git-guide/index.zh.html">GitHub入门</a>；</li>
+<li>接下来安装<a href="http://rubyinstaller.org/">Ruby</a>。注意下载的版本是1.92；</li>
+<li>安装<a href="http://115.156.191.66/download/372297/384990/4/exe/136/168/1344846989448_680/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">DevKit</a>。注意解压安装的路径不能有空格。</li>
+<li>添加UTF-8相关的环境变量。在环境变量中添加<code>LANG</code>和<code>LC_ALL</code>两个变量，参数都设置为<code>zh_cn.UTF-8</code>，<strong>注意大小写</strong>。</li>
+</ul>
+
+
 <!-- more -->
-###step 2 - 生成博客模版</li>
-</ul>
 
-<p>现在GitHub上创建一个项目(Repository)，命名为<code>username.github.com</code><br />
-* 打开Shell，用下面命令把GitHub上的Octopress项目克隆到本地
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">git clone git://github.com/imathis/octopress.git username.github.com</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<p>此时你的计算机上应该有一个名为<code>username.github.com</code>的文件夹，接下来要修改这个文件夹里面的内容<br />
-* 把<code>.rvmrc</code>里面的文件内容修改为：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rvm use 1.9.2</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+<h3>step 2 - 生成博客模版</h3>
 
-<ul>
-  <li>修改<code>Gemfile</code>里的Source地址如下：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
-</ul>
-<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">source "http://ruby.taobao.org"</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;
-原来的链接据说因为<a href="http://zh.wikipedia.org/wiki/GFW">GFW</a>的原因不能用了，你懂的  </p>
+<p>现在GitHub上创建一个项目(Repository)，命名为<code>username.github.com</code><br/>
+* 打开Shell，用下面命令把GitHub上的Octopress项目克隆到本地</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/imathis/octopress.git username.github.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此时你的计算机上应该有一个名为<code>username.github.com</code>的文件夹，接下来要修改这个文件夹里面的内容<br/>
+* 把<code>.rvmrc</code>里面的文件内容修改为：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm use 1.9.2</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
-  <li>然后运行如下命令，安装相应的Gem：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
+<li>修改<code>Gemfile</code>里的Source地址如下：</li>
 </ul>
-<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">bundle update</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>source "http://ruby.taobao.org"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>原来的链接据说因为<a href="http://zh.wikipedia.org/wiki/GFW">GFW</a>的原因不能用了，你懂的</p>
 
 <ul>
-  <li>接下来生成博客模版：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
+<li>然后运行如下命令，安装相应的Gem：</li>
 </ul>
-<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake install</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle update</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>接下来生成博客模版：</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
+
 
 <p>这一步的搭建工作完成</p>
 
-<h3 id="step-3---github">step 3 - 分发到GitHub上</h3>
+<h3>step 3 - 分发到GitHub上</h3>
 
-<p>运行下面命令
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake setup_github_pages</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
-接下来会提示你输入Repository URL，URL格式如：<code>git@github.com:username/username.github.com.git</code>，具体内容因你的username和GitHub上的Repository名字而定，GitHub上能找到地址。</p>
+<p>运行下面命令</p>
 
-<h3 id="step-4---">step 4 - 配置你的个人博客</h3>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接下来会提示你输入Repository URL，URL格式如：<code>git@github.com:username/username.github.com.git</code>，具体内容因你的username和GitHub上的Repository名字而定，GitHub上能找到地址。</p>
+
+<h3>step 4 - 配置你的个人博客</h3>
+
 <p>打开默认目录下面的<code>_config.yml</code>文件，文件有很详细的注释。修改里面的内容，把数据改成你自己的，下面就是我自己的部分配置</p>
-<div><script src="https://gist.github.com/3391394.js?file="></script>
+
+<div><script src='https://gist.github.com/3391394.js?file='></script>
 <noscript><pre><code># ----------------------- #
 #      Main Configs       #
 # ----------------------- #
@@ -214,76 +237,98 @@ titlecase: true       # Converts page and post titles to titlecase
 default_asides: [asides/recent_posts.html, asides/weibo.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
 </code></pre></noscript></div>
 
-<p>必须要强调的是，每个项目如果有值，<strong>冒号后面必须先跟一个空格</strong>，据说这是<code>YAML</code>的语法规定。<br />
+
+<p>必须要强调的是，每个项目如果有值，<strong>冒号后面必须先跟一个空格</strong>，据说这是<code>YAML</code>的语法规定。<br/>
 更多个性化的配置可以参考<a href="http://zonyitoo.github.com/blog/2012/04/14/octopresszhu-ti-ji.markdown/">这里</a>、<a href="http://chen.yanping.me/cn/blog/2012/01/07/theming-and-customization/">这里</a>以及<a href="http://octopress.org/docs/">这里</a>~</p>
 
-<h3 id="step-5---">step 5 - 写你的第一篇博客</h3>
+<h3>step 5 - 写你的第一篇博客</h3>
 
 <ul>
-  <li>创建文章的命令：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
+<li>创建文章的命令：</li>
 </ul>
-<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake new_post['my-first-article']</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
 
-<p>然后进入<code>source/_posts</code>目录下，你会发先多了一个<code>.markdown</code>文件。随便用一个文本编辑器打开它，写下你的第一篇博客。<br />
-这个.markdown文件要遵循Markdown的语法，如果出现语法错误的话，很可能导致你的博客不能成功生成。<br />
-* 保存后用下面的命令编译你的博客：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake generate</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post['my-first-article']</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后进入<code>source/_posts</code>目录下，你会发先多了一个<code>.markdown</code>文件。随便用一个文本编辑器打开它，写下你的第一篇博客。<br/>
+这个.markdown文件要遵循Markdown的语法，如果出现语法错误的话，很可能导致你的博客不能成功生成。<br/>
+* 保存后用下面的命令编译你的博客：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
-  <li>接下来预览：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span></figure></notextile></li>
+<li>接下来预览：</li>
 </ul>
-<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake preview</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;
-此时在你的浏览器里面输入<code>localhost:4000</code>即可查看你的博客。<br />
-在预览状态下你可一对.markdown文件进行实时修改，修改完毕保存后直接刷新网页就能看到新的效果。<code>_config.yml</code>的某些修改也是可以直接刷新呈现的。<br />
-预览效果满意的话接下来就可以同步到GitHub上：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">rake deploy</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此时在你的浏览器里面输入<code>localhost:4000</code>即可查看你的博客。<br/>
+在预览状态下你可一对.markdown文件进行实时修改，修改完毕保存后直接刷新网页就能看到新的效果。<code>_config.yml</code>的某些修改也是可以直接刷新呈现的。<br/>
+预览效果满意的话接下来就可以同步到GitHub上：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
 
 <p>如果没出什么问题的话就可以访问<code>username.github.com</code>访问你的博客了~</p>
 
-<h3 id="step-6---">step 6 - 备份你的博客数据</h3>
+<h3>step 6 - 备份你的博客数据</h3>
 
-<p><code>source/_post</code>里面保存了你所有的博客内容，这是你最重要的数据。现在要新建一个Repository分支备份保存你的文章，具体操作如下：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">cd source/_post/
-</span><span class="line">git init
-</span><span class="line">git add *
-</span><span class="line">git commit -m '1st commit'
-</span><span class="line">git remote add origin git@github.com:username/username.github.com.git</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+<p><code>source/_post</code>里面保存了你所有的博客内容，这是你最重要的数据。现在要新建一个Repository分支备份保存你的文章，具体操作如下：</p>
 
-<p>接下来创建并切换到名为<code>backup</code>的分支：
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">git checkout -b backup</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd source/_post/
+</span><span class='line'>git init
+</span><span class='line'>git add *
+</span><span class='line'>git commit -m '1st commit'
+</span><span class='line'>git remote add origin git@github.com:username/username.github.com.git</span></code></pre></td></tr></table></div></figure>
 
-<p>然后运行下面命令把文章备份到GitHub上
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">git add *
-</span><span class="line">git commit -m 'my backup'
-</span><span class="line">git push origin backup</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
-<h3 id="section">结束</h3>
+<p>接下来创建并切换到名为<code>backup</code>的分支：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git checkout -b backup</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后运行下面命令把文章备份到GitHub上</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add *
+</span><span class='line'>git commit -m 'my backup'
+</span><span class='line'>git push origin backup</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>结束</h3>
+
 <p>没用过Wordpress，没有比较的资格，不过Octopress确实很好用:-)</p>
 
-<h3 id="section-1">本文参考</h3>
+<h3>本文参考</h3>
+
 <ol>
-  <li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a>;</li>
-  <li><a href="http://www.yangzhiping.com/tech/octopress.html">Ruby开源项目介绍(1)：octopress——像黑客一样写博客</a>;</li>
-  <li><a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a>.</li>
+<li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a>;</li>
+<li><a href="http://www.yangzhiping.com/tech/octopress.html">Ruby开源项目介绍(1)：octopress——像黑客一样写博客</a>;</li>
+<li><a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a>.</li>
 </ol>
 
-<h3 id="section-2">如果因为你的文章里面插入了代码而无法生成博客，请参考</h3>
+
+<h3>如果因为你的文章里面插入了代码而无法生成博客，请参考</h3>
+
 <ol>
-  <li><a href="http://netwjx.github.com/blog/2012/04/21/using-code-in-octopress/">在Octopress中使用代码高亮</a>;</li>
-  <li><a href="http://linyi.herokuapp.com/blog/fix-syntax-highlighting.html">修复octopress中代码无法高亮</a>;</li>
+<li><a href="http://netwjx.github.com/blog/2012/04/21/using-code-in-octopress/">在Octopress中使用代码高亮</a>;</li>
+<li><a href="http://linyi.herokuapp.com/blog/fix-syntax-highlighting.html">修复octopress中代码无法高亮</a>;</li>
 </ol>
 
 </div>

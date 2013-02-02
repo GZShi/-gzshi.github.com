@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>石头的俄罗斯方块</title>
+	<link rel="stylesheet" type="text/css" href="tetris.css">
+	<script type="text/javascript" src="adjustWindow.js" charset="UTF-8"></script>
+</head>
+<body>
+	<div id="frame">
+		<div id="main">
+			<canvas id="mainCanvas" width="300" height="600">unsupport</canvas>
+		</div>
+		<div id="score" class="board">
+			<p class="BoardTitle">分数</p>
+			<p id="scoreBoard">score</p>
+		</div>
+		<div id="next" class="board">
+			<p class="BoardTitle">下一个</p>
+			<canvas id="nextCanvas" width="120" height="120">unsupport</canvas>
+		</div>
+		<div id="level" class="board">
+			<p class="BoardTitle">等级</p>
+			<p id="levelBoard">0</p>
+		</div>
+		<div id="pause" class="board" onclick="openWindow();pauseGame();">
+			<p class="BoardTitle">暂停</p>
+			<canvas class="icon" id="pauseCanvas" width="120" height="50">unsupport</canvas>
+		</div>
+		<div id="start" class="board" onclick="startGame();">
+			<p class="BoardTitle">继续</p>
+			<canvas class="icon" id="startCanvas" width="120" height="50">unsupport</canvas>
+		</div>
+	</div>
+	<div class="window" id="cover">
+		<div class="windowHead">
+			<li class="title">Tetris - About!</li>
+		</div>
+		<div class="windowBody">
+			<h4>操作说明</h4>
+			<p>1. 使用键盘的左右方向键左右移动方块；</p>
+			<p>2. 使用键盘的上方向键变换方块形状；</p>
+			<p>3. 双击下方向键让方块急速速下落至底部；</p>
+			<p>4. 长按下方向键让方块快速下落；</p>
+			<p>5. 按P键暂停或开始游戏。</p>
+			<h4>相关信息</h4>
+			<p>作者：石头</p>
+			<p>版本：1.0</P>
+			<p>主页: lovep.me</p>
+			<h4>代码托管</h4>
+			<p>https://github.com/GZShi/Tetris</p><br><br>
+			<button onclick="closeWindow();">走你！</button>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="tetris.js" charset="UTF-8"></script>
+</body>
+</html>
