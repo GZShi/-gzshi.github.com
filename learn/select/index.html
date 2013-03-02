@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>选择困难症终结者</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body onload="init();">
+	<div id="control">
+		<h4>在这里，你永远不会犹豫不决！</h4>
+		<button id="luckyButton" onclick="getRandomSelection();">手气不错</button><br>
+		<button id="menuButton" onclick="openMenu();">打开菜单</button>
+	</div>
+	<div id="menu">
+		<p id="menuTip">不同选项用空格隔开</P>
+		<textarea id="menuInput"></textarea><br>
+		<button id="menuSubmit" onclick="modifyMenu();">修改</button>
+		<button id="menuSubmit" onclick="cancelMenu();">取消</button>
+	</div>
+	<div id="result">
+		<p id="resultText">结果：</p><br>
+		<button id="tryAgain" onclick="getRandomSelection();">重新选择</button>
+		<button id="returnMenu" onclick="init();">搞定！</button>
+	</div>
+</body>
+</html>
