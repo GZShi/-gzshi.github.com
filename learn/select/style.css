@@ -82,7 +82,7 @@ button:hover {
 	font-family: serif;
 	font-size: 15px;
 	color: rgb(37, 71, 133);
-	text-shadow: 0 1px 1px gray;
+	text-shadow: 0 0 2px gray;
 	resize:none;
 	border-radius: 7px;
 	border-color: white;
