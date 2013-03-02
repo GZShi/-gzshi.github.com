@@ -22,6 +22,12 @@ function init () {
 	resultDiv.style.display = "none";
 	mainDiv.style.display = "";
 	mainDiv.style.background = rgba(red, green, blue, alpha);
+	if(result == "") {
+		document.getElementById("message").innerText = "在这里，你永远不会犹豫不决！";
+	}
+	else {
+		document.getElementById("message").innerText = "选择结果：" + result;
+	}
 	red = 14;
 	green = 13;
 	blue = 4;
@@ -54,6 +60,7 @@ function getRandomSelection () {
 	mainDiv.style.display = "none";
 	resultDiv.style.display = "";
 	intervalId = setInterval(antimate, 100);
+	document.getElementById("returnMenu").innerText = "等不及啦！";
 }
 
 
@@ -66,6 +73,7 @@ function antimate () {
 	if(times++ > count + 10) {
 		clearInterval(intervalId);
 		result = keywords[Math.floor(Math.random() * count)];
+		document.getElementById("returnMenu").innerText = "就这样吧！";
 	}
 	else {
 		result = keywords[times % count];
