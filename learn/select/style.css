@@ -74,8 +74,8 @@ button:hover {
 
 #menuInput {
 	margin-top: 1px;
-	width: 350px;
-	height: 140px;
+	width: 80%;
+	height: 50%;
 	box-shadow: 0 0 3px rgb(222, 222 ,222);
 	font-family: sans-serif;
 	font-size: 20px;

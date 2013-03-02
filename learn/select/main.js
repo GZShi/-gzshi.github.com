@@ -23,7 +23,7 @@ function init () {
 	mainDiv.style.display = "";
 	mainDiv.style.background = rgba(red, green, blue, alpha);
 	if(result == "") {
-		document.getElementById("message").innerText = "在这里，你永远不会犹豫不决！";
+		document.getElementById("message").innerText = "事，你做！选择，看我的！";
 	}
 	else {
 		document.getElementById("message").innerText = "选择结果：" + result;
@@ -88,9 +88,11 @@ function adjustSize() {
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
 		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 5 + "px";
 	}
 	else {
 		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
+		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
 	}
 	if(bodyHeight < 260) {
 		mainDiv.style.top = menuDiv.style.top = resultDiv.style.top = "5px";
