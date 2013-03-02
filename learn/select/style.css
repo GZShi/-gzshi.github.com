@@ -7,8 +7,9 @@ body {
 
 div {
 	width: 400px;
-	height: 250px;
+	height: 400px;
 	border-radius: 10px;
+	box-shadow: 0 0 50px rgb(22, 22, 22);
 	-webkit-transition-duration: 1s;
 }
 
@@ -23,16 +24,18 @@ h4 {
 button {
 	border-radius: 6px;
 	border: 1px solid rgba(0, 0, 0, 0.25);
-	text-shadow: 0 1px 0 rgb(240, 240, 240);
+	text-shadow: 0 0 2px rgb(128, 128, 128);
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 	font-family: sans-serif;
+	background: white;
+	color: rgb(65, 65, 65);
 	z-index: 10;
 	-webkit-transition-duration: 0.6s;
 }
 
 button:hover {
 	border-radius: 6px;
-	border: 1px solid rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(255, 255, 255, 0.25);
 	text-shadow: 0 0 4px rgb(240, 240, 240);
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 	font-family: sans-serif;
@@ -59,10 +62,9 @@ button:hover {
 #menu {
 	height: 250px;
 	width: 400px;
-	background: rgba(11, 11, 11, 0.6);
+	background: rgba(198, 226, 233, 0.63);
 	position: absolute;
 	z-index: 1;
-	box-shadow: 0 0 50px rgb(22, 22, 22);
 	-webkit-transition-duration: 1s;
 }
 
@@ -77,11 +79,14 @@ button:hover {
 	width: 80%;
 	height: 50%;
 	box-shadow: 0 0 3px rgb(222, 222 ,222);
-	font-family: sans-serif;
-	font-size: 20px;
+	font-family: serif;
+	font-size: 15px;
 	color: rgb(37, 71, 133);
 	text-shadow: 0 1px 1px gray;
 	resize:none;
+	border-radius: 7px;
+	border-color: white;
+	box-shadow: 0 0 7px rgb(0, 0, 0);
 }
 
 #menuSubmit {

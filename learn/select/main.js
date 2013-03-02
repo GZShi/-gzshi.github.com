@@ -1,9 +1,5 @@
 var inputString = "学生1楼 学生2楼 教工1楼 教工2楼 缘味轩 麻辣烫 炒饭 煲汤 华莱士 不吃啦！";
 var result = "";
-var red = 14;
-var green = 13;
-var blue = 4;
-var alpha = 0.58;
 var times = 0;
 var intervalId = -1;
 var mainDiv;
@@ -21,17 +17,13 @@ function init () {
 	menuDiv.style.display = "none";
 	resultDiv.style.display = "none";
 	mainDiv.style.display = "";
-	mainDiv.style.background = rgba(red, green, blue, alpha);
+	mainDiv.style.background = rgba(14, 13, 4, 0.58);
 	if(result == "") {
 		document.getElementById("message").innerText = "事，你做！选择，看我的！";
 	}
 	else {
 		document.getElementById("message").innerText = "选择结果：" + result;
 	}
-	red = 14;
-	green = 13;
-	blue = 4;
-	alpha = 0.58;
 	times = 0;
 	adjustSize();
 }
@@ -52,6 +44,11 @@ function openMenu () {
 	menuDiv.style.display = "";
 	mainDiv.style.display = "none";
 	document.getElementById('menuInput').value = inputString;
+}
+
+function okFine () {
+	clearInterval(intervalId);
+	init();
 }
 
 function getRandomSelection () {
@@ -88,7 +85,7 @@ function adjustSize() {
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
 		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
-		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 5 + "px";
+		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
 	}
 	else {
 		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
@@ -100,6 +97,7 @@ function adjustSize() {
 	else {
 		mainDiv.style.top = menuDiv.style.top = resultDiv.style.top = (bodyHeight - 250) / 2 + "px";
 	}
+	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
 }
 //adjustSize();
 window.onresize = adjustSize;
