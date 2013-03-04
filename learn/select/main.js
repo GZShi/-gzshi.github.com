@@ -4,7 +4,7 @@ var result = "";
 var times = 0;
 var intervalId = -1;
 var mainDiv = "";
-var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst;
+var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst, comment;
 
 function rgba(r, g, b, a) {
 	return ("rgba(" + r + "," + g + "," + b + "," + a + ")");
@@ -19,6 +19,7 @@ function DOMInit () {
 	menuIpt = document.getElementById('menuInput');
 	returnBtn = document.getElementById("returnMenu");
 	showRst = document.getElementById('resultText');
+	comment = document.getElementById('disqus_thread');
 }
 
 function init () {
