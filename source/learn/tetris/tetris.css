@@ -1,0 +1,150 @@
+#mainCanvas {
+	box-shadow: 0 0 2px blue, 0 0 5px rgb(29, 99, 188);
+}
+
+#frame {
+	position: absolute;
+}
+
+#main {
+	position: absolute;
+	width: 300px;
+	height: 600px;
+}
+
+.board {
+	position: absolute;
+	width: 150px;
+	height: 100px;
+	text-shadow: 0 0 3px black, 0 0 5px gray;
+	padding-top: 10px;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	background: rgba(29, 99, 188, 0.8);
+	color: white;
+	font-size: 20px;
+}
+
+.boardTitle {
+
+}
+
+#score {
+	margin-left: 310px;
+	margin-top: 0px;
+	width: 150px;
+	height: 100px;
+}
+
+p {
+	-webkit-margin-before: 0.5em;
+	-webkit-margin-after: 0px;
+}
+
+#scoreBoard {
+	text-align: center;
+}
+
+#next {
+	margin-left: 310px;
+	margin-top: 120px;
+	width: 150px;
+	height: 200px;
+}
+
+#nextCanvas {
+	box-shadow: 0 0 1px white;
+	margin-left: 15px;
+	margin-top: 1em;
+}
+
+#level {
+	margin-left: 310px;
+	margin-top: 340px;
+	width: 150px;
+	height: 100px;
+}
+
+#levelBoard {
+	text-align: center;
+}
+
+#pause {
+	margin-left: 310px;
+	margin-top: 460px;
+	width: 150px;
+	height: 130px;
+}
+
+#start {
+	margin-left: 310px;
+	margin-top: 460px;
+	width: 150px;
+	height: 130px;
+}
+
+.window {
+	position: absolute;
+	width: 300px;
+	height: 150px;
+	box-shadow: 0 0 8px black;
+	border-radius: 2px;
+	background: rgb(0, 44, 100);
+}
+
+.windowHead {
+	font-family: sans-serif;
+	font-size: 12px;
+	background: rgba(29, 99, 188, 0.5);
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+li.title {
+	list-style-type: none;
+	-webkit-border-start: 6px solid transparent;
+	-webkit-padding-start: 12px;
+	-webkit-user-select: none;
+	-webkit-border-start-color: gray;
+	point-events: none;
+	cursor: default;
+	color: white;
+	text-shadow: 0 1px 1px black, 0 0 4px gray;
+}
+
+button {
+	color: rgb(0, 48, 100);
+	background: white;
+	padding: 0.4em 0.8em;
+	border-radius: 3px;
+	font-family: sans-serif;
+	text-shadow: 0 0 10px black, 0 1px 1px white;
+}
+
+
+.windowBody {
+	height: 90%;
+	width: 90%;
+	margin-top: 5%;
+	margin-left: 5%;
+	text-align: center;
+	color: white;
+	text-shadow: 0 0 2px black;
+	font-family: serif;
+}
+
+#cover {
+	height: 604px;
+	width: 484px;
+}
+
+.icon {
+	margin-left: 15px;
+	margin-top: 0.7em;
+}
+
+h4 {
+	color: gray;
+	font-size: 20px;
+	font-family: sans-serif;
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)file:///C:/Users/LoveP/appdata/local/temp/43.html -->
+<html><head><title>贪吃蛇 - 更新日志</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times,
+              'Times New Roman', serif,
+              "Hiragino Sans GB", "STXihei", "微软雅黑";
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px;}
+pre code { border: 0px !important; }
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}</style></head><body><h1>贪吃蛇版本更新日志</h1>
+
+<h2 id="v30">版本号：V3.0</h2>
+
+<p>date: 2012-12-13</p>
+
+<h4 id="-2">更新细节：</h4>
+
+<pre><code>    1. 使用类封装了蛇，以支持多蛇模式；
+    2. 使用类封装了食物、墙；
+    3. 避免了全局变量的使用；
+    4. 食物接触判断和墙壁接触判断不再在蛇的数据更新函数里面进行。
+</code></pre>
+
+<h4 id="-3">功能改变：</h4>
+
+<pre><code>    1. 基本的双蛇对战；
+    2. 移除了成就系统（暂时）；
+    3. 移除了实时状态信息（暂时）；
+    4. 移除了食物属性（暂时）。
+    5. 移除了速度属性（暂时）；
+    6. 实现了暂停功能（囧）；
+</code></pre>
+
+<h4 id="-4">待改进处：</h4>
+
+<pre><code>    1. 操作感不佳，延迟感较强；
+    2. 功能单一，可玩性差。
+</code></pre>
+
+<h2 id="v31">版本号：V3.1</h2>
+
+<p>date: 2012-12-13</p>
+
+<h4 id="-5">更新细节：</h4>
+
+<pre><code>    1. 将方向数据更新函数提前，消除了操作的延迟感；
+    2. 将食物接触判断逻辑提前，提升吃食物的流畅感；
+    3. 优化了判断过程数据的读取方式。
+</code></pre>
+
+<h4 id="-6">功能改变：</h4>
+
+<pre><code>    无。
+</code></pre>
+
+<h4 id="-7">待改进处：</h4>
+
+<pre><code>    丰富系统功能。
+</code></pre>
+
+<h2 id="v32">版本号： V3.2</h2>
+
+<p>date: 2012-12-13</p>
+
+<h4 id="-8">更新细节：</h4>
+
+<pre><code>    1. 增加食物生成代码；
+    2. 增加了一个计数器以支持速度变化功能；
+    3. 修改了食物碰撞判断代码。
+    4. 给食物增加了属性；
+    5. 增加了碰自己的判断（之前漏掉了）。
+</code></pre>
+
+<h4 id="-9">功能改变：</h4>
+
+<pre><code>    1. 现在蛇的速度是可变的了；
+    2. 现在吃不同的食物会触发相应效果，具体如下：
+        - 吃相同颜色的食物自身长度，速度加1
+        - 吃对手颜色食物自身长度加1，速度不变，对手速度减1
+        - 吃绿色食物自身长度加1，速度不变
+    3. 修正了不会自杀的bug。
+</code></pre>
+
+<h4 id="-10">待改进处：</h4>
+
+<pre><code>    控制好像又变得不流畅了……( ⊙ o ⊙ )
+</code></pre>
+
+<h2 id="v33">版本号： V3.3</h2>
+
+<p>date: 2012-12-14</p>
+
+<h4 id="-11">更新细节：</h4>
+
+<pre><code>    1. 使用一个队列而不是一个变量储存用户输入；
+    2. 修改了方向更新函数；
+    3. 增加了restart函数，重玩不再是粗暴地刷新页面；
+    4. 修改了暂停时调用的代码，游戏结束后p键将不再调用setInterval函数。
+</code></pre>
+
+<h4 id="-12">功能改变：</h4>
+
+<pre><code>    1. 解释一下之前版本出现的控制短暂失灵现象：
+        - 如果玩家两次按键时间间隔很短，导致第一次的按键信息在还没有被方向更新函数调用时就被第二次按键代替了；
+        - 一般而言这两次按的是不同的键，由于第一次按键信息没有被使用，所以第二次按键的方向对于贪吃蛇来说是无效的方向，所以方向不会变；
+        - 现在使用一个队列存储玩家输入，并且会自动忽略连续相同的按键，所以能有效解决按键失灵现象；
+    2. 现在在任何时候只要按r键就能重玩游戏。考虑到r键距离方向控制键都比较远，误操作的可能性较小，所以并没有设置确定的选择~；
+    3. 增加了暂停提示信息和重玩提示信息。
+</code></pre>
+
+<h4 id="-13">待改进处：</h4>
+
+<pre><code>    丰富功能（大家周末愉快~）
+</code></pre>
+
+<h2 id="v40">版本号： V4.0</h2>
+
+<p>date: 2012-12-15</p>
+
+<h4 id="-14">更新细节：</h4>
+
+<pre><code>    1. 在V3.3的基础上移除了红蛇代码；
+    2. 改变了吃到红色食物时触发的代码；
+    3. 增加了鼠标响应；
+</code></pre>
+
+<h4 id="-15">功能改变：</h4>
+
+<pre><code>    1. 由双蛇模式改为单蛇模式；
+    2. 增加了鼠标点击控制蛇的功能，只能点击画布内才有效果；
+    3. 使用鼠标时可以轻易做180°转向；
+    4. 吃到红色食物时自身长度+1，速度-1；
+</code></pre>
+
+<h4 id="-16">待改进处：</h4>
+
+<pre><code>    未做触屏测试。
+</code></pre>
+
+
+
+<h2 id="v41">版本号： V4.1</h2>
+
+<p>date: 2012-12-15</p>
+
+<h4 id="-17">更新细节：</h4>
+
+<pre><code>    1. 完全删除了键盘控制的代码；
+    2. 改变了食物的初始位置；
+    3. 改变了食物随机生成的位置范围；
+</code></pre>
+
+<h4 id="-18">功能改变：</h4>
+
+<pre><code>    1. 这个版本不再支持键盘（其它版本将会继续支持）；
+    2. 根据触屏特点进行了一些改变：
+        - 由于手机浏览器的JS解释速度不快，导致控制有一定延迟
+        - 食物如果靠近墙壁，则撞墙的可能性是很大的
+        - 所以食物不会出现太靠近墙壁的情况
+</code></pre>
+
+<h4 id="-19">待改进处：</h4>
+
+<pre><code>    手机支持性很差，亟待优化。
+</code></pre>
+
+<h2 id="v42">版本号： V4.2</h2>
+
+<p>date: 2012-12-16</p>
+
+<h4 id="-20">更新细节：</h4>
+
+<pre><code>    1. 修改了食物碰撞时switch语句中的冗余，用if-else代替；
+    2. 添加了一个my_rgba()函数，用户生成颜色值；
+    3. 修改了食物的属性：
+        - 黑色，加速；
+        - 绿色，变色；
+        - 红色，减速；
+    4. 修改了蛇身绘制函数，有颜色变量。相应地增加了蛇的颜色属性；
+    5. 使用了不同于之前所有版本的按键识别函数，使用addEventsListener()这个函数，解决了插件冲突问题；
+    6. 修改了墙壁的碰撞函数，碰撞不在用来决定蛇的生死；
+    7. 提升了速度的上限；
+    8. 稍微降低了数据刷新的间隔。
+</code></pre>
+
+
+</body></html>

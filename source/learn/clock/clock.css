@@ -1,0 +1,15 @@
+body
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+canvas
+{
+	-moz-box-shadow: 0 0 8px #0F0F20;
+	-webkit-box-shadow: 0 0 8px #0F0F20;
+	box-shadow: 0 0 8px #0F0F20;
+	/*border: 1px solid #06C;*/
+	position: relative;
+}
