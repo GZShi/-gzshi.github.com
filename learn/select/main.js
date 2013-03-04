@@ -141,16 +141,16 @@ function adjustSize() {
 	var bodyWidth = document.body.clientWidth;
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
-		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
 		comment.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
 	}
 	else {
 		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
 		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
 		comment.style.width = 400 + (bodyWidth - 400)/3 + "px";
+		comment.style.left = Math.floor((bodyWidth - 400 - (bodyWidth - 400)/3)/2) + "px";
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
-	comment.style.left = Math.floor((bodyWidth - 400 - (bodyWidth - 400)/3)/2) + "px";
 	comment.style.top = "350px"
 }
 //adjustSize();
