@@ -4,7 +4,7 @@ var result = "";
 var times = 0;
 var intervalId = -1;
 var mainDiv = "";
-var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst, comment;
+var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst, qqwbBtn, shareBtn, comment;
 var initComment = false;
 
 function rgba(r, g, b, a) {
@@ -20,6 +20,8 @@ function DOMInit () {
 	menuIpt = document.getElementById('menuInput');
 	returnBtn = document.getElementById("returnMenu");
 	showRst = document.getElementById('resultText');
+	shareBtn = document.getElementById('shareButton');
+	qqwbBtn = document.getElementById('qqwb_share__');
 	comment = document.getElementById('disqus_thread');
 }
 
@@ -40,6 +42,7 @@ function init () {
 	times = 0;
 	adjustSize();
 	if(initComment == false) {
+		// 初始化Disqus
 		(function() {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
@@ -47,6 +50,8 @@ function init () {
             dsq.src = 'http://lovep.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
+        // 初始化新浪微博分享
+
         initComment = true;
 	}
 }
@@ -150,17 +155,21 @@ function adjustSize() {
 	var bodyWidth = document.body.clientWidth;
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
-		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		shareBtn.style.left = comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		qqwbBtn.style.left = "80px";
 		comment.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
 	}
 	else {
-		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
+		shareBtn.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
+		qqwbBtn.style.left = (bodyWidth - 400) / 2 + 80 + "px";
 		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
 		comment.style.width = 400 + (bodyWidth - 400)/3 + "px";
 		comment.style.left = Math.floor((bodyWidth - 400 - (bodyWidth - 400)/3)/2) + "px";
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
-	comment.style.top = "350px"
+	shareBtn.style.top = "270px";
+	qqwbBtn.style.top = "270px";
+	comment.style.top = "320px";
 }
 //adjustSize();
 window.onresize = adjustSize;
