@@ -5,6 +5,7 @@ var times = 0;
 var intervalId = -1;
 var mainDiv = "";
 var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst, comment;
+var initComment = false;
 
 function rgba(r, g, b, a) {
 	return ("rgba(" + r + "," + g + "," + b + "," + a + ")");
@@ -38,6 +39,16 @@ function init () {
 	}
 	times = 0;
 	adjustSize();
+	if(initComment == false) {
+		(function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://lovep.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        initComment = true;
+	}
 }
 
 
@@ -130,16 +141,17 @@ function adjustSize() {
 	var bodyWidth = document.body.clientWidth;
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
-		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
 		comment.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
 	}
 	else {
-		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
+		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
 		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
 		comment.style.width = 400 + (bodyWidth - 400)/3 + "px";
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
-	comment.top = "270px"
+	comment.style.top = "270px"
+	comment.style.left = (bodyWidth - comment.style.width) / 2 + "px";
 }
 //adjustSize();
 window.onresize = adjustSize;
