@@ -129,20 +129,16 @@ function adjustSize() {
 	var bodyWidth = document.body.clientWidth;
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
-		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
-		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
+		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		comment.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
 	}
 	else {
-		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
+		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
 		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
-	}
-	if(bodyHeight < 260) {
-		mainDiv.style.top = menuDiv.style.top = resultDiv.style.top = "5px";
-	}
-	else {
-		mainDiv.style.top = menuDiv.style.top = resultDiv.style.top = (bodyHeight - 250) / 2 + "px";
+		comment.style.width = 400 + (bodyWidth - 400)/3 + "px";
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
+	comment.top = "270px"
 }
 //adjustSize();
 window.onresize = adjustSize;
