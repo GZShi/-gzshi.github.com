@@ -151,7 +151,7 @@ function adjustSize() {
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
 	comment.style.left = Math.floor((bodyWidth - 400 - (bodyWidth - 400)/3)/2) + "px";
-	comment.style.top = "270px"
+	comment.style.top = "350px"
 }
 //adjustSize();
 window.onresize = adjustSize;
