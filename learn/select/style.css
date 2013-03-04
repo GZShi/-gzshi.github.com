@@ -10,7 +10,6 @@ div {
 	width: 400px;
 	height: 400px;
 	border-radius: 10px;
-	box-shadow: 0 0 50px rgb(22, 22, 22);
 	-webkit-transition-duration: 1s;
 }
 
@@ -59,11 +58,13 @@ button:hover {
 #control {
 	background: rgba(14, 13, 4, 0.58);
 	position: absolute;
+	box-shadow: 0 0 50px rgb(22, 22, 22);
 }
 
 #menu {
 	background: rgba(198, 226, 233, 0.63);
 	position: absolute;
+	box-shadow: 0 0 50px rgb(22, 22, 22);
 }
 
 #menuTip {
@@ -94,6 +95,7 @@ button:hover {
 #result {
 	position: absolute;
 	background: rgb(211, 206, 85);
+	box-shadow: 0 0 50px rgb(22, 22, 22);
 }
 
 #tryAgain, #returnMenu {
@@ -111,6 +113,5 @@ button:hover {
 }
 
 #disqus_thread {
-	box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 	position: absolute;
 }
