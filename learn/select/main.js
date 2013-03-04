@@ -150,8 +150,8 @@ function adjustSize() {
 		comment.style.width = 400 + (bodyWidth - 400)/3 + "px";
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
+	comment.style.left = Math.floor((bodyWidth - 400 - (bodyWidth - 400)/3)/2) + "px";
 	comment.style.top = "270px"
-	comment.style.left = (bodyWidth - comment.style.width) / 2 + "px";
 }
 //adjustSize();
 window.onresize = adjustSize;
