@@ -53,6 +53,15 @@ function init () {
 
 
 function modifyMenu () {
+	if (ignoreSpace(menuIpt.value) == "") {
+		if(menuIpt.value != "") {
+			alert("(╯￣Д￣)╯┴—┴\n让我从一大堆空格中做选择我已经无力吐槽啦！");
+		}
+		else {
+			alert("(╯￣Д￣)╯┴—┴\n神马都没有你叫我怎么选！");
+		}
+		return ;
+	}
 	menuDiv.style.display = "none";
 	mainDiv.style.display = "";
 	inputString = menuIpt.value;
@@ -105,6 +114,11 @@ function getRandomSelection () {
 	times = 0;
 	keywords = ignoreSpace(inputString).split(" ");
 	count = keywords.length;
+	if(count == 1) {
+		alert("~\(≧3≦)/~\n骚年，就一个选项而已，别玩我啦！");
+		mainMsg.innerText = "选择结果：" + keywords[0];
+		return ;
+	}
 	for (var i = 0; i < count; ++i) {
 		if(keywords[i].length > 7) {
 			keywords[i] = keywords[i].substr(0, 7);
@@ -116,11 +130,6 @@ function getRandomSelection () {
 	intervalId = setInterval(antimate, 100);
 	returnBtn.innerText = "等不及啦！";
 }
-
-
-// rgba(12, 34, 99, 0.15)
-// rgb(115, 179, 72);
-
 
 
 function antimate () {
