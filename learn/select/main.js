@@ -47,7 +47,7 @@ function init () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
             dsq.async = true;
-            dsq.src = '/myDisqus.min.js';
+            dsq.src = '/source/learn/select/myDisqus.min.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
         // 初始化新浪微博分享
