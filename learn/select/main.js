@@ -42,17 +42,24 @@ function init () {
 	times = 0;
 	adjustSize();
 	if(initComment == false) {
+        initComment = true;
+        // 初始化Weibo
+        (function() {
+        	var wbjs = document.createElement('script');
+        	wbjs.type = 'text/javascript';
+        	wbjs.async = true;
+        	wbjs.src = 'http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2537570709';
+        	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(wbjs);
+        })();
+
 		// 初始化Disqus
 		(function() {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
             dsq.async = true;
-            dsq.src = '/source/learn/select/myDisqus.min.js';
+            dsq.src = '/learn/select/myDisqus.min.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-        // 初始化新浪微博分享
-
-        initComment = true;
 	}
 }
 
