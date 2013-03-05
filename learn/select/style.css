@@ -112,10 +112,22 @@ button:hover {
 	-webkit-transition-duration: 1s;
 }
 
-#qqwb_share__, #shareButton {
+#qqwbShare, #shareButton {
 	position: absolute;
 	height: 30px;
 	width:100px;
+}
+
+#controlBoard {
+	position: absolute;
+	width: 400px;
+}
+
+.controlButton {
+	padding: 0.5em 1em 0.5em 1em;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.4);
+	color: rgb(26, 36, 85);
 }
 
 #disqus_thread {

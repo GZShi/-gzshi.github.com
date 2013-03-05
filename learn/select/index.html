@@ -26,13 +26,19 @@
 		<button id="tryAgain" onclick="getRandomSelection();">重转</button>
 		<button id="returnMenu" onclick="okFine();">等不及啦！</button>
 	</div>
-	<div id="qqwb_share__" data-appkey="801322245" data-icon="1" data-counter="1" data-counter_pos="right" data-content="选择困难症患者的福音——“选择困难症终结者”" data-richcontent="石头的专属工具">
+	<div id="qqwbShare">
+		<div id="qqwb_share__" data-appkey="801322245" data-icon="1" data-counter="1" data-counter_pos="right" data-content="选择困难症患者的福音——“选择困难症终结者”" data-richcontent="石头的专属工具">
+		</div>
 	</div>
 	<div id="shareButton">
 		<wb:share-button size="middle" appkey="2537570709" relateuid="2144461272" title="选择困难症患者的福音——“选择困难症终结者”"></wb:share-button>
 	</div>  
+	<div id='controlBoard'>
+		<button class='controlButton' id='disqusControlButton' onclick='disqusInit();'>加载评论</button>
+		<button class='controlButton' id='wbControlButton' onclick='shareInit();'>加载分享选项</button>
+	</div>
 	<div id="disqus_thread">
 	</div>
-	<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+<!--	<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script> -->
 </body>
 </html>
