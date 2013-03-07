@@ -42,7 +42,10 @@ function baseAction(cloudName) {
 	var randomTag = 0;
 
 	function randomChange() {
-		cloud.getElementsByTagName('div')[Math.floor(Math.random() * screenHeight)+10].innerText = ' ';
+		var temp = Math.floor(Math.random() * screenHeight)+10;
+		if(temp > screenHeight)
+			return ;
+		cloud.getElementsByTagName('div')[temp].innerText = ' ';
 
 	}
 
@@ -83,7 +86,7 @@ function createClouds(n, startNumber) {
 
 function init() {
 	screenWidth = document.body.clientWidth;
-	screenHeight = Math.floor(document.body.clientHeight/fontHeight);
+	screenHeight = Math.floor(window.screen.availHeight/fontHeight);
 	createClouds(screenWidth / divWidth - 4);
 	initFlag = true;
 }
