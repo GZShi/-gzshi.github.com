@@ -1,6 +1,5 @@
 .baseRow {
 	width: 10px;
-	font-size: 9px;
 }
 
 p {
@@ -18,4 +17,6 @@ body {
 	color: rgb(4, 221, 4);
 	font-family: 'consolas';
 	text-align: center;
+	font-size: 20px;
+	overflow: hidden
 }

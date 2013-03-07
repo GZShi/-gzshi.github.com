@@ -12,8 +12,8 @@ function rgba(r, g, b, a) {
 function appendNewNode(cloud) {
 	var newDiv = document.createElement('div');
 	//newDiv.async = true;
-	newDiv.innerText = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*_'.split('')[Math.floor(Math.random() * 62)];
-	newDiv.style.color = rgba(4, 221, 4, Math.random() * 0.5 + 0.4);
+	newDiv.innerText = 'abcdefghijklmnopqrstuvwxyzABCDFGHJKMNQRSTWXZ~!@#$%^&*_'.split('')[Math.floor(Math.random() * 54)];
+	newDiv.style.color = rgba(4, 221, 4, Math.random() * 0.5 + 0.2);
 	cloud.insertBefore(newDiv, cloud.getElementsByTagName('div')[0]);
 }
 
@@ -40,13 +40,15 @@ function baseAction(cloudName) {
 	var intervalId = -1;
 	var cloud = document.getElementById(cloudName);
 	var randomTag = 0;
+	var lastTemp = 0;
 
 	function randomChange() {
 		var temp = Math.floor(Math.random() * screenHeight)+10;
+		cloud.getElementsByTagName('div')[lastTemp+1].style.color = 'black';
 		if(temp > screenHeight)
 			return ;
-		cloud.getElementsByTagName('div')[temp].innerText = ' ';
-
+		cloud.getElementsByTagName('div')[temp].style.color = rgba(4, 221, 4, 1);
+		lastTemp = temp;
 	}
 
 	function dropRain() {
@@ -54,7 +56,7 @@ function baseAction(cloudName) {
 		removeLastNode(cloud);
 		randomChange();
 	}
-	intervalId = setInterval(dropRain, Math.floor(Math.random() * 200 + 90));
+	intervalId = setInterval(dropRain, Math.floor(Math.random() * 500 + 120));
 }
 
 function makeACloud (n) {
@@ -89,12 +91,25 @@ function init() {
 	screenHeight = Math.floor(window.screen.availHeight/fontHeight);
 	createClouds(screenWidth / divWidth - 4);
 	initFlag = true;
+	setInterval(printInfo, 20);
 }
 
 function adjust () {
 	if(initFlag == false)
 		return ;
+	// 无脑刷新
 	window.location.reload();
+}
+
+function printInfo() {
+	var n = 5;
+	var message = "ILOVEPEIPEI".split('');
+	for(var i = 0; i < 11; ++i) {
+		var cloudName = 'cloud' + (n + i);
+		var specialDiv = document.getElementById(cloudName).getElementsByTagName('div');
+		specialDiv[7].innerText = specialDiv[5].innerText;
+		specialDiv[6].innerText = message[i];
+	}
 }
 
 window.onresize = adjust;
