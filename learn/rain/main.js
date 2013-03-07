@@ -5,13 +5,18 @@ var fontHeight = 15;
 var rowNumber = 0;
 var initFlag = false;
 
-function appendNewNode(cloudName) {
-	var cloud = document.getElementById(cloudName);
+function rgba(r, g, b, a) {
+	return ("rgba(" + r + "," + g + "," + b + "," + a + ")");
+}
+
+function appendNewNode(cloud) {
 	var newDiv = document.createElement('div');
-	newDiv.async = true;
-	newDiv.innerText = 'abc_def_ghijklm_nopqrst.uvwx.yz'.split('')[Math.floor(Math.random() * 26)];
+	//newDiv.async = true;
+	newDiv.innerText = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*_'.split('')[Math.floor(Math.random() * 62)];
+	newDiv.style.color = rgba(4, 221, 4, Math.random() * 0.5 + 0.4);
 	cloud.insertBefore(newDiv, cloud.getElementsByTagName('div')[0]);
 }
+
 function getLastNode(f) {
 	var x = f.lastChild;
 	while (x.nodeType != 1) {
@@ -20,15 +25,14 @@ function getLastNode(f) {
 	return x;
 }
 
-function removeLastNode(cloudName) {
-	var cloud = document.getElementById(cloudName);
+function removeLastNode(cloud) {
 	cloud.removeChild(getLastNode(cloud));
 }
 
 function createRainElements(cloudName, n) {
 	var cloud = document.getElementById(cloudName);
 	for (var i = 0; i < n; ++i) {
-		appendNewNode(cloudName);
+		appendNewNode(cloud);
 	}
 }
 
@@ -38,18 +42,13 @@ function baseAction(cloudName) {
 	var randomTag = 0;
 
 	function randomChange() {
-		if (randomTag < 20) {
-			++randomTag;
-			return;
-		}
-		randomTag = 0;
-		cloud.getElementsByTagName('div')[Math.floor(Math.random() * screenHeight)].innerText = "0";
+		cloud.getElementsByTagName('div')[Math.floor(Math.random() * screenHeight)+10].innerText = ' ';
 
 	}
 
 	function dropRain() {
-		appendNewNode(cloudName);
-		removeLastNode(cloudName);
+		appendNewNode(cloud);
+		removeLastNode(cloud);
 		randomChange();
 	}
 	intervalId = setInterval(dropRain, Math.floor(Math.random() * 200 + 90));
