@@ -1,21 +1,12 @@
-.baseRow {
-	width: 10px;
-}
-
-p {
-	-webkit-margin-before: 1px;
-	-webkit-margin-after: 1px;
-}
-
 div {
 	margin: 0;
-	float: left;
+	font-family: 'consolas', 'courier new', 'courier', monospace;
 }
 
 body {
 	background: black;
 	color: rgb(4, 221, 4);
-	font-family: 'consolas';
+	font-family: 'consolas', 'courier new', 'courier', monospace;
 	text-align: center;
 	font-size: 20px;
 	overflow: hidden

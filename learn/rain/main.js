@@ -1,6 +1,7 @@
 var screenHeight;
 var screenWidth;
 var divWidth = 10;
+var fontSize = 9;
 var fontHeight = 15;
 var rowNumber = 0;
 var initFlag = false;
@@ -45,7 +46,7 @@ function baseAction(cloudName) {
 	function randomChange() {
 		var temp = Math.floor(Math.random() * screenHeight)+10;
 		cloud.getElementsByTagName('div')[lastTemp+1].style.color = 'black';
-		if(temp > screenHeight)
+		if(temp > screenHeight - 2)
 			return ;
 		cloud.getElementsByTagName('div')[temp].style.color = rgba(4, 221, 4, 1);
 		lastTemp = temp;
@@ -56,32 +57,35 @@ function baseAction(cloudName) {
 		removeLastNode(cloud);
 		randomChange();
 	}
-	intervalId = setInterval(dropRain, Math.floor(Math.random() * 500 + 120));
+	intervalId = setInterval(dropRain, Math.floor(Math.random() * 300 + 90));
+	return intervalId;
 }
 
 function makeACloud (n) {
 	var cloudId = 'cloud' + n;
 	var newCloud = document.createElement('div');
 	var newDiv = document.createElement('div');
-	var newScript = document.createElement('script');
 	newCloud.async = true;
 	newCloud.id = cloudId;
-	newCloud.style.width = "10px";
-	newCloud.style.fontSize = "9px";
+	newCloud.style.width = divWidth + "px";
+	newCloud.style.fontSize = fontSize + "px";
+	newCloud.style.position = "absolute";
+	newCloud.style.left = divWidth * n + "px";
 	newDiv.async = true;
-	newScript.async = true;
 	newDiv.innerText = 'a';
-	newScript.innerText = "createRainElements('" + cloudId + "', " + screenHeight + ");baseAction('" + cloudId + "');"
 	newCloud.appendChild(newDiv);
-	newCloud.appendChild(newScript);
-	return newCloud;
+	return {cloud: newCloud, id:cloudId};
 }
 
 function createClouds(n, startNumber) {
 	if(startNumber = null)
 		startNumber = 0;
+	var cloudInfo;
 	for(var i = 0; i < n; ++i) {
-		document.getElementsByTagName('body')[0].appendChild(makeACloud(i + startNumber));
+		cloudInfo = makeACloud(i + startNumber);
+		document.getElementsByTagName('body')[0].appendChild(cloudInfo.cloud);
+		createRainElements(cloudInfo.id, screenHeight);
+		baseAction(cloudInfo.id);
 	}
 	rowNumber += n;
 }
@@ -89,7 +93,7 @@ function createClouds(n, startNumber) {
 function init() {
 	screenWidth = document.body.clientWidth;
 	screenHeight = Math.floor(window.screen.availHeight/fontHeight);
-	createClouds(screenWidth / divWidth - 4);
+	createClouds(screenWidth / divWidth + 1);
 	initFlag = true;
 	setInterval(printInfo, 20);
 }
