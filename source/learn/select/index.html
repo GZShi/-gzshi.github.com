@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<html>
+<html xmlns:wb="http://open.weibo.com/wb">
 <head>
 	<meta charset="UTF-8">
 	<title>选择困难症终结者</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="main.js"></script>
+<!--	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2537570709" type="text/javascript" charset="utf-8"></script> -->
 </head>
 <body onload="init();">
 	<div id="control">
@@ -13,18 +14,31 @@
 		<button id="luckyButton" onclick="getRandomSelection();">手气不错</button><br>
 		<button id="menuButton" onclick="openMenu();">编辑选项</button>
 	</div>
-	<div id="menu">
-		<p id="menuTip">不同选项用空格隔开</P>
+	<div id="menu" style="display: none">
+		<p id="menuTip" >不同选项用空格隔开</P>
 		<textarea id="menuInput"></textarea><br>
 		<button id="menuSubmit" onclick="modifyMenu();">修改</button>
 		<button id="menuSubmit" onclick="clearMenu();">清空</button>
 		<button id="menuSubmit" onclick="cancelMenu();">取消</button>
 	</div>
-	<div id="result">
+	<div id="result" style="display: none">
 		<p id="resultText">结果：</p><br>
 		<button id="tryAgain" onclick="getRandomSelection();">重转</button>
 		<button id="returnMenu" onclick="okFine();">等不及啦！</button>
+	</div>
+	<div id="qqwbShare">
+		<div id="qqwb_share__" data-appkey="801322245" data-icon="1" data-counter="1" data-counter_pos="right" data-content="选择困难症患者的福音——“选择困难症终结者”" data-richcontent="石头的专属工具">
+		</div>
+	</div>
+	<div id="shareButton">
+		<wb:share-button size="middle" appkey="2537570709" relateuid="2144461272" title="选择困难症患者的福音——“选择困难症终结者”"></wb:share-button>
 	</div>  
-	<div id="disqus_thread"></div>
+	<div id='controlBoard'>
+		<button class='controlButton' id='disqusControlButton' onclick='disqusInit();'>加载评论</button>
+		<button class='controlButton' id='wbControlButton' onclick='shareInit();'>加载分享选项</button>
+	</div>
+	<div id="disqus_thread">
+	</div>
+<!--	<script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script> -->
 </body>
 </html>

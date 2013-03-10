@@ -4,8 +4,11 @@ var result = "";
 var times = 0;
 var intervalId = -1;
 var mainDiv = "";
-var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst, comment;
-var initComment = false;
+var menuDiv, resultDiv, mainMsg, luckyBtn, menuIpt, returnBtn, showRst, qqwbBtn, weiboBtn, comment, controlDiv;
+var initShare = false;
+var initDisqus = false;
+var displayShare = false;
+var displayDisqus = false;
 
 function rgba(r, g, b, a) {
 	return ("rgba(" + r + "," + g + "," + b + "," + a + ")");
@@ -20,7 +23,70 @@ function DOMInit () {
 	menuIpt = document.getElementById('menuInput');
 	returnBtn = document.getElementById("returnMenu");
 	showRst = document.getElementById('resultText');
+	weiboBtn = document.getElementById('shareButton');
+	qqwbBtn = document.getElementById('qqwbShare');
 	comment = document.getElementById('disqus_thread');
+	controlDiv = document.getElementById('controlBoard');
+	wbCtrlBtn = document.getElementById('wbControlButton');
+	disqusCtrlBtn = document.getElementById('disqusControlButton');
+}
+
+function appendScript(source) {
+	(function() {
+        var js = document.createElement('script');
+        js.type = 'text/javascript';
+        js.async = true;
+        js.src = source;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(js);
+    })();
+}
+
+function disqusInit() {
+	if(initDisqus == false) {
+		initDisqus = true;
+		// 初始化Disqus
+		appendScript('http://lovep.disqus.com/embed.js'); 
+/*		(function() {
+	        var dsq = document.createElement('script');
+	        dsq.type = 'text/javascript';
+	        dsq.async = true;
+	        dsq.src = 'http://lovep.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();*/
+	}
+	if(displayDisqus == false) {
+		displayDisqus = true;
+		comment.style.display = "";
+		disqusCtrlBtn.innerText = "隐藏评论";
+	}
+	else {
+		displayDisqus = false;
+		comment.style.display = "none";
+		disqusCtrlBtn.innerText = "打开评论";
+	}
+}
+
+function shareInit () {
+	if(initShare == false) {
+		initShare = true;
+		// 新浪微博初始化
+		appendScript('http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2537570709');
+		// 腾讯微博初始化
+		appendScript("http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no");
+	}
+	if(displayShare == false) {
+		displayShare = true;
+		wbCtrlBtn.innerText = "隐藏分享按钮";
+		qqwbBtn.style.display = "";
+		weiboBtn.style.display = "";
+	}
+	else {
+		displayShare = false;
+		wbCtrlBtn.innerText = "显示分享按钮";
+		qqwbBtn.style.display = "none";
+		weiboBtn.style.display = "none";
+	}
+	adjustSize();
 }
 
 function init () {
@@ -39,16 +105,6 @@ function init () {
 	}
 	times = 0;
 	adjustSize();
-	if(initComment == false) {
-		(function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = 'http://lovep.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-        initComment = true;
-	}
 }
 
 
@@ -150,17 +206,22 @@ function adjustSize() {
 	var bodyWidth = document.body.clientWidth;
 	var bodyHeight = document.body.clientHeight;
 	if(bodyWidth < 420) {
-		comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
-		comment.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
+		controlDiv.style.left = weiboBtn.style.left = comment.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = "0px";
+		qqwbBtn.style.left = "80px";
+		controlDiv.style.width = comment.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = bodyWidth - 3 + "px";
 	}
 	else {
-		mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
-		mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
+		controlDiv.style.left = weiboBtn.style.left = mainDiv.style.left = menuDiv.style.left = resultDiv.style.left = (bodyWidth - 400) / 2 + "px";
+		qqwbBtn.style.left = (bodyWidth - 400) / 2 + 80 + "px";
+		controlDiv.style.width = mainDiv.style.width = menuDiv.style.width = resultDiv.style.width = "400px";
 		comment.style.width = 400 + (bodyWidth - 400)/3 + "px";
 		comment.style.left = Math.floor((bodyWidth - 400 - (bodyWidth - 400)/3)/2) + "px";
 	}
 	mainDiv.style.height = menuDiv.style.height = resultDiv.style.height = "250px";
-	comment.style.top = "350px"
+	controlDiv.style.top = "270px";
+	weiboBtn.style.top = "330px";
+	qqwbBtn.style.top = "330px";
+	comment.style.top = "380px";
 }
 //adjustSize();
 window.onresize = adjustSize;

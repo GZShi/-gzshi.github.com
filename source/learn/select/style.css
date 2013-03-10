@@ -7,8 +7,6 @@ body {
 }
 
 div {
-	width: 400px;
-	height: 400px;
 	border-radius: 10px;
 	-webkit-transition-duration: 1s;
 }
@@ -56,7 +54,9 @@ button:hover {
 }
 
 #control {
-	background: rgba(14, 13, 4, 0.58);
+	width: 400px;
+	height: 250px;
+	background: rgba(17, 105, 155, 0.78);
 	position: absolute;
 	box-shadow: 0 0 50px rgb(22, 22, 22);
 }
@@ -110,6 +110,24 @@ button:hover {
 	color: white;
 	text-shadow: 0 0 5px blue, 0 0 2px black;
 	-webkit-transition-duration: 1s;
+}
+
+#qqwbShare, #shareButton {
+	position: absolute;
+	height: 30px;
+	width:100px;
+}
+
+#controlBoard {
+	position: absolute;
+	width: 400px;
+}
+
+.controlButton {
+	padding: 0.5em 1em 0.5em 1em;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.4);
+	color: rgb(26, 36, 85);
 }
 
 #disqus_thread {
