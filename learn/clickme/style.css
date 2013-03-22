@@ -85,6 +85,8 @@ div {
 	width: 35px;
 	left: 220px;
 	z-index: 5;
+	color: white;
+	text-shadow: 0 0 2px black;
 	background: #2e9fff;
 }
 
@@ -93,6 +95,8 @@ div {
 	width: 45px;
 	left: 280px;
 	z-index: 5;
+	color: white;
+	text-shadow: 0 0 2px black;
 	background: #2e9fff;
 }
 
@@ -101,6 +105,8 @@ div {
 	width: 45px;
 	left: 350px;
 	z-index: 5;
+	color: white;
+	text-shadow: 0 0 2px black;
 	background: #2e9fff;
 }
 
@@ -140,6 +146,8 @@ div {
 
 #disqus {
 	position:relative;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-radius: 4px;
 	box-shadow: 0 0 3px black;
 	margin-top: 40px;
@@ -147,7 +155,7 @@ div {
 	margin-right: 30px;
 	margin-bottom: 25px;
 	text-align: left;
-	width: 540px;
+	width: 520px;
 	height: 320px;
 	background: white;
 	overflow:auto;
