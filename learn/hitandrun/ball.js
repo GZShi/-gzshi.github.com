@@ -19,9 +19,9 @@ function ball () {
 		this.pos.x = x;
 		this.pos.y = y;
 		this.radius = r;
-		adx = ax/400;
-		ady = ax/400;
-		e = 1 - rv/100;
+		adx = (ax>10?10:ax)/100;
+		ady = (ay>10?10:ay)/100;
+		e = 1 - (rv>100?100:rv)/100;
 		color = c == null ? color : c;
 	}
 
