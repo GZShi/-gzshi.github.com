@@ -1,0 +1,49 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HIT & RUN!</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="ball.js"></script>
+	<script type="text/javascript" src="animate.js"></script>
+	<script type="text/javascript" src="control.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div id="infoBoard">
+		<p id="message">Info</p>
+	</div>
+	<div id="displayBoard">
+		<canvas id="zone" height="500px" width="1000px"></canvas>
+	</div>
+	<div id="controlBoard">
+		<button id="configButton">设置</button>
+		<div id="config">
+			<div id="board" style="display:none">
+				<h3>模式</h3>
+				<div id="mode" class="setting">
+					<input type="radio" id="smallMode" checked="true" name="r1">小球</input>
+					<input type="radio" id="newtonMode" name="r1">牛顿摆</input>
+				</div>
+				<h3>数量</h3>
+				<div id="number" class="setting">
+					<input id="amount" type="number" value="10" min="1" style="width: 100px">至少1个</input>
+				</div>
+				<h3>模拟外力</h3>
+				<div id="gravity" class="setting">
+					<input id="directx" type="number" value="0" min="-10" max="10" style="width: 100px">正数为x→</input>
+					<input id="directy" type="number" value="0" min="-10" max="10" style="width: 100px">正数为y↓</input>
+				</div>
+				<h3>模拟动能损失</h3>
+				<div id="energy" class="setting">
+					<input id="rv" type="number" value="0" min="0" max="100" style="width: 100px">0表示不损失</input>
+				</div>
+				<div id="confireButton">
+					<button id="cancel">取消修改</button>
+					<button id="confirm">确定并重新开始</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
