@@ -2,9 +2,9 @@ function createSmallBalls(total, right, bottom, rv) {
 	var balls = [];
 	for (var i = 0; i < total; ++i) {
 		var b = new ball();
-		b.init("small",	500, 200,					// 类型
-			//right*Math.random(),					// x坐标
-			//bottom*Math.random(),					// y坐标
+		b.init("small",								// 类型
+			right*Math.random(),					// x坐标
+			bottom*Math.random(),					// y坐标
 			10,										// 半径
 			3,										// 速度
 			Math.random()*2*Math.PI, 				// 弧度方向
@@ -117,7 +117,7 @@ $(document).ready(function () {
 		game.setClickTimes(clickTimes);
 		message('x:' + event.pageX + ', y:' + event.pageY);
 
-		if (event.ctrlKey == true)
+		if (event.shiftKey == true)
 			force.push(createNegativeBall(event.pageX, event.pageY));
 		else
 			force.push(createPositiveBall(event.pageX, event.pageY));
