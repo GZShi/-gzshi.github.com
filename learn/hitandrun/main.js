@@ -109,7 +109,7 @@ $(document).ready(function () {
 
 	// 画布点击事件
 	var listenClick = function (event) {
-		if (game.pauseFlag == true)
+		if (game.pauseFlag == true || event.which == 3)
 			return ;
 		if (clickTimes++ == 0) {
 			game.setBegin((new Date()).getTime());
@@ -117,19 +117,26 @@ $(document).ready(function () {
 		game.setClickTimes(clickTimes);
 		message('x:' + event.pageX + ', y:' + event.pageY);
 
-		if (event.shiftKey == true)
+		if (event.which == 2) {
 			force.push(createNegativeBall(event.pageX, event.pageY));
-		else
+			clickTimes+=2;
+		}
+		else if(event.which == 1)
 			force.push(createPositiveBall(event.pageX, event.pageY));
 		game.play();
 	}
 	//注册点击事件
-	$("canvas#zone").click(listenClick);
+	$("canvas#zone").mousedown(listenClick);
 
 	// restart
 	function restart () {
 		game.pause();
+		game = null;
 		game = new animate();
+		balls = null;
+		balls = [];
+		force = null;
+		force = [];
 		switch (mode) {
 			case "small": 	balls = createSmallBalls(total, width, height, rv); break;
 			case "newton": 	balls = NewtonBalls(width);	break;
@@ -159,7 +166,7 @@ $(document).ready(function () {
 		$("canvas#zone").replaceWith(newCanvas(width, height, 'zone'));
 		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay);
 		// 重新注册点击事件
-		$("canvas#zone").click(listenClick);
+		$("canvas#zone").mousedown(listenClick);
 		if(shouldPlay)
 			game.play();
 	});
