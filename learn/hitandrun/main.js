@@ -1,4 +1,4 @@
-function createSmallBalls(total, right, bottom, ax, ay, rv) {
+function createSmallBalls(total, right, bottom, rv) {
 	var balls = [];
 	for (var i = 0; i < total; ++i) {
 		var b = new ball();
@@ -12,21 +12,24 @@ function createSmallBalls(total, right, bottom, ax, ay, rv) {
 				Math.floor(90+130*Math.random()),	// 蓝色
 				Math.floor(100+120*Math.random()),	// 绿色
 				0.3+Math.random()* 0.6),			// 透明度
-			ax, ay, rv);
+			rv);
 		balls.push(b);	
 	}
 	return balls;
 }
 
-// 用于碰撞测试
-function create2balls() {
+// 用于受力测试
+function create3balls(height) {
 	var balls = [];
-	var b = new ball();
-	b.init("small", 100, 100, 50, 3, 0, rgba(123, 33, 99, 0.5));
-	balls.push(b);
-	var c = new ball();
-	c.init("small", 300, 160, 50, 1, Math.PI, rgba(88, 199, 22, 0.5));
-	balls.push(c);
+	var i = 0;
+	for (i = 0; i < 13; ++i) {
+		var b = new ball();
+		b.init("small", 50+100*i, height-50, 50, 0, 0, rgba(123, 33, 99, 0.5), 3);
+		balls.push(b);
+	}
+	var e = new ball();
+	e.init("small", 300, height-50*(1+Math.sqrt(3)), 50, 0, 0, "black", 3);
+	balls.push(e);
 	return balls;
 }
 
@@ -35,25 +38,51 @@ function NewtonBalls(right) {
 	var i = 0;
 	for (var i = 0; i < 100; ++i) {
 		var b = new ball();
-		b.init("small", 100*(i+1), 200, 50, 0, 0, rgba(123, 33, 99, 0.5), 0, 0, 0);
+		b.init("small", 100*(i+1), 200, 50, 0, 0, rgba(123, 33, 99, 0.5), 0);
 		balls.push(b);
 		if (i*100 + 100 > right-350) 
 			break;
 	}
 	var e = new ball();
-	e.init("small", 100*(i+2), 200, 50, 3, 0, 0, 0, 0, 0);
+	e.init("small", 100*(i+2), 200, 50, 3, 0, 0, 0);
 	balls.push(e);
 	return balls;
 }
 
-function createBigBall(x, y) {
+function snooker() {
+	var balls = [];
+	for (var i = 5; i > 0; --i) {
+		var x = 600 + 50*Math.sqrt(3)*i;
+		for (var j = 0; j < i; ++j) {
+			var b = new ball();
+			b.init("small", x, 400+j*100-i*50, 50, 0, 0, rgba(123, 33, 99, 0.5), 0);
+			balls.push(b);
+		}
+	}
+	var e = new ball();
+	e.init("small", 100, 350, 50, 15, 0, rgba(123, 33, 99, 0.5), 0);
+	balls.push(e);
+	return balls;
+}
+
+function createPositiveBall(x, y) {
 	var big = new ball();
 	big.init("big", x, y, 5, 0, 0, rgba(Math.floor(30+190*Math.random()),	// 红色
 				Math.floor(90+130*Math.random()),	// 蓝色
 				Math.floor(100+120*Math.random()),	// 绿色
-				0.3));
+				0.3), 0, 10, 400);
 	return big;
 }
+
+function createNegativeBall(x, y) {
+	var big = new ball();
+	big.init("big", x, y, 5, 0, 0, rgba(Math.floor(30+190*Math.random()),	// 红色
+				Math.floor(90+130*Math.random()),	// 蓝色
+				Math.floor(100+120*Math.random()),	// 绿色
+				0.3), 0, -10, 400);
+	return big;
+}
+
 function newCanvas(width, height, id) {
 	return "<canvas width='" + width + "px' height='" + height + "px' id='" + id + "'></canvas>";
 }
@@ -64,8 +93,10 @@ function rgba(r, g, b, a) {
 
 $(document).ready(function () {
 	var game = new animate();
+	var balls = [];
+	var force = [];
 	var total = 200;
-	var mode = true;
+	var mode = "small";
 	var width = $(window).width();
 	var height = $(window).height();
 	var ax = 0; 	// 横向加速度
@@ -74,9 +105,8 @@ $(document).ready(function () {
 	var clickTimes = 0;
 
 	$("canvas#zone").replaceWith(newCanvas(width, height, 'zone'));
-	//game.init($("canvas#zone")[0].getContext('2d'), balls, 0, width, 0, height);
-	//game.play();
 	restart();
+
 	// 画布点击事件
 	var listenClick = function (event) {
 		if (game.pauseFlag == true)
@@ -86,7 +116,11 @@ $(document).ready(function () {
 		}
 		game.setClickTimes(clickTimes);
 		message('x:' + event.pageX + ', y:' + event.pageY);
-		balls.push(createBigBall(event.pageX, event.pageY));
+
+		if (event.ctrlKey == true)
+			force.push(createNegativeBall(event.pageX, event.pageY));
+		else
+			force.push(createPositiveBall(event.pageX, event.pageY));
 		game.play();
 	}
 	//注册点击事件
@@ -96,16 +130,19 @@ $(document).ready(function () {
 	function restart () {
 		game.pause();
 		game = new animate();
-		if (mode == true)
-			balls = createSmallBalls(total, width, height, ax, ay, rv);
-		else 
-			balls = NewtonBalls(width);
+		switch (mode) {
+			case "small": 	balls = createSmallBalls(total, width, height, rv); break;
+			case "newton": 	balls = NewtonBalls(width);	break;
+			case "3balls": 	balls = create3balls(height); break;
+			case "snooker": balls = snooker(); break;
+			default: alert("wrong");
+		}
 		clickTimes = 0;
 		$("div#infoBoard").animate({
 			fontSize: '12px',
 			marginTop: '3px'
 		}, 300);
-		game.init($("canvas#zone")[0].getContext('2d'), balls, 0, width, 0, height);
+		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay);
 		game.play();
 	}
 
@@ -120,7 +157,7 @@ $(document).ready(function () {
 		height = $(window).height();
 		message('width:' + width + ', height:' + height);
 		$("canvas#zone").replaceWith(newCanvas(width, height, 'zone'));
-		game.init($("canvas#zone")[0].getContext('2d'), balls, 0, width, 0, height);
+		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay);
 		// 重新注册点击事件
 		$("canvas#zone").click(listenClick);
 		if(shouldPlay)
@@ -141,6 +178,7 @@ $(document).ready(function () {
 		$("div#board")[0].style.display = "";
 	});
 
+	// 确定重新开始
 	$("button#confirm").click(function() {
 		$("button#configButton")[0].display = "";
 		var tmp = onConfirm();

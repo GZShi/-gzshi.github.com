@@ -11,8 +11,17 @@ function displayScore(score) {
 }
 
 function onConfirm() {
+	var m = 0;
+	if($("#smallMode")[0].checked)
+		m = "small";
+	else if($("#newtonMode")[0].checked)
+		m = "newton";
+	else if($("#threeball")[0].checked)
+		m = "3balls";
+	else if($("#snooker")[0].checked)
+		m = "snooker";
 	return {
-		mode: $("#smallMode")[0].checked,
+		mode: m,
 		total: parseInt($("#amount")[0].value),
 		ax: parseInt($("#directx")[0].value),
 		ay: parseInt($("#directy")[0].value),

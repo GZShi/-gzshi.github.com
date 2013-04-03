@@ -3,7 +3,7 @@ function ball () {
 	var color = "rgba(100, 190, 60, 0.7)";
 	var life = 100;		// 生命时间
 	var expandspeed = 9;
-	var adx, ady, e;		// 横向加速度、纵向加速度、碰撞恢复系数
+	var e;		// 横向加速度、纵向加速度、碰撞恢复系数
 	this.mass;
 	this.type = "small";
 	this.v = {dx:0, dy:0};
@@ -11,7 +11,7 @@ function ball () {
 	this.pos = {x:0, y:0};
 
 	// 画布、初始x、初始y、半径、速度值、方向、颜色
-	this.init = function (type, x, y, r, s, d, c, ax, ay, rv) {
+	this.init = function (type, x, y, r, s, d, c, rv, m, l) {
 		this.type = type;
 		this.mass = 1;
 		this.v.dx = s*Math.cos(d);
@@ -19,10 +19,12 @@ function ball () {
 		this.pos.x = x;
 		this.pos.y = y;
 		this.radius = r;
-		adx = (ax>10?10:ax)/100;
-		ady = (ay>10?10:ay)/100;
-		e = 1 - (rv>100?100:rv)/100;
+		e = 1 - (rv>100?100:(rv<0?0:rv))/100;	// e=0时完全弹性碰撞 e=1时
 		color = c == null ? color : c;
+		if(m != null)
+			this.mass = m;
+		if(l != null)
+			life = Math.abs(Math.floor(l));
 	}
 
 	this.drawMyself = function (ctx) {
@@ -38,15 +40,11 @@ function ball () {
 			// 根据boundary修改方向
 			if ((this.pos.x <= boundary.left + this.radius && this.v.dx < 0) || 
 				(this.pos.x >= boundary.right - this.radius && this.v.dx > 0)) {
-				this.v.dx = -this.v.dx
-			} else {
-				this.v.dx += adx;
+				this.v.dx = -(this.v.dx * (1.1-0.1*e));
 			}
 			if ((this.pos.y <= boundary.top + this.radius && this.v.dy < 0) || 
 				(this.pos.y >= boundary.bottom - this.radius && this.v.dy > 0)) {
-				this.v.dy = -this.v.dy
-			} else {
-				this.v.dy += ady;
+				this.v.dy = -(this.v.dy * (1.1-0.1*e));
 			}
 
 			this.pos.x += this.v.dx;
@@ -69,10 +67,11 @@ function ball () {
 	this.checkCollision = function (other) {
 		var dx = other.pos.x - this.pos.x;
 		var dy = other.pos.y - this.pos.y;
+		var d2 = dx*dx + dy*dy;
 		var minDistace = this.radius + other.radius;
 
 		// 精确距离太大，不会碰撞
-		if (other.radius <= 0 || dx*dx + dy*dy > minDistace*minDistace) {
+		if (other.radius <= 0 || d2 > minDistace*minDistace) {
 			return ;
 		}
 
@@ -81,7 +80,7 @@ function ball () {
 			return ;
 		}
 
-		var rmin = 1/Math.sqrt(dx*dx + dy*dy);
+		var rmin = 1/Math.sqrt(d2);
 		var n = {x:rmin*dx, y:rmin*dy};			// 圆心连线方向单位向量(this指向other方向为正)
 		// 法线上的相对速度
 		var vrn = ((this.v.dx - other.v.dx) * n.x + (this.v.dy - other.v.dy) * n.y);
@@ -112,6 +111,26 @@ function ball () {
 		this.v.dx = von.x + vtk.x;	this.v.dy = von.y + vtk.y;
 		other.v.dx = vtn.x + vok.x;	other.v.dy = vtn.y + vok.y;
 */
+	}
+
+	this.checkForceEffect = function (force) {
+		var dx = this.pos.x - force.pos.x;
+		var dy = this.pos.y - force.pos.y;
+		var d2 = dx*dx + dy*dy;
+		// 如果接触了
+		if (d2 <= this.radius + force.radius) {
+			this.type = "big";
+			return ;
+		}
+
+		var rd3 = 1/(Math.sqrt(d2)*d2);
+		this.v.dx += force.mass*dx*rd3*100;
+		this.v.dy += force.mass*dy*rd3*100;
+	}
+
+	this.gravityAndWind = function (force) {
+		this.v.dx += force.x;
+		this.v.dy += force.y;
 	}
 
 	this.expand = function () {

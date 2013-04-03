@@ -2,7 +2,9 @@ function animate () {
 	var gameId = "1";
 	this.pauseFlag = false;
 	var ballsArray;
+	var forceArray;		// 力场数组
 	var total;
+	var forceTotal;
 	var boundary = {left: 0, right: 1000, top:0, bottom: 500};
 	var minWidth = 10000;
 	var minHeight = 10000;
@@ -13,6 +15,27 @@ function animate () {
 	var begin = -1;
 	var clickTimes = -1;
 	var gameOver = false;
+	var outsideForce = {x:0, y:0};
+
+	// 计算某个点pos相对于力场中心center的受力强度
+	function forceField(center, pos, strength) {
+		var dx = pos.x - center.x;
+		var dy = pos.y - center.y;
+		var d2 = dx*dx + dy*dy;
+		var d  = Math.sqrt(d2);
+		var rd3 = 1/(d2*d);
+		// 距离过小忽略力的作用
+		if(d2 < 0.001) {
+			return {
+				x: 0,
+				y:0
+			}
+		}
+		return {
+			x: strength*dx*rd3,
+			y: strength*dy*rd3
+		}
+	}
 
 	function calculateScore (minWidth, minHeight, clickTimes, startTime, pauseTime, endTime, smallTotal) {
 		var score = (minWidth*minHeight);
@@ -24,6 +47,7 @@ function animate () {
 
 	function frame () {
 		total = ballsArray.length;
+		forceTotal = forceArray.length;
 
 		if (total <= 0) {
 			ctx.fillStyle = lastColor;
@@ -43,6 +67,9 @@ function animate () {
 		for (var i = 0; i < total; ++i) {
 			ballsArray[i].drawMyself(ctx);
 		}
+		for (var i = 0; i <forceTotal; ++i) {
+			forceArray[i].drawMyself(ctx);
+		}
 
 		// 更新数据
 		for (var i = 0; i < total; ++i) {
@@ -60,9 +87,32 @@ function animate () {
 				--total;
 			}
 		}
+		// 更新力场的存在时间
+		for (var i = 0; i< forceTotal; ++i) {
+			if (false == forceArray[i].update(boundary)) {
+				forceArray.splice(i, 1);
+				--forceTotal;
+			}
+		}
+
+		// 力场作用
+		for (var i = 0; i < forceTotal; ++i) {
+			for (var j = 0; j < total; ++j) {
+				if(ballsArray[j].type == "big")
+					continue;
+				ballsArray[j].checkForceEffect(forceArray[i]);
+			}
+		}
+
+		// 重力场、风向模拟
+		for (var i = 0; i < total; ++i) {
+			if(ballsArray[i].type == "big")
+				continue;
+			ballsArray[i].gravityAndWind(outsideForce);
+		}
 
 		// 精确碰撞检测，牺牲性能
-		if (total < 20) {
+		if (total < 102) {
 			for (var i = 0; i < total; ++i) {
 				if (ballsArray[i].type == "big")
 					continue;
@@ -73,6 +123,10 @@ function animate () {
 						i = 0; j = 0;
 					}
 				}
+				// 检测是否与力场碰撞（即点出的大球）
+				for (var k = 0; k < forceTotal; ++k) {
+					ballsArray[i].checkCollision(forceArray[k]);
+				}
 			}
 		} else {
 			for (var i = 0; i < total; ++i) {
@@ -82,6 +136,10 @@ function animate () {
 					if (i == j)
 						continue;
 					ballsArray[i].checkCollision(ballsArray[j]);
+				}
+				// 检测是否与力场碰撞（即点出的大球）
+				for (var k = 0; k < forceTotal; ++k) {
+					ballsArray[i].checkCollision(forceArray[k]);
 				}
 			}
 		}
@@ -103,7 +161,7 @@ function animate () {
 		message("stop");
 	}
 
-	this.init = function (context, balls, left, right, top, bottom) {
+	this.init = function (context, balls, force, left, right, top, bottom, ax, ay) {
 		gameId = Math.random();
 		ctx = context;
 		boundary.left = left;
@@ -111,7 +169,11 @@ function animate () {
 		boundary.top = top;
 		boundary.bottom = bottom;
 		ballsArray = balls;
+		forceArray = force;
 		total = balls.length;
+		forceTotal = force.length;
+		outsideForce.x = (ax<-100?-100:(ax>100?100:ax))/100;
+		outsideForce.y = (ay<-100?-100:(ay>100?100:ay))/100;
 		if ((boundary.right - boundary.left) * (boundary.bottom - boundary.top) < minHeight*minWidth) {
 			minHeight = boundary.bottom - boundary.top;
 			minWidth = boundary.right - boundary.left;
