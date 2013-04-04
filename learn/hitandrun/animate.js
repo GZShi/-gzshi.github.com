@@ -16,6 +16,10 @@ function animate () {
 	var clickTimes = -1;
 	var gameOver = false;
 	var outsideForce = {x:0, y:0};
+	var precision = 10000;	// 一次检测碰撞次数最大值
+	var autoMode = true;	// pro normal auto
+	var lastFrameTime = 0;		// 用于计算帧数
+	var thisFrameTime = 0;
 
 	// 计算某个点pos相对于力场中心center的受力强度
 	function forceField(center, pos, strength) {
@@ -46,7 +50,18 @@ function animate () {
 	}
 
 	function frame () {
-		total = ballsArray.length;
+		// 根据帧数自动调节检测精度
+		thisFrameTime = Date.now();
+		if (autoMode == true) {
+			if (thisFrameTime - lastFrameTime < 100 || thisFrameTime - lastFrameTime > 100000) {
+				precision = precision > 10000 ? precision : Math.floor(precision*1.1);
+			} else {
+				precision = Math.floor(precision*0.7);
+			}
+		}
+		message("FPS: " + Math.floor(1000/(thisFrameTime- lastFrameTime)));
+		lastFrameTime = thisFrameTime;
+		
 		forceTotal = forceArray.length;
 
 		if (total <= 0) {
@@ -82,14 +97,14 @@ function animate () {
 				message('last');
 				break;
 			}
-			if(false == ballsArray[i].update(boundary)) {
+			if(false == ballsArray[i].update()) {
 				ballsArray.splice(i, 1);
 				--total;
 			}
 		}
-		// 更新力场的存在时间
+		// 更新力场的生命时间
 		for (var i = 0; i< forceTotal; ++i) {
-			if (false == forceArray[i].update(boundary)) {
+			if (false == forceArray[i].update()) {
 				forceArray.splice(i, 1);
 				--forceTotal;
 			}
@@ -112,7 +127,32 @@ function animate () {
 		}
 
 		// 精确碰撞检测，牺牲性能
-		if (total < 102) {
+		if (total > 0) {
+			var bstack = [];
+			var tocheck = -1;
+			var checkTimes = 0;
+			for (var i = 0; i < total; ++i) {
+				if(ballsArray[i].type == "small")
+					bstack.push(i);
+			}
+
+			while(bstack.length > 0) {
+				tocheck = bstack.pop();
+				for (var i = 0; i < total; ++i) {
+					if (i == tocheck)
+						continue;
+					if (ballsArray[tocheck].checkCollision(ballsArray[i]) && checkTimes < precision) {
+						bstack.push(i);
+						checkTimes++;
+					}
+				}
+				if(true == ballsArray[tocheck].checkBoundary(boundary) && checkTimes < precision) {
+					bstack.push(tocheck);
+					checkTimes++;
+				}
+			}
+			bstack = null;
+			/*
 			for (var i = 0; i < total; ++i) {
 				if (ballsArray[i].type == "big")
 					continue;
@@ -127,21 +167,9 @@ function animate () {
 				for (var k = 0; k < forceTotal; ++k) {
 					ballsArray[i].checkCollision(forceArray[k]);
 				}
-			}
-		} else {
-			for (var i = 0; i < total; ++i) {
-				if (ballsArray[i].type == "big")
-					continue;
-				for (var j = 0; j < total; ++j) {
-					if (i == j)
-						continue;
-					ballsArray[i].checkCollision(ballsArray[j]);
-				}
-				// 检测是否与力场碰撞（即点出的大球）
-				for (var k = 0; k < forceTotal; ++k) {
-					ballsArray[i].checkCollision(forceArray[k]);
-				}
-			}
+				// 检测与墙壁碰撞
+				ballsArray[i].checkBoundary(boundary);
+			}*/
 		}
 	}
 
@@ -161,7 +189,7 @@ function animate () {
 		message("stop");
 	}
 
-	this.init = function (context, balls, force, left, right, top, bottom, ax, ay) {
+	this.init = function (context, balls, force, left, right, top, bottom, ax, ay, collMode) {
 		gameId = Math.random();
 		ctx = context;
 		boundary.left = left;
@@ -181,6 +209,11 @@ function animate () {
 		if (ballsArray.length > maxTotal) {
 			maxTotal = ballsArray.length;
 		}
+		autoMode = collMode == "auto" ? true : false;
+		if(collMode == "normal")
+			precision = 10000;
+		else if(collMode == "pro")
+			precision = 100000000;
 	}
 
 	this.setBegin = function (n) {

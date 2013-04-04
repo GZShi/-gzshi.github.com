@@ -21,8 +21,10 @@ function ball () {
 		this.radius = r;
 		e = 1 - (rv>100?100:(rv<0?0:rv))/100;	// e=0时完全弹性碰撞 e=1时
 		color = c == null ? color : c;
+		if (r < 2)
+			color = "black";
 		if(m != null)
-			this.mass = m;
+			this.mass = (m == 0 ? Math.floor(Math.random()*5+1):m);
 		if(l != null)
 			life = Math.abs(Math.floor(l));
 	}
@@ -35,18 +37,8 @@ function ball () {
 	}
 
 	// 返回false代表下一轮刷新时这个球不再存在
-	this.update = function (boundary) {
+	this.update = function () {
 		if (this.type == "small") {
-			// 根据boundary修改方向
-			if ((this.pos.x <= boundary.left + this.radius && this.v.dx < 0) || 
-				(this.pos.x >= boundary.right - this.radius && this.v.dx > 0)) {
-				this.v.dx = -(this.v.dx * (1.1-0.1*e));
-			}
-			if ((this.pos.y <= boundary.top + this.radius && this.v.dy < 0) || 
-				(this.pos.y >= boundary.bottom - this.radius && this.v.dy > 0)) {
-				this.v.dy = -(this.v.dy * (1.1-0.1*e));
-			}
-
 			this.pos.x += this.v.dx;
 			this.pos.y += this.v.dy;
 			return true;
@@ -64,6 +56,7 @@ function ball () {
 		}
 	}
 
+	// 球与球之间的碰撞检测
 	this.checkCollision = function (other) {
 		var dx = other.pos.x - this.pos.x;
 		var dy = other.pos.y - this.pos.y;
@@ -91,10 +84,12 @@ function ball () {
 		// 法线方向的冲量
 		var i = (-vrn * (1+e) * this.mass * other.mass)/(this.mass + other.mass);
 		var idxdy = {x:i*n.x , y:i*n.y};		// 将法线方向冲量分解为x和y两个方向的冲量
-		this.v.dx = this.v.dx + idxdy.x * this.mass;
-		this.v.dy = this.v.dy + idxdy.y * this.mass;
-		other.v.dx = other.v.dx - idxdy.x * other.mass ;
-		other.v.dy = other.v.dy - idxdy.y * other.mass ;
+		var rm1 = 1/this.mass;
+		var rm2 = 1/other.mass;
+		this.v.dx = this.v.dx + idxdy.x * rm1;
+		this.v.dy = this.v.dy + idxdy.y * rm1;
+		other.v.dx = other.v.dx - idxdy.x * rm2 ;
+		other.v.dy = other.v.dy - idxdy.y * rm2 ;
 		return true;
 /* wrong way 分量计算方法有错误
 		var vtn = {x:this.v.dx*n.x, y:this.v.dy*n.y};		// this在n方向上的分量
@@ -113,19 +108,39 @@ function ball () {
 */
 	}
 
+	this.checkBoundary = function (boundary) {
+		if(this.type == "big")
+			return ;
+		var retflag = false;
+		// 根据boundary修改方向
+		if ((this.pos.x <= boundary.left + this.radius && this.v.dx < 0) || 
+			(this.pos.x >= boundary.right - this.radius && this.v.dx > 0)) {
+			this.v.dx = -(this.v.dx * e);
+			retflag = true;
+		}
+		if ((this.pos.y <= boundary.top + this.radius && this.v.dy < 0) || 
+			(this.pos.y >= boundary.bottom - this.radius && this.v.dy > 0)) {
+			this.v.dy = -(this.v.dy * e);
+			retflag = true;
+		}
+		return retflag;
+	}
+
+	// 外力场受力分析
 	this.checkForceEffect = function (force) {
 		var dx = this.pos.x - force.pos.x;
 		var dy = this.pos.y - force.pos.y;
 		var d2 = dx*dx + dy*dy;
+		var r = this.radius + force.radius;
 		// 如果接触了
-		if (d2 <= this.radius + force.radius) {
+		if (d2 <= r*r) {
 			this.type = "big";
 			return ;
 		}
 
 		var rd3 = 1/(Math.sqrt(d2)*d2);
-		this.v.dx += force.mass*dx*rd3*100;
-		this.v.dy += force.mass*dy*rd3*100;
+		this.v.dx += this.mass*force.mass*dx*rd3*100;
+		this.v.dy += this.mass*force.mass*dy*rd3*100;
 	}
 
 	this.gravityAndWind = function (force) {

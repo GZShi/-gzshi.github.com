@@ -35,7 +35,6 @@ h3 {
 	position: absolute;
 	text-align: center;
 	z-index: 10;
-	left: 400px;
 	color: white;
 	text-shadow: 0 0 4px black;
 	font-size: 12px;
@@ -70,11 +69,11 @@ button {
 #board {
 	margin: 3%;
 	width: 94%;
-	height: 92%;
+	height: 85%;
+	overflow: auto;
 }
 
 #confireButton {
-	padding-top: 30px;
 	text-align: center;
 }
 

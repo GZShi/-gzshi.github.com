@@ -1,18 +1,21 @@
-function createSmallBalls(total, right, bottom, rv) {
+function createSmallBalls(total, mass, radius, right, bottom, rv) {
 	var balls = [];
+	if (total <= 0) {
+		total = Math.random()*300 + 1;
+	}
 	for (var i = 0; i < total; ++i) {
 		var b = new ball();
 		b.init("small",								// 类型
 			right*Math.random(),					// x坐标
 			bottom*Math.random(),					// y坐标
-			10,										// 半径
+			radius <= 0 ? Math.random()*30+5 : radius,		// 半径
 			3,										// 速度
 			Math.random()*2*Math.PI, 				// 弧度方向
 			rgba(Math.floor(30+190*Math.random()),	// 红色
 				Math.floor(90+130*Math.random()),	// 蓝色
 				Math.floor(100+120*Math.random()),	// 绿色
 				0.3+Math.random()* 0.6),			// 透明度
-			rv);
+			rv, mass);
 		balls.push(b);	
 	}
 	return balls;
@@ -67,16 +70,18 @@ function snooker() {
 
 function createPositiveBall(x, y) {
 	var big = new ball();
-	big.init("big", x, y, 5, 0, 0, rgba(Math.floor(30+190*Math.random()),	// 红色
+	big.init("big", x, y, 5, 0, 0, 
+				rgba(Math.floor(30+190*Math.random()),	// 红色
 				Math.floor(90+130*Math.random()),	// 蓝色
 				Math.floor(100+120*Math.random()),	// 绿色
-				0.3), 0, 10, 400);
+				0.3),
+				0, 10, 400);
 	return big;
 }
 
 function createNegativeBall(x, y) {
 	var big = new ball();
-	big.init("big", x, y, 5, 0, 0, rgba(Math.floor(30+190*Math.random()),	// 红色
+	big.init("big", x, y, 3, 0, 0, rgba(Math.floor(30+190*Math.random()),	// 红色
 				Math.floor(90+130*Math.random()),	// 蓝色
 				Math.floor(100+120*Math.random()),	// 绿色
 				0.3), 0, -10, 400);
@@ -95,8 +100,11 @@ $(document).ready(function () {
 	var game = new animate();
 	var balls = [];
 	var force = [];
-	var total = 200;
+	var total = 0;
+	var mass = 0;
+	var radius = 0;
 	var mode = "small";
+	var collCheckMode = "auto";
 	var width = $(window).width();
 	var height = $(window).height();
 	var ax = 0; 	// 横向加速度
@@ -130,6 +138,7 @@ $(document).ready(function () {
 
 	// restart
 	function restart () {
+		adjust();
 		game.pause();
 		game = null;
 		game = new animate();
@@ -138,7 +147,7 @@ $(document).ready(function () {
 		force = null;
 		force = [];
 		switch (mode) {
-			case "small": 	balls = createSmallBalls(total, width, height, rv); break;
+			case "small": 	balls = createSmallBalls(total, mass, radius, width, height, rv); break;
 			case "newton": 	balls = NewtonBalls(width);	break;
 			case "3balls": 	balls = create3balls(height); break;
 			case "snooker": balls = snooker(); break;
@@ -147,26 +156,32 @@ $(document).ready(function () {
 		clickTimes = 0;
 		$("div#infoBoard").animate({
 			fontSize: '12px',
-			marginTop: '3px'
+			top: '3px',
+			left: '100px'
 		}, 300);
-		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay);
+		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay, collCheckMode);
 		game.play();
 	}
 
-	// 适应窗口大小调整
+	// 适应窗口大小
+	function adjust() {
+		width = $(window).width();
+		height = $(window).height();
+		message('width:' + width + ', height:' + height);
+		$("canvas#zone").replaceWith(newCanvas(width, height, 'zone'));
+		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay, collCheckMode);
+		// 重新注册点击事件
+		$("canvas#zone").mousedown(listenClick);
+	}
+
+	// 调整窗口时
 	$(window).resize(function () {
 		var shouldPlay = false;
 		if(game.pauseFlag == false) {
 			game.pause();
 			shouldPlay = true;
 		}
-		width = $(window).width();
-		height = $(window).height();
-		message('width:' + width + ', height:' + height);
-		$("canvas#zone").replaceWith(newCanvas(width, height, 'zone'));
-		game.init($("canvas#zone")[0].getContext('2d'), balls, force, 0, width, 0, height, ax, ay);
-		// 重新注册点击事件
-		$("canvas#zone").mousedown(listenClick);
+		adjust();
 		if(shouldPlay)
 			game.play();
 	});
@@ -182,7 +197,7 @@ $(document).ready(function () {
 			top: Math.max(Math.floor(($(window).height() - 500)/2), 0) + 'px'
 		}, 600);
 		$("div#config")[0].style.webkitAnimation = "flip 0.6s";
-		$("div#board")[0].style.display = "";
+		$("div.configItem").css("display", "");
 	});
 
 	// 确定重新开始
@@ -190,11 +205,14 @@ $(document).ready(function () {
 		$("button#configButton")[0].display = "";
 		var tmp = onConfirm();
 		mode = tmp.mode;
+		radius = tmp.radius;
+		mass = tmp.mass;
 		ax = tmp.ax;
 		ay = tmp.ay;
 		rv = tmp.rv;
 		total = tmp.total;
-		$("div#board")[0].style.display = "none";
+		collCheckMode = tmp.cm;
+		$("div.configItem").css("display", "none");
 		$("div#config").animate({
 			width: '0px',
 			height: '0px',
@@ -208,7 +226,7 @@ $(document).ready(function () {
 	$("button#cancel").click(function () {
 		$("button#configButton")[0].display = "";
 		game.play();
-		$("div#board")[0].style.display = "none";
+		$("div.configItem").css("display", "none");
 		$("div#config").animate({
 			width: '0px',
 			height: '0px',
