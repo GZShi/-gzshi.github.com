@@ -1,1 +1,336 @@
-var node_size=10,max_x=30,max_y=30;function get_event_type(){var c=navigator.userAgent.toLowerCase(),c=c.indexOf("iphone")!=-1?"iPhone":c.indexOf("ipod")!=-1?"iPod":c.indexOf("ipad")!=-1?"iPad":c.indexOf("android")!=-1?"Android":c.indexOf("windows")!=-1?"Windows":c.indexOf("mac")!=-1?"Mac":"unknown";switch(c){case "iPhone":case "iPod":case "iPad":case "Android":return alert("\u68c0\u6d4b\u5230\u4f60\u6b63\u5728\u4f7f\u7528"+c+"\n\u53cc\u6307\u8f7b\u51fb\u5c4f\u5e55\u5373\u53ef\u5f00\u59cb\u6216\u6682\u505c\u6e38\u620f\nHave a good time!"),"touchstart";case "Windows":case "Mac":return alert("\u68c0\u6d4b\u5230\u4f60\u6b63\u5728\u4f7f\u7528\u684c\u9762\u8bbe\u5907\n\u5355\u51fb\u9f20\u6807\u4e2d\u952e\u53ef\u4ee5\u5f00\u59cb\u6216\u6682\u505c\u6e38\u620f\nEnjoy yourself!"),"click";default:alert("\u975e\u5e38\u62b1\u6b49\u672a\u80fd\u8bc6\u522b\u60a8\u7684\u8bbe\u5907\u7c7b\u578b\n\u5047\u5982\u60a8\u6709\u9f20\u6807\uff0c\u8bf7\u4f7f\u7528\u9f20\u6807\u4e2d\u952e\u5f00\u59cb\u6216\u6682\u505c\u6e38\u620f\n\u5982\u679c\u613f\u610f\uff0c\u8bf7\u5c06\u60a8\u7684\u8bbe\u5907\u7c7b\u578b\u53d1\u7ed9\u6211\uff1as@lovep.me\nThanks!")}}function snake(c,h,s,v){function k(a){switch(a){case "east":return"west";case "west":return"east";case "south":return"north";case "north":return"south";default:return""}}var f=s,d=v,a=[0],e=[0],i=0,g=true,j,b;this.change_direction=function(a){for(;a.length>0;){var b=a.shift();if(b!=d&&b!=k(d)){d=b;i+=1;break}}};this.update_body=function(c){switch(d){case "east":j=a[a.length-1]+1;b=e[e.length-1];break;case "west":j=a[a.length-1]-1;b=e[e.length-1];break;case "south":j=a[a.length-1];b=e[e.length-1]+1;break;case "north":j=a[a.length-1],b=e[e.length-1]-1}j=j>=max_x?0:j<0?max_x-1:j;b=b>=max_y?0:b<0?max_y-1:b;switch(c){case 1:f=f==1?1:f-1;break;case 2:case 3:f=f==10?10:f+1;break;case -1:a.shift(),e.shift()}for(c=0;c<a.length-4;++c)if(a[c]==j&&e[c]==b){g=false;break}a.push(j);e.push(b)};this.draw_body=function(b){b.fillStyle=h;for(var c=a.length;c>=0;--c)b.fillRect(a[c]*node_size,e[c]*node_size,node_size,node_size)};this.get_header_info=function(){return{x:a[a.length-1],y:e[e.length-1],d:d}};this.get_body=function(){return{x:a,y:e}};this.get_speed=function(){return f};this.get_length=function(){return a.length};this.get_steps=function(){return i};this.is_death=function(){return!g}}function food(){var c=[5,7,8],h=[5,7,8],s=[1,2,3],v=["#ff0000","#0ff000","#000fff"],k=0,f=0;this.check_hit=function(d){snake_x=d.x;snake_y=d.y;x=snake_x[snake_x.length-1];y=snake_y[snake_y.length-1];for(d=0;d<3;++d)if(c[d]==x&&h[d]==y){k=Math.floor(Math.random()*(max_x-1));f=Math.floor(Math.random()*(max_y-1));for(var a=0;a<4;++a)if(k==snake_x[snake_x.length-a-1]&&f==snake_y[snake_y.length-a-1]||c[a]==k&&h[a]==f)k=Math.floor(Math.random()*(max_x-1)),f=Math.floor(Math.random()*(max_y-1)),a=-1;c[d]=k;h[d]=f;return s[d]}return-1};this.draw_food=function(d){for(var a=0;a<3;++a)d.fillStyle=v[a],d.fillRect(c[a]*node_size,h[a]*node_size,node_size,node_size)}}function game(){function c(){clearInterval(interval_id_welcome);l=setInterval(v,I)}function h(a,b,c,d){return"rgba("+a+","+b+","+c+","+d+")"}function s(b,c,d,e){i.fillStyle=h(22,14,77,Math.abs(0-e)/45*0.8);i.font=J[d];i.fillText(b,(a-i.measureText(b).width)/2,c)}function v(){g.change_direction(b);g.update_body(j.check_hit(g.get_body()));i.clearRect(0,0,a,e);j.draw_food(i);g.draw_body(i);g.get_length()==2&&(B=1,t=100,C="\u83b7\u5f97\u6210\u5c31\uff1afirst blood\uff01",D=290);g.get_steps()==50&&(B=1,t=100,C="\u83b7\u5f97\u6210\u5c31\uff1a\u521d\u5165\u6c5f\u6e56",D=290);E="speed:"+g.get_speed()+"  length:"+g.get_length()+"  steps:"+g.get_steps();i.fillStyle=h(55,39,24,0.4);i.font="10px consolas";i.fillText(E,(a-i.measureText(E).width)/2,20);g.is_death()&&(clearInterval(l),l=-1,s("---GAME OVER---",e/2,1,100));s(C,D,B,t);t=t>0?t-2:0}function k(b,a,c,d,e){b.fillStyle=e;b.font=d;b.fillText(a,(300-b.measureText(a).width)/2,c)}var f=document.getElementById("main_canvas"),d=f.getBoundingClientRect(),a=d.width,e=d.height,i=f.getContext("2d"),g=new snake("Tom","#ff0000",3,"east"),j=new food,b=["east"],I=100,l=-1,m=0,n=0,z,p=0,q=0,u=[0,0,0,0,0,0,0,0,0,0,0],A=[0,0,0,0,0,0,0,0,0,0,0],w=0,r=0,o=Math.PI,F=22,G=99,H=50,t=50,C="Snake v4.3 TOUCH",B=2,D=0,E,K=get_event_type(),J=["12px serif","20px sans-serif","30px serif"];f.addEventListener(K,function(a){z=a.type=="click"?{x:a.clientX-d.left,y:a.clientY-d.top,p:a.button==1}:{x:a.touches[0].pageX-d.left,y:a.touches[0].pageY-d.top,p:a.touches[1]!=void 0};z.p?l==-2?c():g.is_death()?(g=void 0,g=new snake("Tom","#897544",3,"east"),c()):l==-2?c():l!=-1&&(clearInterval(l),l=-2,s("---PAUSE---",e/2,1,100)):l!=-2&&(snake_header_info=g.get_header_info(),p=Math.floor(z.x/10)-snake_header_info.x,q=snake_header_info.y-Math.floor(z.y/10),snake_header_info.d=="east"||snake_header_info.d=="west"?(m=p+2*q,n=p-2*q,m>=0&&n<=0?b.push("north"):m<=0&&n>=0?b.push("south"):m<0&&n<0?snake_header_info.d=="east"&&(q>0?(b.push("north"),b.push("west")):q<0&&(b.push("south"),b.push("west"))):m>0&&n>0&&snake_header_info.d=="west"&&(q>0?(b.push("north"),b.push("east")):q<0&&(b.push("south"),b.push("east")))):(m=2*p-q,n=2*p+q,m>=0&&n>=0?b.push("east"):m<=0&&n<=0?b.push("west"):m<0&&n>0?snake_header_info.d=="south"&&(p>0?(b.push("east"),b.push("north")):p<0&&(b.push("west"),b.push("north"))):m>0&&n<0&&snake_header_info.d=="north"&&(p>0?(b.push("east"),b.push("south")):p<0&&(b.push("west"),b.push("south")))))},false);interval_id_welcome=setInterval(function(){var a=document.getElementById("main_canvas").getContext("2d");a.fillStyle="#ff0000";a.clearRect(0,0,300,300);r<o/2?w+=o/600:r<o?w-=o/600:r<=3*o/2?w+=o/600:r<2*o&&(w-=o/600);r>=2*o&&(r=0,F=Math.floor(Math.random()*150)+60,G=Math.floor(Math.random()*150)+60,H=Math.floor(Math.random()*150)+60);r+=w;u[0]=Math.cos(r)*40;A[0]=20*Math.sin(r);for(var b=u.length-1;b>=0;--b)a.fillStyle=h(F,G,H,1-b/u.length),a.beginPath(),a.arc(150+u[b],200+A[b],2,0,2*o),a.closePath(),a.fill(),u[b]=u[b>0?b-1:0],A[b]=A[b>0?b-1:0];k(a,"Snake V4.3 - touch",80,"25px Serif bold",h(9,25,99,0.8));k(a,"Click your mid-mouse-button or",110,"italic 12px consolas",h(99,99,129,0.8));k(a,"Tap me with two fingers",125,"italic 12px consolas",h(99,99,129,0.8));k(a,"Thanks for your interest!",150,"italic 15px consolas",h(189,6,129,0.8))},40);l=-2};
+var FPS = 10;
+
+function rgba(r, g, b, a) {
+	return "rgba(" + r + "," + g + "," + b + "," + (a==null?1:a) + ")";
+}
+
+function game () {
+	this.bodyArray = [{x:9, y:9}];		// 蛇身体坐标
+	this.direction = 2;		// 蛇方向信息
+	this.food = {x:13, y:17};		// 食物坐标
+
+	this.draw = function (ctx) {
+		// 绘制蛇
+		var length = this.bodyArray.length;
+		for (var i = 0; i < length; ++i) {
+			ctx.fillStyle = rgba(123, 22, 88, 0.3+0.7*(i/length));
+			ctx.fillRect(this.bodyArray[i].x*20, this.bodyArray[i].y*20, 20, 20);
+		}
+		// 绘制食物
+		ctx.fillStyle = 'yellow';
+		ctx.fillRect(this.food.x*20, this.food.y*20, 20, 20);
+	}
+
+
+	this.updateSnake = function (  ) {
+		var newHeader = this.getNextHeader(' ');
+		var ret = true;
+		if(!this.checkHitFood(newHeader)) {
+			this.bodyArray.shift();
+			ret = false;
+		}
+		this.bodyArray.push(newHeader);
+		return ret;
+	}
+
+	this.changeDirection = function (newDirection) {
+		if(typeof newDirection == 'string') {
+			if(newDirection == 'l')
+				this.direction = (3 + this.direction) % 4;
+			else if(newDirection == 'r')
+				this.direction = (this.direction + 1) % 4;
+			else
+				return false;
+			return true;
+		}
+		newDirection = newDirection % 4;
+		if( Math.abs(newDirection - this.direction) == 2) {
+			return false;
+		} 
+		this.direction = newDirection;
+		return true;
+	} 
+
+	//////////////////////////////////// API ////////////////////////////////////
+
+	// 获取蛇的头部坐标
+	this.getSnakeHeader = function () {
+		return {
+			x: this.bodyArray[this.bodyArray.length-1].x,
+			y: this.bodyArray[this.bodyArray.length-1].y
+		}
+	}
+
+	this.getFoodPosition = function () {
+		return {
+			x: this.food.x,
+			y: this.food.y
+		}
+	}
+
+	this.getFoodRelativePos = function (pos) {
+		var rx = this.food.x - pos.x;
+		var ry = this.food.y - pos.y;
+		switch(this.direction) {
+		case 3:
+			return {x: rx, y: ry};
+		case 1:
+			return {x: -rx, y: -ry};
+		case 0:
+			return {x: ry, y: -rx};
+		case 2:
+			return {x: -ry, y: rx};
+		}
+	}
+
+	// 二维数组，0代表空白，-1代表食物，1代表头部
+	this.getMap = function () {
+		var array = new Array();
+		for(var i = 0; i < 25; ++i) {
+			array[i] = new Array();
+			for(var j = 0; j < 25; ++j) {
+				array[i][j] = 0;
+			}
+		}
+		var length = this.bodyArray.length;
+		for(var i = 0; i < length; ++i) {
+			array[this.bodyArray[i].y][this.bodyArray[i].x] = i+1;
+		}
+		array[this.food.y][this.food.x] = -1;
+		return array;
+	}
+
+	// 提前计算蛇头部的下一个位置
+	this.getNextHeader = function (direct) {
+		var header = this.getSnakeHeader();
+		if(typeof direct == "string") {
+			if(direct == 'l')
+				direct = (this.direction + 3)%4;
+			else if(direct == 'r') 
+				direct = (this.direction + 1)%4;
+			else
+				direct = this.direction;
+		} else if(direct == null) {
+			direct = this.direction;
+		}
+		switch(direct%4) {
+		case 2: 	// east
+			return {x:header.x+1, y:header.y};
+		case 0: 	// west
+			return {x:header.x-1, y:header.y};
+		case 1: 	// north
+			return {x:header.x, y:header.y-1};
+		case 3: 	// south
+			return {x:header.x, y:header.y+1};
+		}
+	}
+
+	this.checkHitSnakeBody = function (position) {
+		var length = this.bodyArray.length;
+		// 不检测与尾巴碰撞
+		for (var i = 1; i < length-1; ++i) {
+			if(this.bodyArray[i].x == position.x && this.bodyArray[i].y == position.y) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	this.checkHitWall = function (position) {
+		if(position.x < 0 || position.y < 0 || position.x >= 25 || position.y >= 25) {
+			return true;
+		}
+		return false;
+	}
+
+	this.checkHitFood = function (position) {
+		if (this.food.x == position.x && this.food.y == position.y) {
+			var newPos = {x:Math.floor(Math.random()*25), y:Math.floor(Math.random()*25)};
+			while(true) {
+				if(this.food.x == newPos.x && this.food.y == newPos.y) {
+					newPos = {x:Math.floor(Math.random()*25), y:Math.floor(Math.random()*25)};
+				} else if(this.checkHitSnakeBody(newPos) == true) {
+					newPos = {x:Math.floor(Math.random()*25), y:Math.floor(Math.random()*25)};
+				} else {
+					this.food.x = newPos.x;
+					this.food.y = newPos.y;
+					break;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+}
+
+function editScript() {
+	if($("button#scriptButton").text() == "编辑脚本") {
+		var canvasLeft = ($(window).width() - 1000)/2;
+		canvasLeft = canvasLeft < 0 ? 0 :canvasLeft;
+		$("div#canvasBoard").animate({left:canvasLeft+'px'}, 400);
+		$("div#scriptBoard").animate({left:500+canvasLeft+'px'}, 400);
+		$("button#scriptButton").text("隐藏脚本");
+	} else {
+		var left = ($(window).width() - 500)/2;
+		left = left < 0 ? 0 : left;
+		$("div#canvasBoard").animate({left:left+'px'}, 400);
+		$("div#scriptBoard").animate({left:left+'px'}, 400);
+		$("button#scriptButton").text("编辑脚本");
+	}
+}
+
+// 示例AI
+function aiFunction(GAME, cmd) {
+	var header = GAME.getSnakeHeader();
+	var rps = GAME.getFoodRelativePos(header);
+
+	var nextHeader = GAME.getNextHeader(' ');
+	var nextRps = GAME.getFoodRelativePos(nextHeader);
+	if(GAME.checkHitSnakeBody(nextHeader) || GAME.checkHitWall(nextHeader)) {
+		nextHeader = GAME.getNextHeader('l');
+		if(GAME.checkHitSnakeBody(nextHeader) || GAME.checkHitWall(nextHeader)) {
+			cmd.push('r');
+		} else {
+			cmd.push('l');
+		}
+		return ;
+	}
+	if(Math.abs(rps.y) > Math.abs(nextRps.y) || Math.abs(rps.x) > Math.abs(nextRps.x)) {
+		cmd.push(' ');
+	} else {
+		if(rps.x >= 0) {
+			nextHeader = GAME.getNextHeader('l');
+			if(GAME.checkHitSnakeBody(nextHeader))
+				cmd.push(' ');
+			else 
+				cmd.push('l');
+		} else {
+			nextHeader = GAME.getNextHeader('r');
+			if(GAME.checkHitSnakeBody(nextHeader))
+				cmd.push(' ');
+			else 
+				cmd.push('r');
+		}
+	}
+}
+
+
+function main() {
+	var snakeGame = new game();
+	var intervalId = -1;
+	var context = $('#main_canvas')[0].getContext('2d');
+	context.fillStyle = '#ff0000';
+	var command = '  '.split('');
+	var currentFPS = FPS;
+	var alive = true;
+
+	function oneStep() {
+		if(currentFPS != FPS) {
+			currentFPS = FPS;
+			clearInterval(intervalId);
+			intervalId = setInterval(oneStep, 1000/currentFPS);
+		}
+		if(snakeGame.updateSnake())
+			command=[];
+		context.clearRect(0, 0, 500, 500);
+		snakeGame.draw(context);
+		var temp = snakeGame.getSnakeHeader();
+		if(snakeGame.checkHitSnakeBody(temp) || snakeGame.checkHitWall(temp)) {
+			alive = false;
+			clearInterval(intervalId);
+			$("p#info").text('Game Over');
+			return ;
+		}
+		if(command.length <= 0) {
+			if(typeof userAI != "function")
+				aiFunction(snakeGame, command);
+			else {
+				try {
+					userAI(snakeGame, command);
+				} catch(err) {
+					clearInterval(intervalId);
+					var info = "你的代码有错误，请修正后重试！\n";
+					info += "错误信息：" + err;
+					alert(info);
+
+				}
+			}
+		}
+		snakeGame.changeDirection(command.length <= 0 ? ' ' : command.shift());
+	}
+
+	this.play = function() {
+		if(snakeGame == null)
+			snakeGame = new game();
+		intervalId = setInterval(oneStep, 1000/currentFPS);
+	}
+
+	this.stop = function() {
+		clearInterval(intervalId);
+		snakeGame = null;
+	}
+}
+
+var gameControl = null;
+
+function appendScript() {
+	var userScript = editor.getValue();
+	var baseScript = "<script id='AIScript'>" + userScript + "</script>";
+	if($('script#AIScript').length != 0) {
+		userAI = null;
+		$('script#AIScript').replaceWith(baseScript);
+	} else {
+		$('body').append(baseScript);
+	}
+	if(gameControl == null) {
+		gameControl = new main();
+	} else {
+		gameControl.stop();
+		gameControl = null;
+		gameControl = new main();
+	}
+	gameControl.play();
+}
+
+$(window).ready(function () {
+	var canvasLeft = ($(window).width() - 1000)/2;
+	canvasLeft = canvasLeft < 0 ? 0 :canvasLeft;
+	$("div#canvasBoard").animate({left:canvasLeft+'px'}, 400);
+	$("div#scriptBoard").animate({left:500+canvasLeft+'px'}, 400);
+	$("button#scriptButton").text("隐藏脚本");
+});
+
+var example = "// 通过修改下面函数来实现你的AI\n" +
+"function userAI(GAME, cmd) {\n" + 
+"	var header = GAME.getSnakeHeader();\n" + 
+"	var rps = GAME.getFoodRelativePos(header);\n" + 
+
+"	var nextHeader = GAME.getNextHeader(' ');\n" + 
+"	var nextRps = GAME.getFoodRelativePos(nextHeader);\n" + 
+"	if(GAME.checkHitSnakeBody(nextHeader) || GAME.checkHitWall(nextHeader)) {\n" + 
+"		nextHeader = GAME.getNextHeader('l');\n" + 
+"		if(GAME.checkHitSnakeBody(nextHeader) || GAME.checkHitWall(nextHeader)) {\n" + 
+"			cmd.push('r');\n" + 
+"		} else {\n" + 
+"			cmd.push('l');\n" + 
+"		}\n" + 
+"		return ;\n" + 
+"	}\n" + 
+"	if(Math.abs(rps.y) > Math.abs(nextRps.y) || Math.abs(rps.x) > Math.abs(nextRps.x)) {\n" + 
+"		cmd.push(' ');\n" + 
+"	} else {\n" + 
+"		if(rps.x >= 0) {\n" + 
+"			nextHeader = GAME.getNextHeader('l');\n" + 
+"			if(GAME.checkHitSnakeBody(nextHeader))\n" + 
+"				cmd.push(' ');\n" + 
+"			else \n" + 
+"				cmd.push('l');\n" + 
+"		} else {\n" + 
+"			nextHeader = GAME.getNextHeader('r');\n" + 
+"			if(GAME.checkHitSnakeBody(nextHeader))\n" + 
+"				cmd.push(' ');\n" + 
+"			else \n" + 
+"				cmd.push('r');\n" + 
+"		}\n" + 
+"	}\n" + 
+"}\n";
