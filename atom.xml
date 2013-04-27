@@ -4,7 +4,7 @@
   <title><![CDATA[石头的博客]]></title>
   <link href="http://lovep.me/atom.xml" rel="self"/>
   <link href="http://lovep.me/"/>
-  <updated>2013-04-19T23:13:01+08:00</updated>
+  <updated>2013-04-27T23:15:18+08:00</updated>
   <id>http://lovep.me/</id>
   <author>
     <name><![CDATA[GZShi(s@lovep.me)]]></name>
@@ -12,6 +12,544 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[贪吃蛇也需要思考人生]]></title>
+    <link href="http://lovep.me/blog/2013/04/27/snake-ai/"/>
+    <updated>2013-04-27T23:09:00+08:00</updated>
+    <id>http://lovep.me/blog/2013/04/27/snake-ai</id>
+    <content type="html"><![CDATA[<h3>我的贪吃蛇历史</h3>
+
+<p>在九宫格手机风靡的时代，贪吃蛇可以说是一部手机的标配，至少诺基亚的手机肯定会有。什么时候第一次接触贪吃蛇我已经不记得了，但是关于贪吃蛇的记忆我倒是有几段比较清晰的记忆。</p>
+
+<h4>黑白屏经典贪吃蛇</h4>
+
+<p>高一的时候，坐在我后面的<a href="http://weibo.com/greenarlene">同学</a>有一部挂着草莓挂坠的手机，刚好里面有贪吃蛇游戏，是最经典最简单的那种，有墙壁，没有障碍，蛇的身体是一个个黑色小方块，速度不会改变，吃一粒食物，长一节身体。<br/>
+这种小游戏的特点就是上手容易，高分很难，也许这正是贪吃蛇能风靡全球的原因吧。每次都希望以最短的时间去冲击排行榜上的最高分，但往往都会因为一个非常小的失误含恨撞墙或咬蛇自尽。</p>
+
+<!-- more -->
+
+
+<p>
+这种经典模式的要诀是开始的时候尽量走最短的路径去吃到食物，到了比较长的时候就只能迂回前进，把身体尽可能的缩成一团，不要留缝隙。如果按照这种策略去玩还不能吃尽最后一个食物，唯一的原因就是手残，需要转弯的时候按慢了或者按错键。显然，我一直都没有吃尽食物（原因你懂的），所以入迷了很长一段时间。<br/>
+说到很白贪吃蛇，就不得不提诺基亚，就算是屏幕很小的机型，贪吃蛇也做的非常有特色，蛇的细节刻画得很好，玩法也多种多样。具体有多少种模式已经不太记得，但是里面的成就系统还是非常吸引人的。</p>
+
+<h4>3D贪吃蛇</h4>
+
+<p>如果你用过Symbian系统，我想你一定会听说过诺基亚的那款3D贪吃蛇。这款贪吃蛇玩法和经典贪吃蛇截然不同，控制蛇的方向不再是使用上、下、左、右这样的绝对方向去控制，而是只能使用左转、右转、左转两次、右转两次这样的相对方向去控制蛇的前进方向。整个地图也不像经典贪吃蛇那样全部一一张平面图的方式铺满整个屏幕，屏幕里面能看到的只有位于蛇前进方向的一个扇形视野区域，或者蛇头附近的一小块区域，在前进过程中可以切换视角看到左方或右方的视野。<br/>
+这款游戏有30多个关卡，每一个关卡的地图都是不一样的，地图上面有障碍，碰到障碍身体会变短，当不能再变短时就会死亡。地图上的食物不止一个，存在的地点也不是随机的，如果能连续吃到一整段食物则会有的分加倍的效果。<br/>
+最精彩的地方是整个地图是一个3D空间，在一些关卡里，地图没有边界，类似于现实中的地球，往一个地方一直走会回到原点。有些关卡有边界，但是你冲向边界的那一刻，蛇不会死亡，而是进入了一个全新的地图，另一个次元。<br/>
+这款游戏我高三的时候才接触的，在紧张学习之余召唤一条贪吃蛇，在另外一个世界驰骋，也算是一种解压的方式。谢谢<a href="about:blank">同学</a>提供设备。</p>
+
+<h4>码农的贪吃蛇</h4>
+
+<p>去年冬天在公司实习，无聊的时候瞄了一眼JavaScript，发现里面的数组有一个shift()方法，一下子就觉得这个语言好有趣，于是想用这个语言写点什么，顺便用上这个shift()操作。正巧当时在对canvas很感兴趣，于是便萌生了写一个HTML5的贪吃蛇的想法。这算是我开始JavaScript学习的时候吧。我写了好几个版本，在写两条贪吃蛇对战的版本时萌生了写贪吃蛇AI的想法，但是这仅仅停留在想一下的阶段，没有去细想。后来公司的工作越来越多，慢慢的就将贪吃蛇项目搁浅了。<br/>
+前一阵子微博上有一张非常火的GIF图，里面有一条贪吃蛇最终把整个屏幕吃满了。说实话，作为一名贪吃蛇骨灰级玩家我被彻底震惊了。后来在和<a href="http://dingstyle.me">丁式呆</a>在等待<a href="http://mutong37.com">木橦</a>去骑自行车玩的时候提到了这条风骚的蛇，于是共同决定实现一个贪吃蛇AI。开始的时候觉得这个AI应该很好实现，做一个广度优先搜索就行了，后来我们才发现，贪吃蛇的人蛇生远不止这么简单……</p>
+
+<h3>贪吃蛇的人生哲学</h3>
+
+<p><a href="http://dingstyle.me">丁式呆</a>的贪吃蛇AI<a href="https://github.com/metaphysiks/snake-ai">在此</a>，可以先感受一下他的<a href="http://dingstyle.me/blog/2013/04/26/snake-ai/">哲学</a>。</p>
+
+<h4>论吃和活的重要性</h4>
+
+<p>首先贪吃蛇要明白一个道理，只有活下去，才能吃到更多的食物。在吃一个食物的时候就应该仔细研究一下这粒食物是不是“敌人”设下的陷阱，也许贸然吃下这粒食物就会走入一条不归路，最后只能咬蛇自尽。对于这样的食物一定小心，先和食物慢慢周璇，调整一下自己的姿势，在形势利好的时候在以迅雷不及掩耳之势上前取之。</p>
+
+<h4>做事之前先找好退路</h4>
+
+<p>在贪吃蛇的世界里，只有自己的尾巴会不断腾出新的空间，因此，贪吃蛇的头部尽量和蛇的尾巴保留在一个连通的区间里面。这是一条不可逾越准则，这比吃食物更重要，切记。如果你是一条高瞻远瞩的蛇，能预测到即使与蛇尾暂时失去联系，在不远的将来仍然能够重新会和，那另当别论。</p>
+
+<h4>穷途末路时放慢脚步，思考人生</h4>
+
+<p>当贪吃蛇发现心爱的食物和自己不在一个次元，没有一条有效的路径到达时，就应该把一贯的横冲直撞的风格改一下，留意一下身边的景色，把身边的每一个空白都当做食物来看待，不要在自己走过的地方附近留下空白。同时不断关注变化的世界，根据食物守恒定律，食物总会到来的。</p>
+
+<h4>不要贪图眼前的利益</h4>
+
+<p>你有把握在10步以内吃到食物？吃完食物还能保证和蛇尾在一个区间？如果你吃食物之前仔细思考了上面两个问题，那么你已经是一条优秀的蛇了，你肯定能够在贪吃蛇的世界闯出一片天地，能达到普通贪吃蛇所不能达到的境界。但是你有没有思考过你快速吃到了当前的食物，下一个食物你将会付出非常大的代价？这个情况在你自身已经很长的时候尤为明显，往往为了吃一个食物而将整个世界都跑一遍。其实，当你身体已经很长的时候，面对食物不要再像年轻人那样急功近利，老练地迂回一下，往往能保证下一个食物也能很快吃到。这个故事告诉我们贪心算法的解决方法往往不是最优的解决方法，局部次优解往往能获得更好的全局解决方法。</p>
+
+<h4>少年的时习惯很重要</h4>
+
+<p>作为一条优秀的贪吃蛇，你能吃到很多很多的食物，但慢慢的你会发现，食物越来越难吃到，吃一个食物往往要绕好久好久；食物的位子也越来越刁钻，好像是故意长在你不容易够到的地方一样。其实追根揭底，这都是你年轻时候的错误。年轻的时候做事吃东西往往顾目的，而不顾过程，做事的时候能够完成任务，但是对一些相关的知识不去仔细深究。年少的时候觉得没什么关系，但是你会发现这些时候时留下的一些空白、知识盲点往往会在你中年的时候暴露出缺点来。升职越来越难，做事开始力不从心，你是否有反思过年轻的过错呢。</p>
+
+<h4>人生路长不要轻言放弃</h4>
+
+<p>我的这个贪吃蛇AI是由<a href="http://dingstyle.me">丁式呆</a>的AI改写的，增加了一些我对贪吃蛇哲学的认识，目前程度只能算是普通，比原来AI更差劲一点。离优秀还很远，至于高瞻远瞩更是遥不可及。但是我会不断改进它，朝那个遥不可及的目标前进。</p>
+
+<div>
+    <canvas id='c' width='500px' height='500px'></canvas>
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
+    <script type="text/javascript">
+var FPS = 1000;                 
+var SNAKE_COLOR = {r:90, g:196, b:255};
+var FOOD_COLOR = 'black';
+var WIDTH = 15;                 // 格子横向数目
+var HEIGHT = 15;                // 格子纵向数目
+var C_WIDTH = 500;              // 画布宽度像素
+var C_HEIGHT= 500;              // 画布高度像素
+var P_WIDTH = C_HEIGHT / WIDTH; // 一节身体宽度
+var P_HEIGHT= C_HEIGHT / WIDTH; // 一节身体高度
+var WEST = 'w';
+var EAST = 'e';
+var NORTH = 'n';
+var SOUTH = 's';
+var LEFT = 'l';
+var RIGHT = 'r';
+var FRONT = 'f';
+var BACK = 'b';
+
+var keyQueue = [];
+
+var hasProp = {}.hasOwnProperty;
+
+var _extends = function(child, parent) {
+    for (var key in parent) {
+        if (hasProp.call(parent, key))
+            child[key] = parent[key];
+    }
+    function ctor() {
+        this.constructor = child;
+    }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor();
+    child.__super__ = parent.prototype;
+    return child;
+};
+
+function rgba(r, g, b, a) {
+    return "rgba(" + r + ", " + g + ", " + b + ", " + (a != null ? a : 1) + ")";
+}
+
+function randInt(min, max) {
+    return Math.floor(Math.random()*(max-min) + min);
+}
+
+function borderCell(dr, cell) {
+    switch(dr) {
+        case WEST:
+            return new Point(cell.x-1, cell.y);
+        case EAST:
+            return new Point(cell.x+1, cell.y);
+        case NORTH:
+            return new Point(cell.x, cell.y-1);
+        case SOUTH:
+            return new Point(cell.x, cell.y+1);
+        default:
+            return new Point(cell.x, cell.y);
+    }
+}
+
+function isCellFree(cell, snake) {
+    if(cell.x < 0 || cell.y < 0 || cell.x >= WIDTH || cell.y >= HEIGHT)
+        return false;
+    for(var i = 0, len = snake.body.length-1; i < len; ++i) {
+        if(snake.body[i].equals(cell))
+            return false;
+    }
+    return true;
+}
+
+function isOpposite(dr1, dr2) {
+    switch(dr1) {
+        case WEST:
+            if(dr2 == EAST)
+                return true;
+            break;
+        case EAST:
+            if(dr2 == WEST) 
+                return true;
+            break;
+        case NORTH:
+            if(dr2 == SOUTH)    
+                return true;
+            break;
+        case SOUTH:
+            if(dr2 == NORTH)    
+                return true;
+            break;
+        default:
+            break;
+    }
+    return false;
+}
+
+function turn(d, t) {
+    switch(d) {
+        case WEST:
+            if(t == RIGHT)
+                return NORTH;
+            else if(t == LEFT)
+                return SOUTH;
+            else if(t == BACK)
+                return EAST;
+            break;
+        case EAST:
+            if(t == RIGHT)
+                return SOUTH;
+            else if(t == LEFT)
+                return NORTH;
+            else if(t == BACK)
+                return WEST;
+        break;
+        case NORTH: 
+            if(t == LEFT)
+                return WEST;
+            else if(t == RIGHT)
+                return EAST;
+            else if(t == BACK)
+                return SOUTH;
+        break;
+        case SOUTH:
+            if(t == LEFT)
+                return EAST;
+            else if(t == RIGHT)
+                return WEST;
+            else if(t == BACK)
+                return NORTH;
+        break;
+        default:
+        break;
+    }
+    return d;
+}
+
+var Point = (function(){
+    function Point(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    Point.prototype.add = function(other) {
+        return new Point(this.x+other.x, this.y+other.y);
+    }
+
+    Point.prototype.equals = function(other) {
+        return this.x == other.x && this.y == other.y;
+    }
+
+    Point.prototype.toString = function() {
+        return '('+this.x+','+this.y+')';
+    }
+
+    return Point;
+})();
+
+var Snake = (function(){
+    function Snake(head, direction) {
+        this.body = [head];
+        this.direction = direction!=null ? direction : EAST;
+    }
+
+    Snake.prototype.head = function() {
+        return this.body[0];
+    }
+
+    Snake.prototype.tail = function() {
+        return this.body[this.body.length - 1];
+    }
+
+    Snake.prototype.fork = function() {
+        var snake = new Snake(new Point(0, 0));
+        snake.body = this.body.slice(0);
+        snake.direction = this.body.direction;
+        return snake;
+    }
+
+    Snake.prototype.advance = function(cmd) {
+        if(cmd == LEFT || cmd == RIGHT || cmd == FRONT || cmd == BACK) {
+            this.direction = turn(this.direction, cmd);
+        }
+        else if(!isOpposite(cmd, this.direction)) {
+            this.direction = cmd;
+        }
+        this.body.unshift(borderCell(this.direction, this.body[0]));
+    }
+
+    Snake.prototype.move =function(cmd) {
+        this.advance(cmd);
+        this.moveTail();
+    }
+
+    Snake.prototype.moveTail = function() {
+        this.body.pop();
+    }
+
+    Snake.prototype.bodyHit = function() {
+        // 忽略头部
+        var toCheck = this.body.slice(1, this.body.length);
+        for(var i = 0, len = toCheck.length; i < len; ++i) {
+            if(this.body[0].equals(toCheck[i]))
+                return true;
+        }
+        return false;
+    }
+
+    Snake.prototype.wallHit = function() {
+        var x = this.body[0].x;
+        var y = this.body[0].y;
+        return (x < 0 || y < 0 || x > WIDTH || y > HEIGHT);
+    }
+
+    Snake.prototype.draw = function(ctx) {
+        // draw head
+        ctx.fillStyle = rgba(90, 196, 255, 0.8);
+
+    }
+
+    return Snake;
+})();
+
+var Game = (function(){
+    function Game(ctx) {
+        this.ctx = ctx;
+        this.fps = FPS;
+        this.food = new Point(5, 5);
+        this.score = 1;
+        this.snake = new Snake(new Point(1, 1));
+        this.commands = [];
+    }
+
+    Game.prototype.draw = function() {
+        this.ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
+        // draw food
+        this.ctx.fillStyle = FOOD_COLOR;
+        this.ctx.fillRect(this.food.x*P_WIDTH, this.food.y*P_HEIGHT, P_WIDTH, P_HEIGHT);
+        // draw snake
+        for(var i = 0, len = this.snake.body.length; i < len; ++i){
+            this.ctx.fillStyle = rgba(SNAKE_COLOR.r, SNAKE_COLOR.g, SNAKE_COLOR.b, 1-0.7*(i/len));
+            this.ctx.fillRect(
+                this.snake.body[i].x * P_WIDTH,
+                this.snake.body[i].y * P_HEIGHT,
+                P_WIDTH, P_HEIGHT);
+        }
+    }
+
+    Game.prototype.placeFood = function() {
+        if(this.snake.body.length >= WIDTH*HEIGHT - 1)
+            return false;
+        var nfood;
+        while(true) {
+            nfood = new Point(randInt(0,WIDTH), randInt(0, HEIGHT));
+            if(this.snake.body.every(function(s){
+                return !s.equals(nfood);
+            })) {
+                this.food = nfood;
+                return true;
+            }
+        }
+    }
+
+    Game.prototype.onTick = function() {
+        this.draw();
+        if(this.commands.length == 0) {
+            // call AI function
+            this.commands = Array.prototype.slice.apply(getCmd(this.snake, this.food));
+        }
+        this.snake.advance(this.commands.shift());
+        if(this.snake.head().equals(this.food)) {
+            if(false == this.placeFood()) {
+                this.stop();
+            }
+            this.score += 1;
+        } else {
+            this.snake.moveTail();
+        }
+        if(this.snake.wallHit() || this.snake.bodyHit()) {
+            this.stop();
+        }
+    }
+
+    Game.prototype.play = function() {
+        var _this = this;
+        this.ticker = setInterval(function(){
+            return _this.onTick();
+        }, 1000/this.fps);
+    }
+
+    Game.prototype.stop = function() {
+        clearInterval(this.ticker);
+    }
+
+    return Game;
+})();
+
+// AI code
+
+var pathRecord = (function(){
+    function pathRecord(node, direction, parentRecord) {
+        this.cell = node;
+        this.direction = direction ? direction : '';
+        this.parent = parentRecord;
+    }
+
+    pathRecord.prototype.traceCmd = function(){
+        if(this.parent) {
+            return this.parent.traceCmd() + this.direction;
+        } else {
+            return '' + this.direction;
+        }
+    };
+
+    return pathRecord;
+})();
+
+function lonelyRect(snake) {
+    var map = (function(){
+        var a = [];
+        for(var i = 0; i < HEIGHT; ++i) {
+            a[i] = [];
+            for(var j = 0; j <WIDTH; ++j) {
+                a[i][j] = false;
+            }
+        }
+        for(var i in snake.body) {
+            a[snake.body[i].y][snake.body[i].x] = true;
+        }
+        return a;
+    })();
+    
+}
+
+function findPathToCell(snake, food) {
+    var head = snake.head();
+    var queue = [new pathRecord(head)];
+    var mark = (function(){
+        var array = [];
+        for(var i = 0; i < HEIGHT; ++i) {
+            array[i] = [];
+            for(var j = 0; j < WIDTH; ++j) {
+                array[i][j] = false;
+            }
+        }
+        return array;
+    })();
+    var node, cell, dirs, fd;
+    while(queue.length > 0) {
+        node = queue.shift();
+        if(mark[node.cell.y][node.cell.x] == true)  continue;
+        if(food.equals(node.cell)) {
+            return node.traceCmd();
+        }
+        mark[node.cell.y][node.cell.x] = true;
+        fd = node.direction == '' ? snake.direction : node.direction;
+        dirs = [fd, turn(fd, LEFT), turn(fd, RIGHT), turn(fd, BACK)];
+        for(var i = 0; i < 4; ++i) {
+            cell = borderCell(dirs[i], node.cell);
+            if(isCellFree(cell, snake)) {
+                queue.push(new pathRecord(cell, dirs[i], node));
+            }
+        }
+    }
+    return false;
+}
+
+function getLongestDistance(snake, cell1, cell2) {
+    var queue = [];
+    var mark = (function(){
+        var array = [];
+        for(var i = 0; i < HEIGHT; ++i) {
+            array[i] = [];
+            for(var j = 0; j < WIDTH; ++j) {
+                array[i][j] = -1;
+            }
+        }
+        for(var i in snake.body) {
+            array[snake.body[i].y][snake.body[i].x] = 0;
+        }
+        array[cell1.y][cell1.x] = array[cell2.y][cell2.x] = -1;
+        return array;
+    })();
+    if(isCellFree(cell1, snake)) {
+        queue.push(cell1);
+        mark[cell1.y][cell1.x] = 0;
+    }
+    var node;
+    while(queue.length > 0) {
+        node = queue.pop();
+        if(cell2.equals(node)) {
+            var dx = Math.abs(cell2.x - cell1.x);
+            var dy = Math.abs(cell2.y - cell1.y);
+            return dx > dy ? cell2.y : cell2.x
+        }
+        var dirs = [NORTH, WEST, SOUTH, EAST];
+        for(var i = 0; i < 4; ++i) {
+            var cell = borderCell(dirs[i], node);
+            if(isCellFree(cell, snake) && mark[cell.y][cell.x] == -1) {
+                queue.push(cell);
+                mark[cell.y][cell.x] = mark[node.y][node.x] + 1;
+                cell = borderCell(dirs[(i+1)%4], cell);
+                if(isCellFree(cell, snake) && mark[cell.y][cell.x] == -1) {
+                    queue.push(cell);
+                    mark[cell.y][cell.x] = mark[node.y][node.x] + 1;
+                }
+            }
+        }
+    }
+    return -1;  // can't arrival
+}
+
+function followSnakeTail(snake) {
+    var head = snake.head();
+    var distance = (function(){
+        var array = [];
+        for(var i = 0; i < HEIGHT; ++i) {
+            array[i] = [];
+            for(var j = 0; j < WIDTH; ++j) {
+                array[i][j] = 0;
+            }
+        }
+        return array;
+    })();
+
+    var fork;
+    var dir = snake.direction;
+    var dirs = [dir, turn(dir, LEFT), turn(dir, RIGHT)];
+    var distance = [];
+    for(var i = 0; i < 3; ++i) {
+        var newhead = borderCell(dirs[i], head);
+        if(isCellFree(newhead, snake))
+            distance[i] = getLongestDistance(snake, snake.tail(), newhead);
+        else 
+            distance[i] = -1;
+    }
+    var max =   distance[0] > distance[1] ?
+                (distance[0] > distance[2] ? 0 : 2) :
+                (distance[1] > distance[2] ? 1 : 2);
+    return dirs[max];
+}
+
+function getPath(snake, food) {
+    var path = findPathToCell(snake, food);
+    if(false == path || path.length >= (WIDTH*HEIGHT-snake.length)*0.3) {
+        return followSnakeTail(snake);
+    }
+    var fork = snake.fork();
+    for(var i = 0, len = path.length; i < len-1; ++i) {
+        fork.advance(path[i]);
+        fork.moveTail();
+    }
+    fork.advance(path[i]);
+    if(false == findPathToCell(fork, fork.tail())) {
+        return followSnakeTail(snake);
+    }
+    return path;
+}
+
+// AI END
+
+
+function getCmd(snake, food) {
+    return getPath(snake, food);//.split('')[0];
+}
+
+var context = $('#c')[0].getContext('2d');
+var game = new Game(context);
+game.play();
+    </script>
+</div>
+
+
+<p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[琐碎的事]]></title>

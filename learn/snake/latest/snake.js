@@ -258,13 +258,13 @@ function main() {
 		if(snakeGame.checkHitSnakeBody(temp) || snakeGame.checkHitWall(temp)) {
 			alive = false;
 			clearInterval(intervalId);
-			$("p#info").text('Game Over');
+			printMessage('Game Over');
 			return ;
 		}
 		if(snakeGame.getSnakeLength() >= 623) {
 			alive = false;
 			clearInterval(intervalId);
-			$("p#info").text('Undirectlookable!!');
+			printMessage('Undirectlookable!!');
 			return ;
 		}
 		if(command.length <= 0) {
@@ -289,11 +289,13 @@ function main() {
 		if(snakeGame == null)
 			snakeGame = new game();
 		intervalId = setInterval(oneStep, 1000/currentFPS);
+		printMessage('Begin!');
 	}
 
 	this.stop = function() {
 		clearInterval(intervalId);
 		snakeGame = null;
+		printMessage('Stop!');
 	}
 }
 
@@ -325,6 +327,22 @@ $(window).ready(function () {
 	$("div#scriptBoard").animate({left:500+canvasLeft+'px'}, 400);
 	$("button#scriptButton").text("隐藏脚本");
 });
+
+var messages = [];
+
+function printMessage(str) {
+	var info = '';
+	if(messages.length > 20) {
+		messages.shift();
+	}
+	var now = new Date();
+	messages.push('['+ now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() +']' + str);
+	for(var i = messages.length-1; i >= 0; --i) {
+		info += messages[i];
+		info += '\n';
+	}
+	$('#info').text(info);
+}
 
 var example = "// 通过修改下面函数来实现你的AI\n" +
 "function userAI(GAME, cmd) {\n" + 
